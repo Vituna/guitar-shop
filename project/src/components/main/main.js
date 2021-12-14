@@ -3,14 +3,17 @@ function Main() {
   return(
     <div class="wrapper">
       <header class="header" id="header">
-        <div class="container header__wrapper"><a class="header__logo logo"><img class="logo__img" width="70" height="70" src="./img/svg/logo.svg" alt="Логотип" /></a>
+        <div class="container header__wrapper">
+          <a class="header__logo logo" href="!#">
+            <img class="logo__img" width="70" height="70" src="./img/svg/logo.svg" alt="Логотип" />
+          </a>
           <nav class="main-nav">
             <ul class="main-nav__list">
-              <li><a class="link main-nav__link link--current" href="#">Каталог</a>
+              <li><a class="link main-nav__link link--current" href="!#">Каталог</a>
               </li>
-              <li><a class="link main-nav__link" href="#">Где купить?</a>
+              <li><a class="link main-nav__link" href="!#">Где купить?</a>
               </li>
-              <li><a class="link main-nav__link" href="#">О компании</a>
+              <li><a class="link main-nav__link" href="!#">О компании</a>
               </li>
             </ul>
           </nav>
@@ -32,7 +35,7 @@ function Main() {
               <li class="form-search__select-item" tabindex="0">Четстер UX4</li>
               <li class="form-search__select-item" tabindex="0">Четстер UX5</li>
             </ul>
-          </div><a class="header__cart-link" href="#" aria-label="Корзина">
+          </div><a class="header__cart-link" href="!#" aria-label="Корзина">
             <svg class="header__cart-icon" width="14" height="14" aria-hidden="true">
               <use href="#icon-basket"></use>
             </svg><span class="visually-hidden">Перейти в корзину</span><span class="header__cart-count">2</span></a>
@@ -44,7 +47,7 @@ function Main() {
           <ul class="breadcrumbs page-content__breadcrumbs">
             <li class="breadcrumbs__item"><a class="link" href="./main.html">Главная</a>
             </li>
-            <li class="breadcrumbs__item"><a class="link">Каталог</a>
+            <li class="breadcrumbs__item"><a class="link" href="!#">Каталог</a>
             </li>
           </ul>
           <div class="catalog">
@@ -133,7 +136,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>129 500 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-1.jpg" srcset="img/content/catalog-product-1@2x.jpg 2x" width="75" height="190" alt="Честер Bass" />
@@ -159,7 +164,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>51 100 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red-border button--mini button--in-cart" href="#">В Корзине</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red-border button--mini button--in-cart" href="!#">В Корзине</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-2.jpg" srcset="img/content/catalog-product-2@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus" />
@@ -185,7 +192,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>9 700 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-3.jpg" srcset="img/content/catalog-product-3@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus Acoustics" />
@@ -211,7 +220,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>129 500 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-4.jpg" srcset="img/content/catalog-product-4@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus" />
@@ -237,7 +248,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>9 700 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-5.jpg" srcset="img/content/catalog-product-5@2x.jpg 2x" width="75" height="190" alt="Честер Bass" />
@@ -263,7 +276,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>51 100 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red-border button--mini button--in-cart" href="#">В Корзине</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red-border button--mini button--in-cart" href="!#">В Корзине</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-6.jpg" srcset="img/content/catalog-product-6@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus Acoustics" />
@@ -289,7 +304,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>129 500 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-7.jpg" srcset="img/content/catalog-product-7@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus Acoustics" />
@@ -315,7 +332,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>129 500 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
               <div class="product-card"><img src="img/content/catalog-product-8.jpg" srcset="img/content/catalog-product-8@2x.jpg 2x" width="75" height="190" alt="СURT Z30 Plus" />
@@ -341,7 +360,9 @@ function Main() {
                   <p class="product-card__price"><span class="visually-hidden">Цена:</span>9 700 ₽
                   </p>
                 </div>
-                <div class="product-card__buttons"><a class="button button--mini" href="#">Подробнее</a><a class="button button--red button--mini button--add-to-cart" href="#">Купить</a>
+                <div class="product-card__buttons">
+                  <a class="button button--mini" href="!#">Подробнее</a>
+                  <a class="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
                 </div>
               </div>
             </div>
@@ -362,7 +383,7 @@ function Main() {
       </main>
       <footer class="footer">
         <div class="footer__container container">
-          <a class="footer__logo logo">
+          <a class="footer__logo logo" href="!#">
             <img class="logo__img" width="70" height="70" src="./img/svg/logo.svg" alt="Логотип" />
           </a>
           <div class="socials footer__socials">
