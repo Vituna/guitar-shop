@@ -7,10 +7,9 @@ const initialState = {
 
 const guitars = createReducer(initialState, (builder) => {
   builder
-  .addCase(loadGuitars, (state, action) => {
-    const {guitars} = action.payload;
-    state.guitars = guitars;
-  })
+    .addCase(loadGuitars, (state, action) => {
+      state.guitars = action.payload.guitars;
+    });
 });
 
 export {guitars};

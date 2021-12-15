@@ -8,12 +8,11 @@ function App() {
 
   return (
     <Router>
-
-    <Switch>
-      <Route exact path={AppRoute.Main}>
-        <Main />
-      </Route>
-    </Switch>
+      <Switch>
+        <Route exact path={AppRoute.Main}>
+          <Main />
+        </Route>
+      </Switch>
     </Router>
   );
 }

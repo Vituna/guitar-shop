@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BACKEND_URL = 'https://accelerator-guitar-shop-api-v1.glitch.me/'
+const BACKEND_URL = 'https://accelerator-guitar-shop-api-v1.glitch.me/';
 const REQUEST_TIMEOUT = 5000;
 
 export const createApi = () => {
@@ -12,10 +12,8 @@ export const createApi = () => {
   api.interceptors.response.use(
     (response) => response,
 
-    (error) => {
-      return Promise.reject(error)
-    }
-  )
+    (error) => Promise.reject(error),
+  );
 
-  return api
+  return api;
 };

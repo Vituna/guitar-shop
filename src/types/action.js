@@ -1,3 +1,3 @@
 export const ActionType = {
-  LoadGuitars: 'data/loadGuitars'
+  LoadGuitars: 'data/loadGuitars',
 };

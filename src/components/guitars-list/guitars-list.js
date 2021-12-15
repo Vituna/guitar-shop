@@ -8,14 +8,14 @@ function GuitarsList() {
   const guitars = useSelector(getGuitars);
 
   return (
-  <div className="cards catalog__cards">
+    <div className="cards catalog__cards">
 
-    {guitars.map((guitar) => (
-      <GuitarOffer key={guitar.id} guitar={guitar}/>
-    ))}
+      {guitars.map((guitar) => (
+        <GuitarOffer key={guitar.id} guitar={guitar}/>
+      ))}
 
-  </div>
- );
+    </div>
+  );
 }
 
 export default GuitarsList;

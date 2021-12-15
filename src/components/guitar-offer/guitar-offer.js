@@ -1,9 +1,8 @@
 function GuitarOffer(guitar) {
 
-  console.log(guitar.guitar.previewImg)
   return (
     <div className="product-card">
-      <img src={guitar.guitar.previewImg} srcSet={guitar.guitar.previewImg} width="75" height="190" alt={guitar.guitar.name} />
+      <img src={guitar.guitar.previewImg} width="75" height="190" alt={guitar.guitar.name} />
       <div className="product-card__info">
         <div className="rate product-card__rate" aria-hidden="true">
           <span className="visually-hidden">Рейтинг:</span>
@@ -37,7 +36,7 @@ function GuitarOffer(guitar) {
         <a className="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
       </div>
     </div>
-);
+  );
 }
 
 export default GuitarOffer;
