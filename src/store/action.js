@@ -10,3 +10,20 @@ export const loadGuitars= createAction(
   }),
 );
 
+export const changeCurrentSearch = createAction(
+  ActionType.ChangeSearch,
+  (filter) => (
+    {payload: {filter}}
+  ),
+);
+
+export const loadCurrentGuitar = createAction(
+  ActionType.LoadCurrentGuitar,
+  (guitar) => ({
+    payload: {
+      guitar,
+    },
+  }),
+);
+
+export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

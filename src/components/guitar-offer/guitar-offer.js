@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function GuitarOffer(guitar) {
 
   return (
@@ -32,7 +34,9 @@ function GuitarOffer(guitar) {
         </p>
       </div>
       <div className="product-card__buttons">
-        <a className="button button--mini" href="!#">Подробнее</a>
+        <Link to={`/guitars/${guitar.guitar.id}`} className="button button--mini" href="!#">
+          Подробнее
+        </Link>
         <a className="button button--red button--mini button--add-to-cart" href="!#">Купить</a>
       </div>
     </div>

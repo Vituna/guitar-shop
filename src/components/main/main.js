@@ -1,9 +1,9 @@
+/* eslint-disable no-console */
 import Search from '../search/search';
 
 import  GuitarsList  from '../guitars-list/guitars-list';
 
-function Main() {
-
+function Main(guitars) {
   return(
     <div className="wrapper">
       <header className="header" id="header">
@@ -22,7 +22,7 @@ function Main() {
             </ul>
           </nav>
 
-          <Search />
+          <Search guitars={guitars} />
 
           <a className="header__cart-link" href="!#" aria-label="Корзина">
             <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
@@ -103,7 +103,7 @@ function Main() {
               </div>
             </div>
 
-            <GuitarsList />
+            <GuitarsList guitars={guitars} />
 
             <div className="pagination page-content__pagination">
               <ul className="pagination__list">

@@ -5,4 +5,3 @@ export const AppRoute = {
 export const ApiRoute = {
   Guitars: '/guitars',
 };
-
