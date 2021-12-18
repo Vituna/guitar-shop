@@ -2,27 +2,36 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-
-import { getGuitars } from '../../store/guitar/selectors';
+import { getGuitarsFilter, getGuitarsLoadingStatus } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
+import { getMinPrice, getMaxPrice } from '../../store/filters/selectors';
 import { fetchGuitarsParams } from '../../store/api-actions';
 
 import Sort from '../sort/sort';
 import GuitarOffer from '../guitar-offer/guitar-offer';
+import Preloader from '../preloader/preloader';
 
 import { getSortParams } from '../../utils';
 
 function GuitarsList() {
   const dispatch = useDispatch();
 
-  const guitars = useSelector(getGuitars);
+  const guitars = useSelector(getGuitarsFilter);
+  const isLoading = useSelector(getGuitarsLoadingStatus);
   const sortType = useSelector(getSortType);
   const directionType = useSelector(getDirectionType);
+  const minPrice = useSelector(getMinPrice);
+  const maxPrice = useSelector(getMaxPrice);
+
 
   useEffect(() => {
-    const sortParams = getSortParams(sortType, directionType);
-    dispatch(fetchGuitarsParams(sortParams));
-  }, [dispatch, sortType, directionType]);
+    const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice);
+    dispatch(fetchGuitarsParams(filterParams));
+  }, [dispatch, sortType, directionType, minPrice, maxPrice]);
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <>

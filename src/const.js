@@ -19,3 +19,8 @@ export const DIRECTION_TYPES= {
   Asc: 'asc',
   Desc: 'desc',
 };
+
+export const FILTER_PARAMS_NAME = {
+  PriceLte: 'price_lte',
+  PriceGte: 'price_gte',
+};

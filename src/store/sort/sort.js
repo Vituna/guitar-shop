@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeSortType, changeDirectionType } from '../action';
 
-// import { SORT_TYPES } from '../../const';
+import { SORT_TYPES } from '../../const';
 
 const initialState = {
-  sortType: null,
-  directionType: null,
+  sortType: SORT_TYPES.Price,
+  directionType: SORT_TYPES.Rating,
 };
 
 const sort = createReducer(initialState, (builder) => {

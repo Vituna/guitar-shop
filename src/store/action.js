@@ -10,6 +10,15 @@ export const loadGuitars= createAction(
   }),
 );
 
+export const loadGuitarsFilter= createAction(
+  ActionType.LoadGuitarsFilter,
+  (guitarsFilter) => ({
+    payload: {
+      guitarsFilter,
+    },
+  }),
+);
+
 export const changeCurrentSearch = createAction(
   ActionType.ChangeSearch,
   (filter) => (
@@ -37,6 +46,20 @@ export const changeDirectionType = createAction(
   ActionType.ChangeDirectionType,
   (direction) => (
     {payload: {direction}}
+  ),
+);
+
+export const changeMinPrice = createAction(
+  ActionType.ChangeMinPrice,
+  (minPice) => (
+    {payload: minPice}
+  ),
+);
+
+export const changeMaxPrice = createAction(
+  ActionType.ChangeMaxPrice,
+  (maxPrice) => (
+    {payload: maxPrice}
   ),
 );
 

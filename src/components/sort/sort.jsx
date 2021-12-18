@@ -33,13 +33,11 @@ function Sort() {
         <button className={`catalog-sort__type-button ${typeSort === SORT_TYPES.Rating ? 'catalog-sort__type-button--active' : ''}`} aria-label="по популярности" onClick={() => handleChangeTypeSort(SORT_TYPES.Rating)}>по популярности</button>
       </div>
       <div className="catalog-sort__order">
-        <button className={`catalog-sort__order-button catalog-sort__order-button--up ${typeDirection === DIRECTION_TYPES.Asc ? 'catalog-sort__type-button--active' : ''}`}  aria-label="По возрастанию" tabIndex="-1"onClick={() => handleChangeDirection(DIRECTION_TYPES.Asc)}></button>
-        <button className={`catalog-sort__order-button catalog-sort__order-button--down ${typeDirection === DIRECTION_TYPES.Desc ? 'catalog-sort__type-button--active' : ''}`} aria-label="По убыванию"onClick={() => handleChangeDirection(DIRECTION_TYPES.Desc)}></button>
+        <button className={`catalog-sort__order-button catalog-sort__order-button--up ${typeDirection === DIRECTION_TYPES.Asc ? 'catalog-sort__type-button--active' : ''}`}  aria-label="По возрастанию" tabIndex="-1" onClick={() => handleChangeDirection(DIRECTION_TYPES.Asc)}></button>
+        <button className={`catalog-sort__order-button catalog-sort__order-button--down ${typeDirection === DIRECTION_TYPES.Desc ? 'catalog-sort__type-button--active' : ''}`} aria-label="По убыванию" onClick={() => handleChangeDirection(DIRECTION_TYPES.Desc)}></button>
       </div>
     </div>
   );
 }
 
 export default Sort;
-// catalog-sort__type-button--active
-// catalog-sort__order-button--active

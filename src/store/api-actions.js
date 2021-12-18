@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest } from './action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter } from './action';
 
 import { ApiRoute } from '../const';
 
@@ -23,10 +23,12 @@ export const fetchCurrentGuitarAction = (id) => (
   }
 );
 
-export const fetchGuitarsParams = ( params ) =>
+export const fetchGuitarsParams = ( params ) => (
   async(dispatch, _getState, api) => {
+    console.log(params);
     const {data} = await api.get(ApiRoute.Guitars, {
       params: {...params},
     });
-    dispatch(loadGuitars(data));
-  };
+    dispatch(loadGuitarsFilter(data));
+  }
+);
