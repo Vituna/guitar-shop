@@ -26,4 +26,19 @@ export const loadCurrentGuitar = createAction(
   }),
 );
 
+export const changeSortType = createAction(
+  ActionType.ChangeSortType,
+  (sort) => (
+    {payload: {sort}}
+  ),
+);
+
+export const changeDirectionType = createAction(
+  ActionType.ChangeDirectionType,
+  (direction) => (
+    {payload: {direction}}
+  ),
+);
+
+
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

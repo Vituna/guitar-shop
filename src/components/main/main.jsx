@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import Search from '../search/search';
 
-import  GuitarsList  from '../guitars-list/guitars-list';
+import GuitarsList from '../guitars-list/guitars-list';
 
-function Main(guitars) {
+function Main() {
   return(
     <div className="wrapper">
       <header className="header" id="header">
@@ -22,7 +22,7 @@ function Main(guitars) {
             </ul>
           </nav>
 
-          <Search guitars={guitars} />
+          <Search />
 
           <a className="header__cart-link" href="!#" aria-label="Корзина">
             <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
@@ -63,22 +63,22 @@ function Main(guitars) {
                   <label htmlFor="acoustic">Акустические гитары</label>
                 </div>
                 <div className="form-checkbox catalog-filter__block-item">
-                  <input className="visually-hidden" type="checkbox" id="electric" name="electric" checked />
+                  <input className="visually-hidden" type="checkbox" id="electric" name="electric"  />
                   <label htmlFor="electric">Электрогитары</label>
                 </div>
                 <div className="form-checkbox catalog-filter__block-item">
-                  <input className="visually-hidden" type="checkbox" id="ukulele" name="ukulele" checked />
+                  <input className="visually-hidden" type="checkbox" id="ukulele" name="ukulele"  />
                   <label htmlFor="ukulele">Укулеле</label>
                 </div>
               </fieldset>
               <fieldset className="catalog-filter__block">
                 <legend className="catalog-filter__block-title">Количество струн</legend>
                 <div className="form-checkbox catalog-filter__block-item">
-                  <input className="visually-hidden" type="checkbox" id="4-strings" name="4-strings" checked />
+                  <input className="visually-hidden" type="checkbox" id="4-strings" name="4-strings"  />
                   <label htmlFor="4-strings">4</label>
                 </div>
                 <div className="form-checkbox catalog-filter__block-item">
-                  <input className="visually-hidden" type="checkbox" id="6-strings" name="6-strings" checked />
+                  <input className="visually-hidden" type="checkbox" id="6-strings" name="6-strings"  />
                   <label htmlFor="6-strings">6</label>
                 </div>
                 <div className="form-checkbox catalog-filter__block-item">
@@ -91,19 +91,8 @@ function Main(guitars) {
                 </div>
               </fieldset>
             </form>
-            <div className="catalog-sort">
-              <h2 className="catalog-sort__title">Сортировать:</h2>
-              <div className="catalog-sort__type">
-                <button className="catalog-sort__type-button catalog-sort__type-button--active" aria-label="по цене" tabIndex="-1">по цене</button>
-                <button className="catalog-sort__type-button" aria-label="по популярности">по популярности</button>
-              </div>
-              <div className="catalog-sort__order">
-                <button className="catalog-sort__order-button catalog-sort__order-button--up catalog-sort__order-button--active" aria-label="По возрастанию" tabIndex="-1"></button>
-                <button className="catalog-sort__order-button catalog-sort__order-button--down" aria-label="По убыванию"></button>
-              </div>
-            </div>
 
-            <GuitarsList guitars={guitars} />
+            <GuitarsList />
 
             <div className="pagination page-content__pagination">
               <ul className="pagination__list">

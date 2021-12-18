@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { loadGuitars, loadCurrentGuitar, loadGuitarRequest } from './action';
 
 import { ApiRoute } from '../const';
@@ -16,7 +18,15 @@ export const fetchCurrentGuitarAction = (id) => (
       const {data} = await api.get(`${ApiRoute.Guitars}/${id}`);
       dispatch(loadCurrentGuitar(data));
     } catch {
-      // cogoToast.error(ERROR_MESSAGE_FETCH_QUEST)
+      // cogoToast.error()
     }
   }
 );
+
+export const fetchGuitarsParams = ( params ) =>
+  async(dispatch, _getState, api) => {
+    const {data} = await api.get(ApiRoute.Guitars, {
+      params: {...params},
+    });
+    dispatch(loadGuitars(data));
+  };
