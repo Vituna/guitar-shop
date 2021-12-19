@@ -13,7 +13,6 @@ function Sort() {
   dispatch(changeSortType(typeSort));
   dispatch(changeDirectionType(typeDirection));
 
-
   const handleChangeTypeSort = (type) => {
     setTypeSort(type);
   };

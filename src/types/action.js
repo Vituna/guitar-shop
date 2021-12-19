@@ -8,4 +8,5 @@ export const ActionType = {
   ChangeDirectionType: 'user/changeDirectionType',
   ChangeMinPrice: 'user/changeMinPrice',
   ChangeMaxPrice: 'user/changeMaxPrice',
+  ChangeTypeFilter: 'user/changeTypeFilter',
 };

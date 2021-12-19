@@ -63,5 +63,12 @@ export const changeMaxPrice = createAction(
   ),
 );
 
+export const changeTypeFilter = createAction(
+  ActionType.ChangeTypeFilter,
+  (typeFilter) => (
+    {payload: typeFilter}
+  ),
+);
+
 
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

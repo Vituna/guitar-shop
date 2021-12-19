@@ -23,4 +23,17 @@ export const DIRECTION_TYPES= {
 export const FILTER_PARAMS_NAME = {
   PriceLte: 'price_lte',
   PriceGte: 'price_gte',
+  TypeName: 'type',
+};
+
+export const GuitarType = [
+  'Акустические гитары',
+  'Электрогитары',
+  'Укулеле',
+];
+
+export const GuitarTypeRus = {
+  Acoustic: 'Акустические гитары',
+  Electric: 'Электрогитары',
+  Ukulele: 'Укулеле',
 };
