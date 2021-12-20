@@ -24,6 +24,7 @@ export const FILTER_PARAMS_NAME = {
   PriceLte: 'price_lte',
   PriceGte: 'price_gte',
   TypeName: 'type',
+  String: 'stringCount',
 };
 
 export const GuitarType = [
@@ -37,3 +38,18 @@ export const GuitarTypeRus = {
   Electric: 'Электрогитары',
   Ukulele: 'Укулеле',
 };
+
+export const GuitarTypeEng = {
+  Acoustic: 'acoustic',
+  Electric: 'electric',
+  Ukulele: 'ukulele',
+};
+
+export const GuitarTypeString = {
+  [GuitarTypeEng.Acoustic]: [6, 7, 12 ],
+  [GuitarTypeEng.Electric]: [4, 6, 7],
+  [GuitarTypeEng.Ukulele]: [4],
+};
+
+export const AMOUNT_STRINGS_GUITAR = [4, 6, 7, 12];
+

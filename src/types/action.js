@@ -9,4 +9,5 @@ export const ActionType = {
   ChangeMinPrice: 'user/changeMinPrice',
   ChangeMaxPrice: 'user/changeMaxPrice',
   ChangeTypeFilter: 'user/changeTypeFilter',
+  ChangeStringFilter: 'user/changeStringFilter',
 };

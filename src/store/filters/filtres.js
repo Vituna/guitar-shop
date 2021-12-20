@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCurrentSearch, changeMinPrice, changeMaxPrice, changeTypeFilter } from '../action';
+import { changeCurrentSearch, changeMinPrice, changeMaxPrice, changeTypeFilter, changeStringFilter } from '../action';
 
 const initialState = {
   currentSearch: '',
   minPrice: null,
   maxPrice: null,
   typeFilter: [],
+  stringFilter: [],
 };
 
 const filter = createReducer(initialState, (builder) => {
@@ -24,6 +25,10 @@ const filter = createReducer(initialState, (builder) => {
   builder
     .addCase(changeTypeFilter, (state, action) => {
       state.typeFilter = action.payload;
+    });
+  builder
+    .addCase(changeStringFilter, (state, action) => {
+      state.stringFilter = action.payload;
     });
 });
 

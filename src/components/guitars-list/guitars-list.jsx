@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { getGuitarsFilter, getGuitarsLoadingStatus } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
-import { getMinPrice, getMaxPrice, getTypeFilter } from '../../store/filters/selectors';
+import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
 import { fetchGuitarsParams } from '../../store/api-actions';
 
 import Sort from '../sort/sort';
@@ -23,14 +23,15 @@ function GuitarsList() {
   const minPrice = useSelector(getMinPrice);
   const maxPrice = useSelector(getMaxPrice);
   const filterType = useSelector(getTypeFilter);
+  const filterString = useSelector(getStringFilter);
 
   // console.log(filterType);
 
 
   useEffect(() => {
-    const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice, filterType);
+    const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
     dispatch(fetchGuitarsParams(filterParams));
-  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType]);
+  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString]);
 
   if (isLoading) {
     return <Preloader />;

@@ -13,17 +13,12 @@ function FilterType() {
   const filterType = useSelector(getTypeFilter);
 
   const handleInputChange = (name) => {
+    const type = [...filterType];
+    const index = type.findIndex((item) => item === name);
 
-    const typeList = [...filterType];
-    const index = typeList.findIndex((item) => item === name);
+    index === -1 ? type.push(name) : type.splice(index, 1);
 
-    if (index === -1) {
-      typeList.push(name);
-    } else {
-      typeList.splice(index, 1);
-    }
-    console.log(typeList);
-    dispatch(changeTypeFilter(typeList));
+    dispatch(changeTypeFilter(type));
   };
 
   return (

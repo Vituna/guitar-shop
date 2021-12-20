@@ -2,12 +2,13 @@ import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus } from './const';
 
 export const getFilterGuitarsName = (guitars, inputValue) => guitars.filter((guitar) => guitar.name.toLowerCase().includes(inputValue.toLowerCase()));
 
-export const getSortParams = (sort, order, minPrice, maxPrice, filterType) => ({
+export const getSortParams = (sort, order, minPrice, maxPrice, filterType, filterString) => ({
   [SORT_TYPES.ParamsName.Sort]: sort,
   [SORT_TYPES.ParamsName.Order]: order,
   [FILTER_PARAMS_NAME.PriceGte]: minPrice,
   [FILTER_PARAMS_NAME.PriceLte]: maxPrice,
   [FILTER_PARAMS_NAME.TypeName]: filterType,
+  [FILTER_PARAMS_NAME.String]: filterString,
 });
 
 export const getMinMaxPricesGuitars = (guitars) => {

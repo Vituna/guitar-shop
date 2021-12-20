@@ -70,5 +70,12 @@ export const changeTypeFilter = createAction(
   ),
 );
 
+export const changeStringFilter = createAction(
+  ActionType.ChangeStringFilter,
+  (stringFilter) => (
+    {payload: stringFilter}
+  ),
+);
+
 
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);
