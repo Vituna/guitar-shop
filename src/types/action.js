@@ -10,4 +10,8 @@ export const ActionType = {
   ChangeMaxPrice: 'user/changeMaxPrice',
   ChangeTypeFilter: 'user/changeTypeFilter',
   ChangeStringFilter: 'user/changeStringFilter',
+  CurrentNumberPage: 'user/currentNumberPage',
+  LoadGuitarsPagination: 'user/loadGuitarsPagination',
+
+
 };

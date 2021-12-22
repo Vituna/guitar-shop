@@ -77,5 +77,20 @@ export const changeStringFilter = createAction(
   ),
 );
 
+export const currentNumberPage = createAction(
+  ActionType.CurrentNumberPage,
+  (currentPage) => ({
+    payload: {
+      currentPage,
+    },
+  }),
+);
+
+export const loadGuitarsPagination = createAction(
+  ActionType.LoadGuitarsPagination,
+  (guitars) => (
+    {payload:
+      guitars}
+  ));
 
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

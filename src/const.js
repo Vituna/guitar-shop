@@ -27,6 +27,13 @@ export const FILTER_PARAMS_NAME = {
   String: 'stringCount',
 };
 
+export const PAGINATION_PARAMS_NAME = {
+  Start: '_start',
+  End: '_end',
+  Limit: '_limit',
+};
+
+
 export const GuitarType = [
   'Акустические гитары',
   'Электрогитары',
