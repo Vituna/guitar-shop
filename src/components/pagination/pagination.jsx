@@ -9,18 +9,17 @@ import { currentNumberPage } from '../../store/action';
 export const getNumberPages = (numberPage, currentPage) => {
   const numberPages = [
     numberPage > 3 && currentPage === numberPage ? currentPage - 3 : null,
-    numberPage > 3 && currentPage === 1  ? currentPage + 3:  null,
     currentPage - 2 > 0 ? currentPage - 2 : null,
     currentPage - 1 > 0 ? currentPage - 1 : null,
+    currentPage,
     currentPage < numberPage ? currentPage + 1: null,
     currentPage < numberPage - 1  ? currentPage + 2:  null,
-    currentPage,
+    numberPage > 3 && currentPage === 1  ? currentPage + 3:  null,
   ];
   const quantity = numberPages.filter((page) => page !== null);
 
   return quantity;
 };
-
 
 function Pagination() {
   const dispatch = useDispatch();
@@ -29,15 +28,12 @@ function Pagination() {
   const currentPage = useSelector(getCurrentNumberPage);
 
   const numberPages = guitars.length/9;
+  const displayPages = getNumberPages(numberPages, currentPage);
 
   const handlePageNumberClick = (evt, page) => {
     evt.preventDefault();
     dispatch(currentNumberPage(page));
   };
-  // const pageCount = getPageCount(guitars, 9);
-
-  const displayPages = getNumberPages(numberPages, currentPage);
-  console.log(guitars);
 
   return (
     <div className="pagination page-content__pagination">
@@ -48,15 +44,9 @@ function Pagination() {
 
         {displayPages.map((page) => (
           <li className={`pagination__page ${currentPage === page ? 'pagination__page--active' : ''}`} key={page}>
-            <a className="link pagination__page-link" href='/' onClick={() => handlePageNumberClick(page)}>{page}</a>
+            <a className="link pagination__page-link" href='/' onClick={(evt) => handlePageNumberClick(evt, page)}>{page}</a>
           </li>
         ))}
-        {/* <li className="pagination__page">
-          <a className="link pagination__page-link pagination__page--active" href="/" onClick={() => handlePageNumberClick(2)}>2</a>
-        </li>
-        <li className="pagination__page">
-          <a className="link pagination__page-link" href="/">3</a>
-        </li> */}
         <li className="pagination__page pagination__page--next" id="next">
           {currentPage === numberPages ? '' : <a className="link pagination__page-link" href="/">Далее</a>}
         </li>

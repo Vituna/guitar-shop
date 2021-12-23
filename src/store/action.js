@@ -80,9 +80,9 @@ export const changeStringFilter = createAction(
 export const currentNumberPage = createAction(
   ActionType.CurrentNumberPage,
   (currentPage) => ({
-    payload: {
+    payload:
       currentPage,
-    },
+
   }),
 );
 
@@ -91,6 +91,7 @@ export const loadGuitarsPagination = createAction(
   (guitars) => (
     {payload:
       guitars}
-  ));
+  ),
+);
 
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

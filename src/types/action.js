@@ -12,6 +12,4 @@ export const ActionType = {
   ChangeStringFilter: 'user/changeStringFilter',
   CurrentNumberPage: 'user/currentNumberPage',
   LoadGuitarsPagination: 'user/loadGuitarsPagination',
-
-
 };

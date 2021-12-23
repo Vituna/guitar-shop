@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import qs from 'qs';
 
 import { getGuitarsFilter, getGuitarsLoadingStatus } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
@@ -13,8 +16,6 @@ import GuitarOffer from '../guitar-offer/guitar-offer';
 import Preloader from '../preloader/preloader';
 
 import { getSortParams } from '../../utils';
-// import { PAGINATION_PARAMS_NAME } from '../../const';
-// import { pagination } from '../../store/pagination/pagination';
 
 function GuitarsList() {
   const dispatch = useDispatch();
@@ -28,8 +29,7 @@ function GuitarsList() {
   const filterType = useSelector(getTypeFilter);
   const filterString = useSelector(getStringFilter);
   const currentPage = useSelector(getCurrentNumberPage);
-  console.log(currentPage);
-
+  const history = useHistory();
 
   const getPaginationStart = () => {
     if (currentPage === 1) {
@@ -42,30 +42,17 @@ function GuitarsList() {
       return 20;
     }
   };
-  // const getPaginationEnd = () => {
-  //   if (currentPage === 1) {
-  //     return 9;
-  //   }
-  //   if (currentPage === 2) {
-  //     return 16;
-  //   }
-  //   if (currentPage === 3) {
-  //     return 27;
-  //   }
-  // };
   const limitCards = 9;
   const paginationStart = getPaginationStart();
-  // const paginationEnd = getPaginationEnd();
 
   useEffect(() => {
     const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, limitCards);
-
+    const path = `?${qs.stringify(filterParams)}`;
+    history.push(path);
     dispatch(fetchGuitarsParams(filterParams));
     const filterParamsPagination = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
-
-
     dispatch(fetchGuitarsPagination(filterParamsPagination));
-  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart]);
+  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history]);
 
   if (isLoading) {
     return <Preloader />;
