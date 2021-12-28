@@ -1,5 +1,7 @@
 export const AppRoute = {
   Main: '/',
+  CatalogPage: '/catalog/page_:number/',
+  Guitars: '/guitars',
 };
 
 export const ApiRoute = {
@@ -33,6 +35,10 @@ export const PAGINATION_PARAMS_NAME = {
   Limit: '_limit',
 };
 
+export const EMBED = {
+  Embed: '_embed',
+  Comment: 'comments',
+};
 
 export const GuitarType = [
   'Акустические гитары',
@@ -59,4 +65,9 @@ export const GuitarTypeString = {
 };
 
 export const AMOUNT_STRINGS_GUITAR = [4, 6, 7, 12];
+
+export const STAR_COUNT = 5;
+export const LIMIT_CARDS = 9;
+export const MAX_NUMBER_PAGES = 3;
+export const MAX_GUITAR_CARDS = 9;
 

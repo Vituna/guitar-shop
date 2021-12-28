@@ -1,25 +1,11 @@
-/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
-
-// import { getGuitarsFilter } from '../../store/guitar/selectors';
+import { useMemo } from 'react';
 
 import { getCurrentNumberPage, getGuitarsPagination } from '../../store/pagination/selectors';
 import { currentNumberPage } from '../../store/action';
 
-export const getNumberPages = (numberPage, currentPage) => {
-  const numberPages = [
-    numberPage > 3 && currentPage === numberPage ? currentPage - 3 : null,
-    currentPage - 2 > 0 ? currentPage - 2 : null,
-    currentPage - 1 > 0 ? currentPage - 1 : null,
-    currentPage,
-    currentPage < numberPage ? currentPage + 1: null,
-    currentPage < numberPage - 1  ? currentPage + 2:  null,
-    numberPage > 3 && currentPage === 1  ? currentPage + 3:  null,
-  ];
-  const quantity = numberPages.filter((page) => page !== null);
-
-  return quantity;
-};
+import { MAX_GUITAR_CARDS, MAX_NUMBER_PAGES } from '../../const';
+import { Link } from 'react-router-dom';
 
 function Pagination() {
   const dispatch = useDispatch();
@@ -27,28 +13,45 @@ function Pagination() {
   const guitars = useSelector(getGuitarsPagination);
   const currentPage = useSelector(getCurrentNumberPage);
 
-  const numberPages = guitars.length/9;
-  const displayPages = getNumberPages(numberPages, currentPage);
+  const numberPages = guitars.length/MAX_GUITAR_CARDS;
+
+  const getPaginationPages = useMemo(() => {
+    const page = Math.floor((currentPage - 1) / MAX_NUMBER_PAGES) * MAX_NUMBER_PAGES;
+
+    return new Array(numberPages).fill(0).map((_, index) => page + index + 1);
+  }, [currentPage, numberPages]);
 
   const handlePageNumberClick = (evt, page) => {
     evt.preventDefault();
     dispatch(currentNumberPage(page));
   };
 
+  const handleBtnNextClick = (evt) => {
+    evt.preventDefault();
+    dispatch(currentNumberPage(currentPage + MAX_NUMBER_PAGES));
+  };
+
+  const handleBtnBackClick = (evt) => {
+    evt.preventDefault();
+    if (currentPage > MAX_NUMBER_PAGES) {
+      dispatch(currentNumberPage(currentPage - MAX_NUMBER_PAGES));
+    }
+  };
+
   return (
     <div className="pagination page-content__pagination">
       <ul className="pagination__list">
         <li className="pagination__page pagination__page--prev" id="next">
-          {currentPage <= 3 ? '' : <a className="link pagination__page-link" href="/">Назад</a>}
+          {currentPage <=  MAX_NUMBER_PAGES ? '' : <a className="link pagination__page-link" href="/" onClick={handleBtnBackClick}>Назад</a>}
         </li>
 
-        {displayPages.map((page) => (
+        {getPaginationPages.map((page) => (
           <li className={`pagination__page ${currentPage === page ? 'pagination__page--active' : ''}`} key={page}>
-            <a className="link pagination__page-link" href='/' onClick={(evt) => handlePageNumberClick(evt, page)}>{page}</a>
+            <Link className="link pagination__page-link" to={`/catalog/page_${currentPage}`} onClick={(evt) => handlePageNumberClick(evt, page)}>{page}</Link>
           </li>
         ))}
         <li className="pagination__page pagination__page--next" id="next">
-          {currentPage === numberPages ? '' : <a className="link pagination__page-link" href="/">Далее</a>}
+          {currentPage === numberPages ? '' : <a className="link pagination__page-link" href="/" onClick={handleBtnNextClick}>Далее</a>}
         </li>
       </ul>
     </div>

@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import qs from 'qs';
-
 import { getGuitarsFilter, getGuitarsLoadingStatus } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
 import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
@@ -16,6 +14,7 @@ import GuitarOffer from '../guitar-offer/guitar-offer';
 import Preloader from '../preloader/preloader';
 
 import { getSortParams } from '../../utils';
+import { LIMIT_CARDS } from '../../const';
 
 function GuitarsList() {
   const dispatch = useDispatch();
@@ -42,17 +41,17 @@ function GuitarsList() {
       return 20;
     }
   };
-  const limitCards = 9;
+
   const paginationStart = getPaginationStart();
 
   useEffect(() => {
-    const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, limitCards);
-    const path = `?${qs.stringify(filterParams)}`;
-    history.push(path);
+    const filterParams = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, LIMIT_CARDS);
+    const nameUrl = `page_${currentPage}`;
+    history.push(nameUrl);
     dispatch(fetchGuitarsParams(filterParams));
     const filterParamsPagination = getSortParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
     dispatch(fetchGuitarsPagination(filterParamsPagination));
-  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history]);
+  }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage]);
 
   if (isLoading) {
     return <Preloader />;

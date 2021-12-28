@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 
-import { fetchCurrentGuitarAction } from '../../store/api-actions';
+import { fetchCurrentGuitarAction, fetchComments } from '../../store/api-actions';
 import { getGuitar, getGuitarLoading } from '../../store/guitar/selectors';
 
 import Preloader from '../preloader/preloader';
@@ -19,6 +19,11 @@ function GuitarCard() {
   useEffect(() => {
     dispatch(fetchCurrentGuitarAction(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(fetchComments(id));
+  }, [id, dispatch]);
+
 
   if (guitar === null || guitarLoading) {
     return <Preloader />;
