@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-
 import { fetchCurrentGuitarAction, fetchComments } from '../../store/api-actions';
 import { getGuitar, getGuitarLoading } from '../../store/guitar/selectors';
 
@@ -23,7 +22,6 @@ function GuitarCard() {
   useEffect(() => {
     dispatch(fetchComments(id));
   }, [id, dispatch]);
-
 
   if (guitar === null || guitarLoading) {
     return <Preloader />;

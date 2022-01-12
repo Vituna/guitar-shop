@@ -94,7 +94,11 @@ export const loadGuitarsPagination = createAction(
   ),
 );
 
-export const setComments = createAction(ActionType.SetComments, (comments) => ({payload: comments}));
-
+export const setComments = createAction(
+  ActionType.SetComments,
+  (comments) => (
+    {payload: comments}
+  ),
+);
 
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);

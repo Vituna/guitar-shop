@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, loadGuitarsPagination, setComments} from './action';
 
 import { ApiRoute, EMBED } from '../const';
@@ -14,18 +12,13 @@ export const fetchGuitarsAction = () => (
 export const fetchCurrentGuitarAction = (id) => (
   async (dispatch, _getState, api) => {
     dispatch(loadGuitarRequest());
-    try {
-      const {data} = await api.get(`${ApiRoute.Guitars}/${id}`);
-      dispatch(loadCurrentGuitar(data));
-    } catch {
-      // cogoToast.error()
-    }
+    const {data} = await api.get(`${ApiRoute.Guitars}/${id}`);
+    dispatch(loadCurrentGuitar(data));
   }
 );
 
 export const fetchGuitarsParams = ( params ) => (
   async(dispatch, _getState, api) => {
-    // console.log(params);
     const {data} = await api.get(ApiRoute.Guitars, {
       params: {...params, [EMBED.Embed]: EMBED.Comment},
     });
@@ -35,7 +28,6 @@ export const fetchGuitarsParams = ( params ) => (
 
 export const fetchGuitarsPagination = ( params ) => (
   async(dispatch, _getState, api) => {
-    console.log(params);
     const {data} = await api.get(ApiRoute.Guitars, {
       params: {...params},
     });
@@ -45,12 +37,8 @@ export const fetchGuitarsPagination = ( params ) => (
 
 export const fetchComments = (id) =>
   async(dispatch, _getState, api) => {
-    try {
-      const {data} = await api.get(`${ApiRoute.Guitars}/${id}/comments`);
-      dispatch(setComments(data));
-    } catch {
-      // toast.error();
-    }
+    const {data} = await api.get(`${ApiRoute.Guitars}/${id}/comments`);
+    dispatch(setComments(data));
   };
 
 

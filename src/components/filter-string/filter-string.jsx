@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeStringFilter } from '../../store/action';
 import { getStringFilter, getTypeFilter } from '../../store/filters/selectors';
-
 
 import { AMOUNT_STRINGS_GUITAR, GuitarTypeString } from '../../const';
 

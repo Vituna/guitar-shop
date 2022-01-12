@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 function NoFound() {
 
@@ -5,9 +6,9 @@ function NoFound() {
     <main className="page-content">
       <div className="container">
         <b className="cities__status">404. Requested page is not available</b>
-        <a className="link main-nav__link" href='/catalog/page_1'>
+        <Link className="link main-nav__link" to='/catalog/page_1'>
           Click here to return to the main page
-        </a>
+        </Link>
       </div>
     </main>
   );

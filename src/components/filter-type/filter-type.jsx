@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeTypeFilter } from '../../store/action';

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';

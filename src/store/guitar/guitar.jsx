@@ -28,7 +28,6 @@ const guitars = createReducer(initialState, (builder) => {
     .addCase(loadGuitarRequest, (state) => {
       state.questLoading = true;
     });
-
 });
 
 export {guitars};

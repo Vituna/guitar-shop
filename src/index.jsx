@@ -7,7 +7,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 
-
 import { rootReducer } from './store/root-reducer';
 import { createApi } from './services/api';
 import { fetchGuitarsAction } from './store/api-actions';
@@ -18,7 +17,6 @@ const api = createApi();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 
 store.dispatch(fetchGuitarsAction());
-
 
 ReactDOM.render(
   <React.StrictMode>

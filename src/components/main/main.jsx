@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Search from '../search/search';
 
 import FilterPrice from '../filter-price/filter-price';
