@@ -10,7 +10,6 @@ export const getSortParams = (sort, order, minPrice, maxPrice, filterType, filte
   [FILTER_PARAMS_NAME.TypeName]: filterType,
   [FILTER_PARAMS_NAME.String]: filterString,
   [PAGINATION_PARAMS_NAME.Start]: paginationStart,
-  // [PAGINATION_PARAMS_NAME.End]: paginationEnd,
   [PAGINATION_PARAMS_NAME.Limit]: limitCards,
 });
 

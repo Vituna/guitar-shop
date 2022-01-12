@@ -70,4 +70,3 @@ export const STAR_COUNT = 5;
 export const LIMIT_CARDS = 9;
 export const MAX_NUMBER_PAGES = 3;
 export const MAX_GUITAR_CARDS = 9;
-

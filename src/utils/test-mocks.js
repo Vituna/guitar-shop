@@ -122,5 +122,4 @@ export const mockGuitars = [
     price: 6800,
     comments: [],
   },
-
 ];

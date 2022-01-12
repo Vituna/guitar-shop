@@ -13,5 +13,4 @@ export const ActionType = {
   CurrentNumberPage: 'user/currentNumberPage',
   LoadGuitarsPagination: 'user/loadGuitarsPagination',
   SetComments: 'user/SetComments',
-
 };
