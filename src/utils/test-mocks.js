@@ -123,3 +123,16 @@ export const mockGuitars = [
     comments: [],
   },
 ];
+
+export const mockComments = [
+  {
+    advantage: 'Рекомендую!',
+    comment: 'Гитара для начинающих,самое то.Но струны в комплекте-негодятся,от слова совсем.',
+    createAt: '2021-12-03T09:08:21.472Z',
+    disadvantage: 'Не рекомендую!',
+    guitarId: 1,
+    id: '944967a6-79cb-4dbe-a6db-f1080d298653',
+    rating: 4,
+    userName: 'Артём',
+  },
+];

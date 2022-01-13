@@ -40,5 +40,3 @@ export const fetchComments = (id) =>
     const {data} = await api.get(`${ApiRoute.Guitars}/${id}/comments`);
     dispatch(setComments(data));
   };
-
-

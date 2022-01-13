@@ -1,11 +1,14 @@
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { createApi } from '../services/api';
-import { ApiRoute } from '../const';
-import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchGuitarsPagination } from './api-actions';
+import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchGuitarsPagination, fetchComments } from './api-actions';
 import thunk from 'redux-thunk';
-import { mockGuitars, mockGuitar } from '../utils/test-mocks';
-import { loadGuitars, loadGuitarRequest, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsPagination } from './action';
+
+import { mockGuitars, mockGuitar, mockComments } from '../utils/test-mocks';
+import { loadGuitars, loadGuitarRequest, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsPagination, setComments } from './action';
+
+import { ApiRoute } from '../const';
+
 
 const ID_TEST = 1;
 
@@ -55,12 +58,12 @@ describe('Async actions', () => {
       ]);
   });
 
-  it('should dispatch fetchGuitarsParams when GET /guitars/?_start=10&_end=20', async () => {
+  it('should dispatch fetchGuitarsParams when GET /guitars/?_start=10&_end=20&_embed=comments', async () => {
     const store = mockStore();
-    const fakeParams = '_start=10&_end=20';
+    const fakeParams = '_start=10&_end=20&_embed=comments';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}}`)
+      .onGet(`${ApiRoute.Guitars}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);
@@ -78,7 +81,7 @@ describe('Async actions', () => {
     const fakeParams = '_sort=price&_order=desc';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}}`)
+      .onGet(`${ApiRoute.Guitars}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);
@@ -96,7 +99,7 @@ describe('Async actions', () => {
     const fakeParams = '_start=100&_end=19';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}}`)
+      .onGet(`${ApiRoute.Guitars}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);
@@ -109,5 +112,19 @@ describe('Async actions', () => {
       ]);
   });
 
+  it('should dispatch fetchGuitarsPagination when GET comments', async () => {
+    const store = mockStore();
+    mockAPI
+      .onGet(`${ApiRoute.Guitars}/${ID_TEST}/comments`)
+      .reply(HttpCode.Ok, mockComments);
 
+    expect(store.getActions()).toEqual([]);
+
+    await store.dispatch(fetchComments(ID_TEST));
+
+    expect(store.getActions())
+      .toEqual([
+        setComments(mockComments),
+      ]);
+  });
 });
