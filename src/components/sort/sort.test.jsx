@@ -1,8 +1,9 @@
-import {Router} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
-import {render, screen} from '@testing-library/react';
-import {configureMockStore} from '@jedmao/redux-mock-store';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { render, screen } from '@testing-library/react';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
+
 import Sort from './sort';
 
 const mockStore = configureMockStore();

@@ -1,13 +1,14 @@
-import {Router} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
-import {render, screen} from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import {render, screen } from '@testing-library/react';
+
 import GuitarOffer from './guitar-offer';
 
 import { mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
-describe('Component: Guitar Offer', () => {
+describe('Component: GuitarOffer', () => {
 
   it('should render correctly', () => {
     render(
@@ -18,5 +19,4 @@ describe('Component: Guitar Offer', () => {
 
     expect(screen.getByText(/Цена:/)).toBeInTheDocument();
   });
-
 });

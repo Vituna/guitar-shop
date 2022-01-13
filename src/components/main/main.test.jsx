@@ -1,13 +1,15 @@
-import {Router} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
-import {render, screen} from '@testing-library/react';
-import {configureMockStore} from '@jedmao/redux-mock-store';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { render, screen } from '@testing-library/react';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
-import { createApi } from '../../services/api';
 import thunk from 'redux-thunk';
-import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
+
 import Main from './main';
+import { createApi } from '../../services/api';
+
 import { AppRoute, SORT_TYPES } from '../../const';
+import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
@@ -52,6 +54,4 @@ describe('Application Routing', () => {
 
     expect(screen.getByText(/Каталог гитар/i)).toBeInTheDocument();
   });
-
-
 });

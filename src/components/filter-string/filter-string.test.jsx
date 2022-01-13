@@ -1,17 +1,18 @@
-import {Router} from 'react-router-dom';
-import {createMemoryHistory} from 'history';
-import {render, screen} from '@testing-library/react';
-import {configureMockStore} from '@jedmao/redux-mock-store';
+import { Router}  from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { render, screen } from '@testing-library/react';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
 import FilterString from './filter-string';
 import { createApi } from '../../services/api';
-import thunk from 'redux-thunk';
 
 import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
-describe('Component: Filter String', () => {
+describe('Component: FilterString', () => {
   const api = createApi();
   const middlewares = [thunk.withExtraArgument(api)];
   const mockStore = configureMockStore(middlewares);
@@ -39,5 +40,4 @@ describe('Component: Filter String', () => {
 
     expect(screen.getByText(/Количество струн/i)).toBeInTheDocument();
   });
-
 });

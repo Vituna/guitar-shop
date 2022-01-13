@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
-import {createMemoryHistory} from 'history';
+import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+
 import Pagination from './pagination';
+
 import { mockGuitars } from '../../utils/test-mocks';
 
 jest.mock('react-router-dom', () => ({
@@ -54,5 +56,4 @@ describe('Component: Pagination', () => {
 
     expect(screen.queryByText('Далее')).not.toBeInTheDocument();
   });
-
 });

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { changeSortType, changeDirectionType } from '../../store/action';
+
 import { SORT_TYPES, DIRECTION_TYPES } from '../../const';
 
 function Sort() {
@@ -10,8 +11,10 @@ function Sort() {
   const [typeSort, setTypeSort] = useState(null);
   const [typeDirection, setTypeDirection] = useState(null);
 
-  dispatch(changeSortType(typeSort));
-  dispatch(changeDirectionType(typeDirection));
+  useEffect(() => {
+    dispatch(changeSortType(typeSort));
+    dispatch(changeDirectionType(typeDirection));
+  }, [dispatch, typeSort, typeDirection]);
 
   const handleChangeTypeSort = (type) => {
     setTypeSort(type);

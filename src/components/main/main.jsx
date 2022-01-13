@@ -1,11 +1,9 @@
 import Search from '../search/search';
-
 import FilterPrice from '../filter-price/filter-price';
 import FilterType from '../filter-type/filter-type';
 import FilterString from '../filter-string/filter-string';
 import GuitarsList from '../guitars-list/guitars-list';
 import Pagination from '../pagination/pagination';
-
 
 function Main() {
 
