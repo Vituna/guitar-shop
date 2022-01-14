@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'qs';
 
-import { getGuitarsFilter, getGuitarsLoadingStatus, getLoadingStatus } from '../../store/guitar/selectors';
+import { getGuitarsFilter, getGuitarsLoadingStatus, getLoadingUrlStatus } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
 import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
 import { fetchGuitarsParams, fetchGuitarsPagination } from '../../store/api-actions';
@@ -29,7 +29,7 @@ function GuitarsList() {
   const filterType = useSelector(getTypeFilter);
   const filterString = useSelector(getStringFilter);
   const currentPage = useSelector(getCurrentNumberPage);
-  const urlStatus = useSelector(getLoadingStatus);
+  const urlStatus = useSelector(getLoadingUrlStatus);
 
   const history = useHistory();
   const location = useLocation();

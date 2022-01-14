@@ -3,7 +3,7 @@ export const ActionType = {
   LoadGuitarsFilter: 'data/loadGuitarsFilter',
   LoadCurrentGuitar: 'data/loadCurrentGuitar',
   LoadGuitarRequest: 'data/loadGuitarRequest',
-  NoLoadingUrl:'data/NoLoadingUrl',
+  NoLoadingUrl:'data/noLoadingUrl',
   ChangeSearch: 'user/changeSearch',
   ChangeSortType: 'user/changeSortType',
   ChangeDirectionType: 'user/changeDirectionType',
