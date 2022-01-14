@@ -37,23 +37,4 @@ describe('Component: Pagination', () => {
     expect(screen.getByText('Далее')).toBeInTheDocument();
   });
 
-  it('should render correctly with cards total count = 1', () => {
-    const store= mockStore({
-      PAGINATUON: {
-        currentPage: 1,
-        guitars: mockGuitars,
-      },
-    });
-
-    const history = createMemoryHistory();
-    render(
-      <Provider store={store}>
-        <Router history={history}>
-          <Pagination />
-        </Router>,
-      </Provider>,
-    );
-
-    expect(screen.queryByText('Далее')).not.toBeInTheDocument();
-  });
 });

@@ -11,9 +11,11 @@ function FilterString() {
   const filterType = useSelector(getTypeFilter);
   const filterString = useSelector(getStringFilter);
 
+
   const stringsArray = filterType.map((type) => GuitarTypeString[type]);
   const strings = stringsArray.reduce((acc, elem) =>[...acc, ...elem] , []);
   const getActivString = (count) => strings.every((item) => item !== count) && !!strings.length;
+  const getChekedString = (count) => filterString.some((item) => item === count);
 
   const handleInputChange = (count) => {
     const userStrings = [...filterString];
@@ -30,7 +32,11 @@ function FilterString() {
 
       {AMOUNT_STRINGS_GUITAR.map((count) => (
         <div className="form-checkbox catalog-filter__block-item" key={count}>
-          <input className="visually-hidden" type="checkbox" id={`${count}-strings`} name={`${count}-strings`} disabled={getActivString(count)} onChange={() => handleInputChange(count)} />
+          <input className="visually-hidden" type="checkbox" id={`${count}-strings`} name={`${count}-strings`}
+            disabled={getActivString(count)}
+            checked={getChekedString(count)}
+            onChange={() => handleInputChange(count)}
+          />
           <label htmlFor={`${count}-strings`}>{count}</label>
         </div>
       ))}

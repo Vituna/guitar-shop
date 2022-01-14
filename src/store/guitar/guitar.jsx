@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, setComments } from '../action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, setComments, noLoadingUrl } from '../action';
 
 const initialState = {
   guitars: [],
@@ -8,6 +8,7 @@ const initialState = {
   guitar: null,
   guitarLoading: false,
   isLoading: true,
+  loadingUrl: true,
 };
 
 const guitars = createReducer(initialState, (builder) => {
@@ -27,6 +28,9 @@ const guitars = createReducer(initialState, (builder) => {
     })
     .addCase(loadGuitarRequest, (state) => {
       state.questLoading = true;
+    })
+    .addCase(noLoadingUrl, (state) => {
+      state.loadingUrl = false;
     });
 });
 

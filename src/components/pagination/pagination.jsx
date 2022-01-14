@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { getCurrentNumberPage, getGuitarsPagination } from '../../store/pagination/selectors';
 import { currentNumberPage } from '../../store/action';
 
-import { MAX_GUITAR_CARDS, MAX_NUMBER_PAGES } from '../../const';
+import { MAX_NUMBER_PAGES, LIMIT_CARDS } from '../../const';
 import { Link } from 'react-router-dom';
 
 function Pagination() {
@@ -13,7 +13,7 @@ function Pagination() {
   const guitars = useSelector(getGuitarsPagination);
   const currentPage = useSelector(getCurrentNumberPage);
 
-  const numberPages = guitars.length/MAX_GUITAR_CARDS;
+  const numberPages = Math.ceil(guitars.length/LIMIT_CARDS);
 
   const getPaginationPages = useMemo(() => {
     const page = Math.floor((currentPage - 1) / MAX_NUMBER_PAGES) * MAX_NUMBER_PAGES;

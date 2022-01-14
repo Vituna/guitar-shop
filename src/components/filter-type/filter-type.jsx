@@ -11,6 +11,8 @@ function FilterType() {
 
   const filterType = useSelector(getTypeFilter);
 
+  const getChekedSType = (type) => filterType.some((item) => item === type);
+
   const handleInputChange = (name) => {
     const type = [...filterType];
     const index = type.findIndex((item) => item === name);
@@ -26,7 +28,12 @@ function FilterType() {
 
       {GuitarType.map((name) => (
         <div className="form-checkbox catalog-filter__block-item" key={name}>
-          <input className="visually-hidden" type="checkbox" id={getTranslationGuitarType(name)} name={getTranslationGuitarType(name)} onChange={() => handleInputChange(getTranslationGuitarType(name) )} />
+          <input className="visually-hidden" type="checkbox"
+            id={getTranslationGuitarType(name)}
+            name={getTranslationGuitarType(name)}
+            checked={getChekedSType(getTranslationGuitarType(name))}
+            onChange={() => handleInputChange(getTranslationGuitarType(name) )}
+          />
           <label htmlFor={getTranslationGuitarType(name)}>{name}</label>
         </div>
       ))}

@@ -17,20 +17,18 @@ export const fetchCurrentGuitarAction = (id) => (
   }
 );
 
-export const fetchGuitarsParams = ( params ) => (
+export const fetchGuitarsParams = ( path ) => (
   async(dispatch, _getState, api) => {
-    const {data} = await api.get(ApiRoute.Guitars, {
-      params: {...params, [EMBED.Embed]: EMBED.Comment},
+    const {data} = await api.get(`${ApiRoute.Guitars}${path}`, {
+      params: {[EMBED.Embed]: EMBED.Comment},
     });
     dispatch(loadGuitarsFilter(data));
   }
 );
 
-export const fetchGuitarsPagination = ( params ) => (
+export const fetchGuitarsPagination = ( path ) => (
   async(dispatch, _getState, api) => {
-    const {data} = await api.get(ApiRoute.Guitars, {
-      params: {...params},
-    });
+    const {data} = await api.get( `${ApiRoute.Guitars}/${path}`);
     dispatch(loadGuitarsPagination(data));
   }
 );

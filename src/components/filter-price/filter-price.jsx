@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getGuitars } from '../../store/guitar/selectors';
 import { changeMinPrice, changeMaxPrice } from '../../store/action';
+import { getMinPrice, getMaxPrice } from '../../store/filters/selectors';
 
 import { getMinMaxPricesGuitars } from '../../utils';
 
@@ -10,10 +11,17 @@ function FilterPrice() {
   const dispatch = useDispatch();
 
   const guitars = useSelector(getGuitars);
+  const minPriceState = useSelector(getMinPrice);
+  const maxPriceState = useSelector(getMaxPrice);
   const {minPrices, maxPrices} = getMinMaxPricesGuitars(guitars);
 
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
+
+  useEffect(() => {
+    setMinPrice(minPriceState);
+    setMaxPrice(maxPriceState);
+  }, [minPriceState, maxPriceState]);
 
   const handleInputMinPriceChange = (evt) => {
     setMinPrice(evt.target.value);
@@ -53,11 +61,19 @@ function FilterPrice() {
       <div className="catalog-filter__price-range">
         <div className="form-input">
           <label className="visually-hidden">Минимальная цена</label>
-          <input type="number" placeholder={`${minPrices}`} id="priceMin" name="от" onBlur={handleInputMinPriceOnBlur} value={`${minPrice}`}  onChange={handleInputMinPriceChange} />
+          <input type="number" placeholder={`${minPrices}`} id="priceMin" name="от"
+            onBlur={handleInputMinPriceOnBlur}
+            value={`${minPrice}`}
+            onChange={handleInputMinPriceChange}
+          />
         </div>
         <div className="form-input">
           <label className="visually-hidden">Максимальная цена</label>
-          <input type="number" placeholder={`${maxPrices}`} id="priceMax" name="до" onBlur={handleInputMaxPriceOnFocus}  value={`${maxPrice}`}  onChange={handleInputMaxPriceChange} />
+          <input type="number" placeholder={`${maxPrices}`} id="priceMax" name="до"
+            onBlur={handleInputMaxPriceOnFocus}
+            value={`${maxPrice}`}
+            onChange={handleInputMaxPriceChange}
+          />
         </div>
       </div>
     </fieldset>

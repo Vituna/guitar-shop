@@ -63,7 +63,7 @@ describe('Async actions', () => {
     const fakeParams = '_start=10&_end=20&_embed=comments';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}`)
+      .onGet(`${ApiRoute.Guitars}${fakeParams}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);
@@ -81,7 +81,7 @@ describe('Async actions', () => {
     const fakeParams = '_sort=price&_order=desc';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}`)
+      .onGet(`${ApiRoute.Guitars}${fakeParams}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);
@@ -99,7 +99,7 @@ describe('Async actions', () => {
     const fakeParams = '_start=100&_end=19';
 
     mockAPI
-      .onGet(`${ApiRoute.Guitars}`)
+      .onGet(`${ApiRoute.Guitars}/${fakeParams}`)
       .reply(HttpCode.Ok, mockGuitars);
 
     expect(store.getActions()).toEqual([]);

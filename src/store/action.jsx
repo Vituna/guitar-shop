@@ -101,4 +101,12 @@ export const setComments = createAction(
   ),
 );
 
+export const setLimit = createAction(
+  ActionType.SetLimit,
+  (limit) => ({payload: limit}
+  ),
+);
+
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);
+
+export const noLoadingUrl = createAction(ActionType.NoLoadingUrl);

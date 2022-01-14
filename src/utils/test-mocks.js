@@ -122,6 +122,19 @@ export const mockGuitars = [
     price: 6800,
     comments: [],
   },
+  {
+    id: 10,
+    name: 'Roman LX',
+    vendorCode: 'RO111111',
+    type: GuitarTypeEng.Ukulele,
+    description: 'Укулеле класса премиум от компании CURT, собравшая в себе все самые необходимые качесва: лёгкость корпуса, прочность струн и компактный размер.',
+    previewImg: 'img/guitar-6.jpg',
+    stringCount: 4,
+    rating: 4,
+    price: 6800,
+    comments: [],
+  },
+
 ];
 
 export const mockComments = [
