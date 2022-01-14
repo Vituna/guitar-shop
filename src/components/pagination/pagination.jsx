@@ -46,7 +46,7 @@ function Pagination() {
         </li>
 
         {getPaginationPages.map((page) => (
-          <li className={`pagination__page ${currentPage === page ? 'pagination__page--active' : ''}`} key={page}>
+          <li className={`pagination__page ${currentPage === page && currentPage ? 'pagination__page--active' : ''}`} key={page}>
             <Link className="link pagination__page-link" to={`/catalog/page_${currentPage}`} onClick={(evt) => handlePageNumberClick(evt, page)}>{page}</Link>
           </li>
         ))}

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME } from './const';
 
 import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage } from './store/action';
@@ -39,7 +40,6 @@ export const getTranslationGuitarType = (name) => {
 };
 
 export const urlChangeParams = (params, dispatch) => {
-
   const maxPrice = params[FILTER_PARAMS_NAME.PriceLte];
   if (maxPrice) {
     const price = maxPrice;
@@ -83,3 +83,9 @@ export const urlChangeParams = (params, dispatch) => {
 };
 
 export const getParamsReduce = (params) => params.reduce((acc, param) => ({...acc, ...param}) , {});
+
+export const changePageUrl = (params, dispatch) => {
+  const keyUrl = Object.keys(params);
+  const page = keyUrl.join();
+  dispatch(currentNumberPage(Number(page)));
+};

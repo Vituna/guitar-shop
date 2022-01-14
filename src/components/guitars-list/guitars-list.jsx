@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -14,7 +15,7 @@ import Sort from '../sort/sort';
 import GuitarOffer from '../guitar-offer/guitar-offer';
 import Preloader from '../preloader/preloader';
 
-import { getAllParams, urlChangeParams, getParamsReduce } from '../../utils';
+import { getAllParams, urlChangeParams, getParamsReduce, changePageUrl } from '../../utils';
 import { LIMIT_CARDS, PAGINATION_PARAMS_NAME } from '../../const';
 
 function GuitarsList() {
@@ -59,6 +60,11 @@ function GuitarsList() {
       const pathPagination = `?${qs.stringify(paramsPagination)}`;
       dispatch(fetchGuitarsPagination(pathPagination));
       dispatch(noLoadingUrl());
+
+      const locationSearchs = location.pathname;
+      const searchParams = locationSearchs.split('catalog/page_')[1] || '';
+      const name = qs.parse(searchParams);
+      changePageUrl(name, dispatch);
     }
   }, [dispatch, location, urlStatus]);
 
@@ -71,7 +77,8 @@ function GuitarsList() {
       history.push(nameUrl);
       history.push(path);
       dispatch(fetchGuitarsParams(path));
-      const paramsPagination = getParamsReduce([filterType, sortType]);
+      const filterParamsPagination = getAllParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
+      const paramsPagination = getParamsReduce([filterParamsPagination]);
       const pathPagination = `?${qs.stringify(paramsPagination)}`;
       dispatch(fetchGuitarsPagination(pathPagination));
     }
