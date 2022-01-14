@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { changeStringFilter } from '../../store/action';
+import { changeStringFilter, currentNumberPage } from '../../store/action';
 import { getStringFilter, getTypeFilter } from '../../store/filters/selectors';
 
 import { AMOUNT_STRINGS_GUITAR, GuitarTypeString } from '../../const';
@@ -24,6 +24,7 @@ function FilterString() {
     index === -1 ? userStrings.push(count) : userStrings.splice(index, 1);
 
     dispatch(changeStringFilter(userStrings));
+    dispatch(currentNumberPage(1));
   };
 
   return (

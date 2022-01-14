@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getGuitars } from '../../store/guitar/selectors';
-import { changeMinPrice, changeMaxPrice } from '../../store/action';
+import { changeMinPrice, changeMaxPrice, currentNumberPage } from '../../store/action';
 import { getMinPrice, getMaxPrice } from '../../store/filters/selectors';
 
 import { getMinMaxPricesGuitars } from '../../utils';
@@ -25,10 +25,12 @@ function FilterPrice() {
 
   const handleInputMinPriceChange = (evt) => {
     setMinPrice(evt.target.value);
+    dispatch(currentNumberPage(1));
   };
 
   const handleInputMaxPriceChange = (evt) => {
     setMaxPrice(evt.target.value);
+    dispatch(currentNumberPage(1));
   };
 
   const handleInputMinPriceOnBlur = () => {
