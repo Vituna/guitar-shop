@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getGuitars } from '../../store/guitar/selectors';
+import { getGuitarsPagination } from '../../store/pagination/selectors';
 import { changeMinPrice, changeMaxPrice, currentNumberPage } from '../../store/action';
 import { getMinPrice, getMaxPrice } from '../../store/filters/selectors';
 
@@ -10,9 +10,10 @@ import { getMinMaxPricesGuitars } from '../../utils';
 function FilterPrice() {
   const dispatch = useDispatch();
 
-  const guitars = useSelector(getGuitars);
+  const guitars = useSelector(getGuitarsPagination);
   const minPriceState = useSelector(getMinPrice);
   const maxPriceState = useSelector(getMaxPrice);
+
   const {minPrices, maxPrices} = getMinMaxPricesGuitars(guitars);
 
   const [minPrice, setMinPrice] = useState(null);
@@ -21,7 +22,7 @@ function FilterPrice() {
   useEffect(() => {
     setMinPrice(minPriceState);
     setMaxPrice(maxPriceState);
-  }, [minPriceState, maxPriceState]);
+  }, [minPriceState, maxPriceState, minPrices]);
 
   const handleInputMinPriceChange = (evt) => {
     setMinPrice(evt.target.value);

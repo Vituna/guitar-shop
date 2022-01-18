@@ -1,28 +1,41 @@
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, loadGuitarsPagination, setComments} from './action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar} from './action';
 
 import { ApiRoute, EMBED } from '../const';
 
 export const fetchGuitarsAction = () => (
   async (dispatch, _getState, api) => {
-    const {data} = await api.get(ApiRoute.Guitars);
-    dispatch(loadGuitars(data));
+    try {
+      const {data} = await api.get(ApiRoute.Guitars);
+      dispatch(loadGuitars(data));
+    } catch {
+      dispatch(setGuitarsError(true));
+    }
   }
 );
 
 export const fetchCurrentGuitarAction = (id) => (
   async (dispatch, _getState, api) => {
-    dispatch(loadGuitarRequest());
-    const {data} = await api.get(`${ApiRoute.Guitars}/${id}`);
-    dispatch(loadCurrentGuitar(data));
+    try {
+      dispatch(loadingCurrentGuitar());
+      const {data} = await api.get(`${ApiRoute.Guitars}/${id}`);
+      dispatch(loadCurrentGuitar(data));
+    } catch {
+      dispatch(setGuitarsError(true));
+    }
   }
 );
 
 export const fetchGuitarsParams = ( path ) => (
   async(dispatch, _getState, api) => {
-    const {data} = await api.get(`${ApiRoute.Guitars}${path}`, {
-      params: {[EMBED.Embed]: EMBED.Comment},
-    });
-    dispatch(loadGuitarsFilter(data));
+    try {
+      dispatch(loadFilterGuitars());
+      const {data} = await api.get(`${ApiRoute.Guitars}${path}`, {
+        params: {[EMBED.Embed]: EMBED.Comment},
+      });
+      dispatch(loadGuitarsFilter(data));
+    } catch {
+      dispatch(setGuitarsError(true));
+    }
   }
 );
 

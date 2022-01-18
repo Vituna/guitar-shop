@@ -1,11 +1,23 @@
+import { useSelector } from 'react-redux';
+
+import { getGuitarsErrorStatus } from '../../store/guitar/selectors';
+
+
 import Search from '../search/search';
 import FilterPrice from '../filter-price/filter-price';
 import FilterType from '../filter-type/filter-type';
 import FilterString from '../filter-string/filter-string';
 import GuitarsList from '../guitars-list/guitars-list';
 import Pagination from '../pagination/pagination';
+import ServerError from '../serverError/serverError';
 
 function Main() {
+
+  const isError = useSelector(getGuitarsErrorStatus);
+
+  if (isError) {
+    return  <ServerError />;
+  }
 
   return(
     <div className="wrapper">
@@ -60,7 +72,7 @@ function Main() {
       <footer className="footer">
         <div className="footer__container container">
           <a className="footer__logo logo" href="!#">
-            <img className="logo__img" width="70" height="70" src="./img/svg/logo.svg" alt="Логотип" />
+            <img className="logo__img" width="70" height="70" src="/./img/svg/logo.svg" alt="Логотип" />
           </a>
           <div className="socials footer__socials">
             <ul className="socials__list">

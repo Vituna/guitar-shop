@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { changeTypeFilter, currentNumberPage } from '../../store/action';
+import { changeTypeFilter, currentNumberPage, changeStringFilter } from '../../store/action';
 import { getTypeFilter } from '../../store/filters/selectors';
 
 import { GuitarType } from '../../const';
@@ -20,6 +20,7 @@ function FilterType() {
     index === -1 ? type.push(name) : type.splice(index, 1);
 
     dispatch(changeTypeFilter(type));
+    dispatch(changeStringFilter([]));
     dispatch(currentNumberPage(1));
   };
 

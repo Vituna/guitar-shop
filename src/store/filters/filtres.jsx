@@ -7,6 +7,7 @@ const initialState = {
   maxPrice: null,
   typeFilter: [],
   stringFilter: [],
+  isLoadingFilter: true,
 };
 
 const filter = createReducer(initialState, (builder) => {
@@ -17,6 +18,7 @@ const filter = createReducer(initialState, (builder) => {
   builder
     .addCase(changeMinPrice, (state, action) => {
       state.minPrice = action.payload;
+      state.isLoadingFilter = false;
     });
   builder
     .addCase(changeMaxPrice, (state, action) => {

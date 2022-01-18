@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'qs';
 
-import { getGuitarsFilter, getGuitarsLoadingStatus, getLoadingUrlStatus } from '../../store/guitar/selectors';
+import { getGuitarsFilter, getLoadingUrlStatus, getLoadingGuitarsFilter } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
 import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
 import { fetchGuitarsParams, fetchGuitarsPagination } from '../../store/api-actions';
@@ -21,7 +21,7 @@ function GuitarsList() {
   const dispatch = useDispatch();
 
   const guitars = useSelector(getGuitarsFilter);
-  const isLoading = useSelector(getGuitarsLoadingStatus);
+  const isLoadingFilter = useSelector(getLoadingGuitarsFilter);
   const sortType = useSelector(getSortType);
   const directionType = useSelector(getDirectionType);
   const minPrice = useSelector(getMinPrice);
@@ -83,7 +83,7 @@ function GuitarsList() {
     }
   }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage, urlStatus]);
 
-  if (isLoading) {
+  if (guitars === null || isLoadingFilter) {
     return <Preloader />;
   }
 

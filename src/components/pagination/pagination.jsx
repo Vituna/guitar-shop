@@ -28,21 +28,19 @@ function Pagination() {
 
   const handleBtnNextClick = (evt) => {
     evt.preventDefault();
-    dispatch(currentNumberPage(currentPage + MAX_NUMBER_PAGES));
+    dispatch(currentNumberPage(currentPage + 1));
   };
 
   const handleBtnBackClick = (evt) => {
     evt.preventDefault();
-    if (currentPage > MAX_NUMBER_PAGES) {
-      dispatch(currentNumberPage(currentPage - MAX_NUMBER_PAGES));
-    }
+    dispatch(currentNumberPage(currentPage - 1));
   };
 
   return (
     <div className="pagination page-content__pagination">
       <ul className="pagination__list">
         <li className="pagination__page pagination__page--prev" id="next">
-          {currentPage <=  MAX_NUMBER_PAGES ? '' : <a className="link pagination__page-link" href="/" onClick={handleBtnBackClick}>Назад</a>}
+          {currentPage <= 1 ? '' : <a className="link pagination__page-link" href="/" onClick={handleBtnBackClick}>Назад</a>}
         </li>
 
         {getPaginationPages.map((page) => (

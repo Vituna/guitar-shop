@@ -110,3 +110,12 @@ export const setLimit = createAction(ActionType.SetLimit,
 export const loadGuitarRequest = createAction(ActionType.LoadGuitarRequest);
 
 export const noLoadingUrl = createAction(ActionType.NoLoadingUrl);
+
+export const loadOffersStart = () => ({
+  type: ActionType.LoadOffersStart,
+});
+
+export const loadFilterGuitars = createAction(ActionType.LoadFilterGuitars);
+export const loadingCurrentGuitar = createAction(ActionType.LoadingCurrentGuitar);
+
+export const setGuitarsError = createAction(ActionType.SetGuitarsError, (status) => ({payload: status}));

@@ -1,14 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, setComments, noLoadingUrl } from '../action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, setComments, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar } from '../action';
 
 const initialState = {
   guitars: [],
-  guitarsFilter: [],
+  guitarsFilter: null,
   comments: [],
   guitar: null,
   guitarLoading: false,
-  isLoading: true,
-  loadingUrl: true,
+  isLoadingFilter: true,
+  isError: false,
 };
 
 const guitars = createReducer(initialState, (builder) => {
@@ -16,21 +16,31 @@ const guitars = createReducer(initialState, (builder) => {
     .addCase(loadGuitars, (state, action) => {
       state.guitars = action.payload.guitars;
     })
-    .addCase(setComments, (state, action) => {state.comments =action.payload;})
-
+    .addCase(setComments, (state, action) => {
+      state.comments = action.payload;
+    })
     .addCase(loadGuitarsFilter, (state, action) => {
-      state.isLoading = false;
       state.guitarsFilter = action.payload.guitarsFilter;
+      state.isLoadingFilter = false;
+    })
+    .addCase(loadFilterGuitars, (state) => {
+      state.isLoadingFilter = true;
     })
     .addCase(loadCurrentGuitar, (state, action) => {
-      state.questLoading = false;
+      state.guitarLoading = false;
       state.guitar = action.payload.guitar;
+    })
+    .addCase(loadingCurrentGuitar, (state) => {
+      state.guitarLoading = true;
     })
     .addCase(loadGuitarRequest, (state) => {
       state.questLoading = true;
     })
     .addCase(noLoadingUrl, (state) => {
       state.loadingUrl = false;
+    })
+    .addCase(setGuitarsError, (state, action) => {
+      state.isError = action.payload;
     });
 });
 

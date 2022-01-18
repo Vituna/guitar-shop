@@ -4,6 +4,7 @@ export const getGuitars = (state) => state[NameSpace.Guitars].guitars;
 export const getGuitar = (state) => state[NameSpace.Guitars].guitar;
 export const getGuitarLoading = (state) => state[NameSpace.Guitars].guitarLoading;
 export const getGuitarsFilter = (state) => state[NameSpace.Guitars].guitarsFilter;
-export const getGuitarsLoadingStatus = (state) => state[NameSpace.Guitars].isLoading;
+export const getLoadingGuitarsFilter = (state) => state[NameSpace.Guitars].isLoadingFilter;
 export const getComments = (state) => state[NameSpace.Guitars].comments;
 export const getLoadingUrlStatus = (state) => state[NameSpace.Guitars].loadingUrl;
+export const getGuitarsErrorStatus = (state) => state[NameSpace.Guitars].isError;
