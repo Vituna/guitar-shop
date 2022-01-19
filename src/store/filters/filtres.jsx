@@ -3,8 +3,8 @@ import { changeCurrentSearch, changeMinPrice, changeMaxPrice, changeTypeFilter, 
 
 const initialState = {
   currentSearch: '',
-  minPrice: null,
-  maxPrice: null,
+  minPrice: '',
+  maxPrice: '',
   typeFilter: [],
   stringFilter: [],
   isLoadingFilter: true,

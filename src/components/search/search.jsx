@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -45,7 +44,7 @@ function Search() {
       <ul  className={`form-search__select-list ${openSearch ? '' : 'hidden'}`} style={{ zIndex: 2 }}>
         {getFilterGuitarsName(guitars, inputValue).map((option, i) => (
           <Link to={`/guitars/${option.id}`} className="form-search__select-item" key={`${option.id}`}>
-            <li className="form-search__select-item" tabIndex={0} key={`${option.name + i}`} onClick={() => handleGuitarNameClick(option.name)}>{option.name}</li>
+            <li className="form-search__select-item" tabIndex={option.name + i} key={`${option.name + i}`} onClick={() => handleGuitarNameClick(option.name)}>{option.name}</li>
           </Link>
         ))}
       </ul>

@@ -6,7 +6,7 @@ import qs from 'qs';
 import { getGuitarsFilter, getLoadingUrlStatus, getLoadingGuitarsFilter } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
 import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
-import { fetchGuitarsParams, fetchGuitarsPagination } from '../../store/api-actions';
+import { fetchGuitarsParams } from '../../store/api-actions';
 import { getCurrentNumberPage } from '../../store/pagination/selectors';
 import { noLoadingUrl } from '../../store/action';
 
@@ -15,7 +15,7 @@ import GuitarOffer from '../guitar-offer/guitar-offer';
 import Preloader from '../preloader/preloader';
 
 import { getAllParams, urlChangeParams, getParamsReduce, changePageUrl } from '../../utils';
-import { LIMIT_CARDS, PAGINATION_PARAMS_NAME } from '../../const';
+import { LIMIT_CARDS } from '../../const';
 
 function GuitarsList() {
   const dispatch = useDispatch();
@@ -53,13 +53,8 @@ function GuitarsList() {
       const locationSearch = location.search;
       const searchParam = locationSearch.split('?')[1] || '';
       const urlParams = qs.parse(searchParam);
-      dispatch(fetchGuitarsParams(locationSearch));
       urlChangeParams(urlParams, dispatch);
-      const paramsPagination = {...urlParams, [PAGINATION_PARAMS_NAME.Start] : '', [PAGINATION_PARAMS_NAME.Limit] : ''};
-      const pathPagination = `?${qs.stringify(paramsPagination)}`;
-      dispatch(fetchGuitarsPagination(pathPagination));
       dispatch(noLoadingUrl());
-
       const locationSearchs = location.pathname;
       const searchParams = locationSearchs.split('catalog/page_')[1] || '';
       const name = qs.parse(searchParams);
@@ -76,10 +71,6 @@ function GuitarsList() {
       history.push(nameUrl);
       history.push(path);
       dispatch(fetchGuitarsParams(path));
-      const filterParamsPagination = getAllParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
-      const paramsPagination = getParamsReduce([filterParamsPagination]);
-      const pathPagination = `?${qs.stringify(paramsPagination)}`;
-      dispatch(fetchGuitarsPagination(pathPagination));
     }
   }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage, urlStatus]);
 

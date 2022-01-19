@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
-import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME } from './const';
+import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES } from './const';
 
 import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage } from './store/action';
 
-export const getFilterGuitarsName = (guitars, inputValue) => guitars.filter((guitar) => guitar.name.toLowerCase().includes(inputValue.toLowerCase()));
+export const getFilterGuitarsName = (guitars, inputValue) => guitars.filter((guitar) => guitar.name.toLowerCase().startsWith(inputValue.toLowerCase()));
 
 const getString = (type, string) => string ? ({[type]: `${string}`}) : {};
 
@@ -65,12 +64,12 @@ export const urlChangeParams = (params, dispatch) => {
   }
 
   const sort = params[SORT_TYPES.ParamsName.Sort];
-  if (sort) {
+  if (sort && (sort === SORT_TYPES.Price || sort === SORT_TYPES.Rating)) {
     dispatch(changeSortType(sort));
   }
 
   const order = params[SORT_TYPES.ParamsName.Order];
-  if (order) {
+  if (order && (order === DIRECTION_TYPES.Asc || order === DIRECTION_TYPES.Desc)) {
     dispatch(changeDirectionType(order));
   }
 

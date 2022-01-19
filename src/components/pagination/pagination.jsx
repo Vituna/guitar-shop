@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 
@@ -10,10 +11,10 @@ import { Link } from 'react-router-dom';
 function Pagination() {
   const dispatch = useDispatch();
 
-  const guitars = useSelector(getGuitarsPagination);
+  const guitarsCount = useSelector(getGuitarsPagination);
   const currentPage = useSelector(getCurrentNumberPage);
 
-  const numberPages = Math.ceil(guitars.length/LIMIT_CARDS);
+  const numberPages = Math.ceil(guitarsCount/LIMIT_CARDS);
 
   const getPaginationPages = useMemo(() => {
     const page = Math.floor((currentPage - 1) / MAX_NUMBER_PAGES) * MAX_NUMBER_PAGES;

@@ -3,12 +3,13 @@ import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, s
 
 const initialState = {
   guitars: [],
-  guitarsFilter: null,
+  guitarsFilter: [],
   comments: [],
   guitar: null,
   guitarLoading: false,
   isLoadingFilter: true,
   isError: false,
+  loadingUrl: true,
 };
 
 const guitars = createReducer(initialState, (builder) => {
