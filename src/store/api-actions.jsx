@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar} from './action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice} from './action';
 
 import { ApiRoute, EMBED } from '../const';
 
@@ -26,12 +26,18 @@ export const fetchGuitarsParams = ( path ) => (
       const {data} = result;
       const totalCount = result.headers[TOTAL_COUNT];
       const guitarCount = totalCount ? +totalCount : data.length;
-
-      dispatch(loadGuitarsPagination(guitarCount));
+      dispatch(loadGuitarsCountPagination(guitarCount));
       dispatch(loadGuitarsFilter(data));
     } catch {
       dispatch(setGuitarsError(true));
     }
+  }
+);
+
+export const fetchPriceParams = ( path ) => (
+  async(dispatch, _getState, api) => {
+    const {data} = await api.get( `${ApiRoute.Guitars}/${path}`);
+    dispatch(loadGuitarsPrice(data));
   }
 );
 
@@ -47,9 +53,15 @@ export const fetchCurrentGuitarAction = (id) => (
   }
 );
 
-
 export const fetchComments = (id) =>
   async(dispatch, _getState, api) => {
     const {data} = await api.get(`${ApiRoute.Guitars}/${id}/comments`);
     dispatch(setComments(data));
   };
+
+export const postComment = (body) =>
+  async(dispatch, _getState, api) => {
+    console.log(body)
+    await api.post(ApiRoute.Comments, body);
+  };
+

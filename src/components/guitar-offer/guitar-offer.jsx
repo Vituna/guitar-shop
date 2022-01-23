@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 import Rating from '../rating/rating';
 
+import { getTypeNameUpperCase } from '../../utils';
+
 function GuitarOffer(guitar) {
-  const nameTypeGuitar = guitar.guitar.type;
-  const TypeNameUpperCase = nameTypeGuitar.charAt(0).toUpperCase() + nameTypeGuitar.slice(1);
 
   const comments = guitar.guitar.comments;
 
@@ -19,7 +19,7 @@ function GuitarOffer(guitar) {
 
           <span className="rate__count">{comments.length}</span><span className="rate__message"></span>
         </div>
-        <p className="product-card__title">{guitar.guitar.name} {TypeNameUpperCase}</p>
+        <p className="product-card__title">{guitar.guitar.name} {getTypeNameUpperCase(guitar.guitar.type)}</p>
         <p className="product-card__price">
           <span className="visually-hidden">
             Цена:

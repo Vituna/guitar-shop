@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getGuitarsErrorStatus } from '../../store/guitar/selectors';
 
 
-import Search from '../search/search';
+import Header from '../header/header';
 import FilterPrice from '../filter-price/filter-price';
 import FilterType from '../filter-type/filter-type';
 import FilterString from '../filter-string/filter-string';
@@ -21,31 +21,7 @@ function Main() {
 
   return(
     <div className="wrapper">
-      <header className="header" id="header">
-        <div className="container header__wrapper">
-          <a className="header__logo logo" href="!#">
-            <img className="logo__img" width="70" height="70" src="/./img/svg/logo.svg" alt="Логотип" />
-          </a>
-          <nav className="main-nav">
-            <ul className="main-nav__list">
-              <li><a className="link main-nav__link link--current" href="!#">Каталог</a>
-              </li>
-              <li><a className="link main-nav__link" href="!#">Где купить?</a>
-              </li>
-              <li><a className="link main-nav__link" href="!#">О компании</a>
-              </li>
-            </ul>
-          </nav>
-
-          <Search />
-
-          <a className="header__cart-link" href="!#" aria-label="Корзина">
-            <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
-              <use href="#icon-basket"></use>
-            </svg><span className="visually-hidden">Перейти в корзину</span><span className="header__cart-count">2</span>
-          </a>
-        </div>
-      </header>
+      <Header />
       <main className="page-content">
         <div className="container">
           <h1 className="page-content__title title title--bigger">Каталог гитар</h1>

@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { ActionType } from '../types/action';
 
-export const loadGuitars= createAction(
+export const loadGuitars = createAction(
   ActionType.LoadGuitars,
   (guitars) => ({
     payload: {
@@ -10,11 +10,20 @@ export const loadGuitars= createAction(
   }),
 );
 
-export const loadGuitarsFilter= createAction(
+export const loadGuitarsFilter = createAction(
   ActionType.LoadGuitarsFilter,
   (guitarsFilter) => ({
     payload: {
       guitarsFilter,
+    },
+  }),
+);
+
+export const loadGuitarsPrice = createAction(
+  ActionType.LoadGuitarsPrice,
+  (guitarsPrice) => ({
+    payload: {
+      guitarsPrice,
     },
   }),
 );
@@ -86,11 +95,11 @@ export const currentNumberPage = createAction(
   }),
 );
 
-export const loadGuitarsPagination = createAction(
-  ActionType.LoadGuitarsPagination,
-  (guitars) => (
+export const loadGuitarsCountPagination = createAction(
+  ActionType.LoadGuitarsCountPagination,
+  (guitarsCount) => (
     {payload:
-      guitars}
+      guitarsCount}
   ),
 );
 
@@ -119,3 +128,10 @@ export const loadFilterGuitars = createAction(ActionType.LoadFilterGuitars);
 export const loadingCurrentGuitar = createAction(ActionType.LoadingCurrentGuitar);
 
 export const setGuitarsError = createAction(ActionType.SetGuitarsError, (status) => ({payload: status}));
+
+export const setModalType = createAction(
+  ActionType.SetModalType,
+  (modalType) => (
+    {payload: {modalType}}
+  ),
+);

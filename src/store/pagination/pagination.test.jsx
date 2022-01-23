@@ -1,4 +1,4 @@
-import { currentNumberPage, loadGuitarsPagination } from '../action';
+import { currentNumberPage, loadGuitarsCountPagination } from '../action';
 
 import { pagination } from './pagination';
 
@@ -18,8 +18,8 @@ describe('Reducer: Pagination', () => {
         guitars: [],
       });
   });
-  it('should update loadGuitarsPagination', () => {
-    expect(pagination(state, loadGuitarsPagination(mockGuitars)))
+  it('should update loadGuitarsCountPagination', () => {
+    expect(pagination(state, loadGuitarsCountPagination(mockGuitars)))
       .toEqual({
         currentPage: 1,
         guitars: mockGuitars,

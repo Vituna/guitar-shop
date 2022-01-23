@@ -6,6 +6,7 @@ export const AppRoute = {
 
 export const ApiRoute = {
   Guitars: '/guitars',
+  Comments: '/comments',
 };
 
 export const SORT_TYPES = {
@@ -70,3 +71,8 @@ export const STAR_COUNT = 5;
 export const LIMIT_CARDS = 9;
 export const MAX_NUMBER_PAGES = 3;
 export const MAX_GUITAR_CARDS = 9;
+
+export const TypeModal = {
+  OpenFormReviews: 'OpenFormReviews',
+  CloseFormReviews: 'CloseFormReviews',
+};

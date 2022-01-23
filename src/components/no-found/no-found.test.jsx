@@ -22,7 +22,7 @@ describe('Component: NoFound', () => {
     );
 
     expect(screen.getByText(/404. Requested page is not available/i)).toBeInTheDocument();
-    expect(screen.getByText(/Click here to return to the main page/i)).toBeInTheDocument();
+    expect(screen.getByText(/Click here to return to the Catalog page/i)).toBeInTheDocument();
 
   });
 });

@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { currentNumberPage, loadGuitarsPagination, setLimit } from '../action';
+import { currentNumberPage, loadGuitarsCountPagination, setLimit } from '../action';
 
 const initialState = {
   currentPage: 1,
-  guitars: [],
+  guitarsCount: 9,
   limit: 9,
 };
 
@@ -12,8 +12,8 @@ const pagination = createReducer(initialState, (builder) => {
     .addCase(currentNumberPage, (state, action) => {
       state.currentPage = action.payload;
     })
-    .addCase(loadGuitarsPagination, (state, action) => {
-      state.guitars = action.payload;
+    .addCase(loadGuitarsCountPagination, (state, action) => {
+      state.guitarsCount = action.payload;
     })
     .addCase(setLimit, (state, action) => {state.limit = action.payload;});
 });

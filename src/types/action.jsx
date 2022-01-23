@@ -2,6 +2,7 @@ export const ActionType = {
   LoadGuitars: 'data/loadGuitars',
   LoadGuitarsFilter: 'data/loadGuitarsFilter',
   LoadCurrentGuitar: 'data/loadCurrentGuitar',
+  LoadGuitarsPrice: 'data/loadGuitarsPrice',
   LoadGuitarRequest: 'data/loadGuitarRequest',
   NoLoadingUrl: 'data/noLoadingUrl',
   LoadFilterGuitars: 'data/loadFilterGuitars',
@@ -15,6 +16,9 @@ export const ActionType = {
   ChangeTypeFilter: 'user/changeTypeFilter',
   ChangeStringFilter: 'user/changeStringFilter',
   CurrentNumberPage: 'user/currentNumberPage',
-  LoadGuitarsPagination: 'user/loadGuitarsPagination',
-  SetComments: 'user/SetComments',
+  LoadGuitarsCountPagination: 'user/loadGuitarsCountPagination',
+  SetComments: 'user/setComments',
+  SetModalType: 'user/setModalType',
+
+
 };

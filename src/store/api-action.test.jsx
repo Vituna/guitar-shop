@@ -5,7 +5,7 @@ import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetch
 import thunk from 'redux-thunk';
 
 import { mockGuitars, mockGuitar, mockComments } from '../utils/test-mocks';
-import { loadGuitars, loadGuitarRequest, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsPagination, setComments } from './action';
+import { loadGuitars, loadGuitarRequest, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments } from './action';
 
 import { ApiRoute } from '../const';
 
@@ -108,7 +108,7 @@ describe('Async actions', () => {
 
     expect(store.getActions())
       .toEqual([
-        loadGuitarsPagination(mockGuitars),
+        loadGuitarsCountPagination(mockGuitars),
       ]);
   });
 

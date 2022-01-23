@@ -1,10 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, setComments, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar } from '../action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar } from '../action';
 
 const initialState = {
   guitars: [],
   guitarsFilter: [],
-  comments: [],
   guitar: null,
   guitarLoading: false,
   isLoadingFilter: true,
@@ -16,9 +15,6 @@ const guitars = createReducer(initialState, (builder) => {
   builder
     .addCase(loadGuitars, (state, action) => {
       state.guitars = action.payload.guitars;
-    })
-    .addCase(setComments, (state, action) => {
-      state.comments = action.payload;
     })
     .addCase(loadGuitarsFilter, (state, action) => {
       state.guitarsFilter = action.payload.guitarsFilter;

@@ -88,3 +88,7 @@ export const changePageUrl = (params, dispatch) => {
   const page = keyUrl.join();
   dispatch(currentNumberPage(Number(page)));
 };
+
+export const getTypeNameUpperCase = (nameTypeGuitar) => nameTypeGuitar.charAt(0).toUpperCase() + nameTypeGuitar.slice(1);
+
+export const getFormatDateValue = (date) => new Date(date).toLocaleDateString('ru-RU', {day: 'numeric', month: 'long'});

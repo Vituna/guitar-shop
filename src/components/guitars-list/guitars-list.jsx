@@ -6,7 +6,7 @@ import qs from 'qs';
 import { getGuitarsFilter, getLoadingUrlStatus, getLoadingGuitarsFilter } from '../../store/guitar/selectors';
 import { getSortType, getDirectionType } from '../../store/sort/selectors';
 import { getMinPrice, getMaxPrice, getTypeFilter, getStringFilter } from '../../store/filters/selectors';
-import { fetchGuitarsParams } from '../../store/api-actions';
+import { fetchGuitarsParams, fetchPriceParams } from '../../store/api-actions';
 import { getCurrentNumberPage } from '../../store/pagination/selectors';
 import { noLoadingUrl } from '../../store/action';
 
@@ -65,12 +65,16 @@ function GuitarsList() {
   useEffect(() => {
     if (!urlStatus) {
       const filterParams = getAllParams(sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, LIMIT_CARDS);
-      const params = getParamsReduce([filterParams]);
-      const path = `?${qs.stringify(params)}`;
+      const filterPriceParams = getAllParams(sortType, directionType, minPrice, maxPrice, filterType, filterString);
+      const paramsAll = getParamsReduce([filterParams]);
+      const paramsPrice = getParamsReduce([filterPriceParams]);
+      const pathAllParamsPrice = `?${qs.stringify(paramsAll)}`;
+      const pathParamsPrice = `?${qs.stringify(paramsPrice)}`;
       const nameUrl = `page_${currentPage}`;
       history.push(nameUrl);
-      history.push(path);
-      dispatch(fetchGuitarsParams(path));
+      history.push(pathAllParamsPrice);
+      dispatch(fetchGuitarsParams(pathAllParamsPrice));
+      dispatch(fetchPriceParams(pathParamsPrice));
     }
   }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage, urlStatus]);
 
