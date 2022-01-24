@@ -1,13 +1,11 @@
-/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState, useRef, Fragment } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import FocusTrap from 'focus-trap-react';
 
 import { getModalType, getCommentPostStatus } from '../../store/reviews/selectors';
 import { getGuitar } from '../../store/guitar/selectors';
 import { setModalType } from '../../store/action';
 import { postComment } from '../../store/api-actions';
-
 
 import { TypeModal, STARS, CommentPostStatus } from '../../const';
 
@@ -19,11 +17,11 @@ function ReviewModal() {
   const commentPostStatus = useSelector(getCommentPostStatus);
 
   const [rating, setRating] = useState(0);
-
-  const userNameRef = useRef(null);
-  const advantageRef = useRef(null);
-  const disadvantageRef = useRef(null);
-  const commentRef = useRef(null);
+  const [errorValue, setErrorValue] = useState(false);
+  const [commentValue, setCommentValue] = useState('');
+  const [userNametValue, setUserNametValue] = useState('');
+  const [advantageValue, setAdvantageValue] = useState('');
+  const [disadvantageValue, setDisadvantageValue] = useState('');
 
   const [
     isCommentPosting,
@@ -33,20 +31,31 @@ function ReviewModal() {
     commentPostStatus === CommentPostStatus.NotPosted,
   ];
 
-  const userName = userNameRef.current?.value;
-  const advantage = advantageRef.current?.value;
-  const disadvantage = disadvantageRef.current?.value;
-  const comment = commentRef.current?.value;
+  const handleUserNameChange = (evt) => {
+    setUserNametValue(evt.target.value);
+  };
+
+  const handleAdvantageChange = (evt) => {
+    setAdvantageValue(evt.target.value);
+  };
+
+  const handleDisadvantageChange = (evt) => {
+    setDisadvantageValue(evt.target.value);
+  };
+
+  const handleCommentChange = (evt) => {
+    setCommentValue(evt.target.value);
+  };
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
-    if (rating && userName && advantage && disadvantage && comment ) {
-      const body = {guitarId: guitar.id, rating, userName, advantage, disadvantage, comment};
+    if (rating && userNametValue && advantageValue && disadvantageValue && commentValue ) {
+      setErrorValue(false);
+      const body = {guitarId: guitar.id, rating, userName: userNametValue, advantage: advantageValue, disadvantage: disadvantageValue, comment: commentValue};
       dispatch(postComment(body));
-    }
+    } else {setErrorValue(true);}
   };
-
 
   const handleCloseFormClick = () => {
     dispatch(setModalType(TypeModal.CloseFormReviews));
@@ -68,6 +77,12 @@ function ReviewModal() {
     };
   });
 
+  useEffect(() => {
+    if (rating && userNametValue && advantageValue && disadvantageValue && commentValue ) {
+      setErrorValue(false);
+    }
+  }, [rating, userNametValue, advantageValue, disadvantageValue, commentValue]);
+
   return (
     typeModal.modalType === TypeModal.OpenFormReviews &&
       <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
@@ -82,7 +97,7 @@ function ReviewModal() {
                   <div className="form-review__wrapper">
                     <div className="form-review__name-wrapper">
                       <label className="form-review__label form-review__label--required" htmlFor="user-name">Ваше Имя</label>
-                      <input className="form-review__input form-review__input--name" ref={userNameRef} id="user-name" type="text" autoComplete="off" tabIndex={1} />
+                      <input className="form-review__input form-review__input--name" id="user-name" type="text" autoComplete="off" tabIndex={1} onChange={handleUserNameChange} />
                       <span className="form-review__warning">Заполните поле</span>
                     </div>
                     <div><span className="form-review__label form-review__label--required">Ваша Оценка</span>
@@ -101,20 +116,24 @@ function ReviewModal() {
                     </div>
                   </div>
                   <label className="form-review__label" htmlFor="user-name"><span className="form-review__label--required">Достоинства</span></label>
-                  <input className="form-review__input" ref={advantageRef} id="advantage" type="text" autoComplete="off" tabIndex={3} />
+                  <input className="form-review__input" id="advantage" type="text" autoComplete="off" tabIndex={3} onChange={handleAdvantageChange} />
                   <span className="form-review__warning">Заполните поле</span>
 
                   <label className="form-review__label" htmlFor="user-name"><span className="form-review__label--required">Недостатки</span></label>
-                  <input className="form-review__input" ref={disadvantageRef} id="disadvantage" type="text" autoComplete="off" tabIndex={4} />
+                  <input className="form-review__input" id="disadvantage" type="text" autoComplete="off" tabIndex={4} onChange={handleDisadvantageChange} />
                   <span className="form-review__warning">Заполните поле</span>
 
                   <label className="form-review__label" htmlFor="user-name"><span className="form-review__label--required">Комментарий</span></label>
-                  <textarea className="form-review__input form-review__input--textarea" ref={commentRef} tabIndex={5} id="user-name" rows="10" autoComplete="off"></textarea>
+                  <textarea className="form-review__input form-review__input--textarea" tabIndex={5} id="user-name" rows="10" autoComplete="off" onChange={handleCommentChange} ></textarea>
                   <span className="form-review__warning">Заполните поле</span>
 
                   <button className="button button--medium-20 form-review__button hidden" id="buttom-form" tabIndex={6} type="submit" disabled={isCommentPosting}>Отправить отзыв</button>
+
                   {isCommentNotPosted && (
                     <p style={{color: 'red', textAlign: 'center'}}>Ошибка отправки комментария. Сервер не отвечает!</p>
+                  )}
+                  {errorValue && (
+                    <p style={{color: 'red', textAlign: 'center'}}>Все поля должны быть заполнены!</p>
                   )}
 
                 </form>
