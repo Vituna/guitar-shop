@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { fetchCurrentGuitarAction, fetchComments } from '../../store/api-actions';
 import { getGuitar, getGuitarLoading } from '../../store/guitar/selectors';
+import { getComments, getCommentNew } from '../../store/reviews/selectors';
 
 import Header from '../header/header';
 import Rating from '../rating/rating';
@@ -25,20 +26,17 @@ function GuitarCard() {
 
   const guitar = useSelector(getGuitar);
   const guitarLoading = useSelector(getGuitarLoading);
+  const comments = useSelector(getComments);
+  const commentNew = useSelector(getCommentNew);
 
   const [tabs, setTabs] = useState(Tabs.Characteristic);
 
+  const commentsAll = comments.concat(commentNew);
+
   useEffect(() => {
     dispatch(fetchCurrentGuitarAction(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
     dispatch(fetchComments(id));
-  }, [id, dispatch]);
-
-  if (guitar === null || guitarLoading) {
-    return <Preloader />;
-  }
+  }, [dispatch, id]);
 
   const handleCharacteristicClick = (evt) => {
     evt.preventDefault();
@@ -50,6 +48,10 @@ function GuitarCard() {
     setTabs(Tabs.Description);
   };
 
+  if (guitar === null || guitarLoading) {
+    return <Preloader />;
+  }
+
   return (
     <div className="wrapper">
 
@@ -57,7 +59,7 @@ function GuitarCard() {
 
       <main className="page-content">
         <div className="container">
-          <h1 className="page-content__title title title--bigger">Товар</h1>
+          <h1 className="page-content__title title title--bigger">{guitar.name}</h1>
           <ul className="breadcrumbs page-content__breadcrumbs">
             <li className="breadcrumbs__item"><a className="link" href="./main.html">Главная</a>
             </li>
@@ -74,7 +76,7 @@ function GuitarCard() {
 
                 <Rating rating={guitar.rating}/>
 
-                <span className="rate__count"></span><span className="rate__message"></span>
+                <span className="rate__count">{commentsAll.length}</span><span className="rate__message"></span>
               </div>
               <div className="tabs">
                 <a className={`button button--medium tabs__button ${tabs === Tabs.Description ? 'button--black-border' : ''}`} href="#characteristics" onClick={handleCharacteristicClick}>Характеристики</a>
@@ -113,7 +115,7 @@ function GuitarCard() {
       <footer className="footer">
         <div className="footer__container container">
           <a className="footer__logo logo" href="main.html">
-            <img className="logo__img" width="70" height="70" src="./img/svg/logo.svg" alt="Логотип" />
+            <img className="logo__img" width="70" height="70" src="/./img/svg/logo.svg" alt="Логотип" />
           </a>
           <div className="socials footer__socials">
             <ul className="socials__list">

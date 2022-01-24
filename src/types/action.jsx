@@ -17,7 +17,9 @@ export const ActionType = {
   ChangeStringFilter: 'user/changeStringFilter',
   CurrentNumberPage: 'user/currentNumberPage',
   LoadGuitarsCountPagination: 'user/loadGuitarsCountPagination',
-  SetComments: 'user/setComments',
+  SetComments: 'data/setComments',
+  SetCommentNew: 'data/setCommentNew',
+  SetCommentPostStatus: 'data/setCommentPostStatus',
   SetModalType: 'user/setModalType',
 
 

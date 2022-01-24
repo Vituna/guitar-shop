@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useMemo, useState } from 'react';
 
 import { setModalType } from '../../store/action';
-import { getComments } from '../../store/reviews/selectors';
+import { getComments, getCommentNew } from '../../store/reviews/selectors';
 
 import Rating from '../rating/rating';
 
@@ -14,14 +14,17 @@ function Reviews() {
   const dispatch = useDispatch();
 
   const comments = useSelector(getComments);
+  const commentNew = useSelector(getCommentNew);
 
   const [moreComment, setMoreComment] = useState(3);
 
+  const commentsAll = comments.concat(commentNew);
+
   const reviewsToDisplay = useMemo(() =>
-    [...comments]
+    [...commentsAll]
       .sort((a, b) => Date.parse(b.createAt) - Date.parse(a.createAt))
       .slice(0, moreComment),
-  [comments, moreComment]);
+  [commentsAll, moreComment]);
 
   const handleShowMoreClick = () => {
     setMoreComment(moreComment + 3);
@@ -36,6 +39,7 @@ function Reviews() {
 
   const handleOpenForm = (evt) => {
     evt.preventDefault();
+    document.body.style.position = 'fixed';
     dispatch(setModalType(TypeModal.OpenFormReviews));
   };
 

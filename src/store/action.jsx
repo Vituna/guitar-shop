@@ -109,6 +109,12 @@ export const setComments = createAction(
     {payload: comments}
   ),
 );
+export const setCommentNew = createAction(
+  ActionType.SetCommentNew,
+  (comment) => (
+    {payload: comment}
+  ),
+);
 
 export const setLimit = createAction(ActionType.SetLimit,
   (limit) => (
@@ -133,5 +139,12 @@ export const setModalType = createAction(
   ActionType.SetModalType,
   (modalType) => (
     {payload: {modalType}}
+  ),
+);
+
+export const setCommentPostStatus = createAction(
+  ActionType.SetCommentPostStatus,
+  (commentPostStatus) => (
+    {payload: commentPostStatus}
   ),
 );

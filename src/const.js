@@ -72,7 +72,26 @@ export const LIMIT_CARDS = 9;
 export const MAX_NUMBER_PAGES = 3;
 export const MAX_GUITAR_CARDS = 9;
 
+export const STARS = [
+  {value: 5, name: 'Отлично'},
+  {value: 4, name: 'Хорошо'},
+  {value: 3, name: 'Нормально'},
+  {value: 2, name: 'Плохо'},
+  {value: 1, name: 'Ужасно'},
+];
+
+
 export const TypeModal = {
   OpenFormReviews: 'OpenFormReviews',
   CloseFormReviews: 'CloseFormReviews',
+  CloseSuccessReviews: 'CloseSuccessReviews',
+  OpenSuccessReviews: 'OpenSuccessReviews',
 };
+
+export const CommentPostStatus = {
+  Pristine: 'PRISTINE',
+  Posting: 'POSTING',
+  Posted: 'POSTED',
+  NotPosted: 'NOT_POSTED',
+};
+

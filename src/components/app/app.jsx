@@ -4,6 +4,7 @@ import Main from '../main/main';
 import GuitarCard from '../guitar-card/guitar-card';
 import NoFound from '../no-found/no-found';
 import ReviewModal from '../review-modal/review-modal';
+import ReviewModalSuccess from '../review-modal-success/review-modal-success';
 
 import { AppRoute } from '../../const';
 
@@ -23,6 +24,7 @@ function App() {
         </Route>
       </Switch>
       <ReviewModal />
+      <ReviewModalSuccess />
     </>
   );
 }
