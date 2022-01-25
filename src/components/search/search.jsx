@@ -42,7 +42,7 @@ function Search() {
         <label className="visually-hidden" htmlFor="search">Поиск</label>
       </form>
       <ul  className={`form-search__select-list ${openSearch ? '' : 'hidden'}`} style={{ zIndex: 2 }}>
-        {getFilterGuitarsName(guitars, inputValue).map((option, i) => (
+        {guitars && getFilterGuitarsName(guitars, inputValue).map((option, i) => (
           <Link to={`/guitars/${option.id}`} className="form-search__select-item" key={`${option.id}`}>
             <li className="form-search__select-item" tabIndex={option.name + i} key={`${option.name + i}`} onClick={() => handleGuitarNameClick(option.name)}>{option.name}</li>
           </Link>

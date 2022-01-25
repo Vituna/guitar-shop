@@ -10,11 +10,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './store/root-reducer';
 import { createApi } from './services/api';
 import { fetchGuitarsAction } from './store/api-actions';
+import { setErrorNoFound } from './store/action';
+
 import App from './components/app/app';
 
-const api = createApi();
+const api = createApi(
+  () => store.dispatch(setErrorNoFound(true)),
+);
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+
 
 store.dispatch(fetchGuitarsAction());
 

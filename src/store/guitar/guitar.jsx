@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar } from '../action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, setErrorNoFound } from '../action';
 
 const initialState = {
   guitars: [],
@@ -9,6 +9,7 @@ const initialState = {
   isLoadingFilter: true,
   isError: false,
   loadingUrl: true,
+  errorNoFound: false,
 };
 
 const guitars = createReducer(initialState, (builder) => {
@@ -38,6 +39,9 @@ const guitars = createReducer(initialState, (builder) => {
     })
     .addCase(setGuitarsError, (state, action) => {
       state.isError = action.payload;
+    })
+    .addCase(setErrorNoFound, (state, action) => {
+      state.errorNoFound = action.payload;
     });
 });
 

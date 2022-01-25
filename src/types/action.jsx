@@ -21,6 +21,7 @@ export const ActionType = {
   SetCommentNew: 'data/setCommentNew',
   SetCommentPostStatus: 'data/setCommentPostStatus',
   SetModalType: 'user/setModalType',
+  SetErrorNoFound: 'data/setErrorNoFound',
 
 
 };

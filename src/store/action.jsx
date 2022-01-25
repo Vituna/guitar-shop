@@ -133,7 +133,7 @@ export const loadOffersStart = () => ({
 export const loadFilterGuitars = createAction(ActionType.LoadFilterGuitars);
 export const loadingCurrentGuitar = createAction(ActionType.LoadingCurrentGuitar);
 
-export const setGuitarsError = createAction(ActionType.SetGuitarsError, (status) => ({payload: status}));
+export const setGuitarsError = createAction(ActionType.SetGuitarsError, (isError) => ({payload: isError}));
 
 export const setModalType = createAction(
   ActionType.SetModalType,
@@ -148,3 +148,12 @@ export const setCommentPostStatus = createAction(
     {payload: commentPostStatus}
   ),
 );
+
+export const setErrorNoFound = createAction(
+  ActionType.SetErrorNoFound,
+  (errorNoFound) => (
+    {payload: errorNoFound}
+  ),
+);
+
+

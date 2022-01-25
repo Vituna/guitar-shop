@@ -53,6 +53,12 @@ export const GuitarTypeRus = {
   Ukulele: 'Укулеле',
 };
 
+export const GuitarTypeRusModal = {
+  Acoustic: 'Акустическая гитара',
+  Electric: 'Электрогитара',
+  Ukulele: 'Укулеле',
+};
+
 export const GuitarTypeEng = {
   Acoustic: 'acoustic',
   Electric: 'electric',
@@ -86,6 +92,8 @@ export const TypeModal = {
   CloseFormReviews: 'CloseFormReviews',
   CloseSuccessReviews: 'CloseSuccessReviews',
   OpenSuccessReviews: 'OpenSuccessReviews',
+  OpenCartAdd: 'OpenCartAdd',
+  CloseCartAdd: 'CloseCartAdd',
 };
 
 export const CommentPostStatus = {

@@ -1,14 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { setComments, setModalType, setCommentNew, setCommentPostStatus } from '../action';
 
-import { TypeModal, CommentPostStatus } from '../../const';
+import { CommentPostStatus } from '../../const';
 
 const initialState = {
   comments: [],
   commentNew: [],
-  modalType: TypeModal.CloseFormReviews,
+  modalType: '',
   commentPostStatus: CommentPostStatus.Pristine,
-
 };
 
 const reviews = createReducer(initialState, (builder) => {

@@ -1,7 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import { useEffect } from 'react';
 
-import { getGuitarsErrorStatus } from '../../store/guitar/selectors';
-
+import { setErrorNoFound } from '../../store/action';
+import { getGuitarsErrorStatus, getErrorNoFound } from '../../store/guitar/selectors';
 
 import Header from '../header/header';
 import FilterPrice from '../filter-price/filter-price';
@@ -12,8 +13,16 @@ import Pagination from '../pagination/pagination';
 import ServerError from '../serverError/serverError';
 
 function Main() {
+  const dispatch = useDispatch();
 
   const isError = useSelector(getGuitarsErrorStatus);
+  const errorNoFound = useSelector(getErrorNoFound);
+
+  useEffect(() => {
+    if (errorNoFound) {
+      dispatch(setErrorNoFound(false));
+    }
+  }, [dispatch, errorNoFound]);
 
   if (isError) {
     return  <ServerError />;

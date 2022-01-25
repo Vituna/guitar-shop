@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import FocusTrap from 'focus-trap-react';
+import FocusLock from 'react-focus-lock';
 
 import { getModalType } from '../../store/reviews/selectors';
 import { setModalType } from '../../store/action';
@@ -8,7 +8,7 @@ import { setModalType } from '../../store/action';
 
 import { TypeModal } from '../../const';
 
-function ReviewModalSuccess() {
+function ModalReviewSuccess() {
   const dispatch = useDispatch();
 
   const typeModal = useSelector(getModalType);
@@ -25,6 +25,10 @@ function ReviewModalSuccess() {
     }
   };
 
+  const handleDivClick = () => {
+    dispatch(setModalType(''));
+  };
+
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKeyDown);
 
@@ -39,8 +43,8 @@ function ReviewModalSuccess() {
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
       <div className="modal is-active modal--success modal-for-ui-kit">
         <div className="modal__wrapper">
-          <div className="modal__overlay" data-close-modal></div>
-          <FocusTrap>
+          <div className="modal__overlay" data-close-modal onClick={handleDivClick}></div>
+          <FocusLock>
             <div className="modal__content">
               <svg className="modal__icon" width="26" height="20" aria-hidden="true">
                 <use xlinkHref="#icon-success"></use>
@@ -53,7 +57,7 @@ function ReviewModalSuccess() {
                 <span className="button-cross__icon"></span><span className="modal__close-btn-interactive-area"></span>
               </button>
             </div>
-          </FocusTrap>
+          </FocusLock>
         </div>
       </div>
     </div>
@@ -61,4 +65,4 @@ function ReviewModalSuccess() {
 
 }
 
-export default ReviewModalSuccess;
+export default ModalReviewSuccess;

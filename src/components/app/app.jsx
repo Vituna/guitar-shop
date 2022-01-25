@@ -3,8 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import Main from '../main/main';
 import GuitarCard from '../guitar-card/guitar-card';
 import NoFound from '../no-found/no-found';
-import ReviewModal from '../review-modal/review-modal';
-import ReviewModalSuccess from '../review-modal-success/review-modal-success';
+import ModalReviewForm from '../modal-review-form/modal-review-form';
+import ModalReviewSuccess from '../modal-review-success/modal-review-success';
+import ModalCardAdd from '../modal-cart-add/modal-cart-add';
 
 import { AppRoute } from '../../const';
 
@@ -23,8 +24,9 @@ function App() {
           <NoFound />
         </Route>
       </Switch>
-      <ReviewModal />
-      <ReviewModalSuccess />
+      <ModalReviewForm />
+      <ModalReviewSuccess />
+      <ModalCardAdd />
     </>
   );
 }

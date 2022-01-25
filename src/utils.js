@@ -1,8 +1,8 @@
-import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES } from './const';
+import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES, GuitarTypeRusModal } from './const';
 
 import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage } from './store/action';
 
-export const getFilterGuitarsName = (guitars, inputValue) => guitars.filter((guitar) => guitar.name.toLowerCase().startsWith(inputValue.toLowerCase()));
+export const getFilterGuitarsName = (guitars, inputValue) => guitars && guitars.filter((guitar) => guitar.name.toLowerCase().startsWith(inputValue.toLowerCase()));
 
 const getString = (type, string) => string ? ({[type]: `${string}`}) : {};
 
@@ -33,6 +33,19 @@ export const getTranslationGuitarType = (name) => {
       return 'electric';
     case GuitarTypeRus.Ukulele:
       return 'ukulele';
+    default:
+      return '';
+  }
+};
+
+export const getTranslationGuitarTypeRus = (name) => {
+  switch (name) {
+    case 'acoustic':
+      return GuitarTypeRusModal.Acoustic;
+    case 'electric':
+      return GuitarTypeRusModal.Electric;
+    case 'ukulele':
+      return GuitarTypeRusModal.Ukulele;
     default:
       return '';
   }

@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, Fragment } from 'react';
-import FocusTrap from 'focus-trap-react';
+import FocusLock from 'react-focus-lock';
 
 import { getModalType, getCommentPostStatus } from '../../store/reviews/selectors';
 import { getGuitar } from '../../store/guitar/selectors';
@@ -9,7 +10,7 @@ import { postComment } from '../../store/api-actions';
 
 import { TypeModal, STARS, CommentPostStatus } from '../../const';
 
-function ReviewModal() {
+function ModalReviewForm() {
   const dispatch = useDispatch();
 
   const typeModal = useSelector(getModalType);
@@ -58,18 +59,24 @@ function ReviewModal() {
   };
 
   const handleCloseFormClick = () => {
-    dispatch(setModalType(TypeModal.CloseFormReviews));
+    dispatch(setModalType(''));
     document.body.style.position = '';
   };
 
   const handleEscapeKeyDown = (evt) => {
     if (evt.code === 'Escape') {
-      dispatch(setModalType(TypeModal.CloseFormReviews));
+      dispatch(setModalType(''));
       document.body.style.position = '';
     }
   };
 
+  const handleDivClick = () => {
+    dispatch(setModalType(''));
+  };
+
   useEffect(() => {
+
+
     document.addEventListener('keydown', handleEscapeKeyDown);
 
     return () => {
@@ -84,13 +91,13 @@ function ReviewModal() {
   }, [rating, userNametValue, advantageValue, disadvantageValue, commentValue]);
 
   return (
-    typeModal.modalType === TypeModal.OpenFormReviews &&
+    typeModal.modalType === TypeModal.OpenFormReviews && guitar !== null ?
       <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
         <div className="modal is-active modal--review modal-for-ui-kit">
           <div className="modal__wrapper">
-            <div className="modal__overlay" data-close-modal></div>
-            <FocusTrap>
-              <div className="modal__content">
+            <div className="modal__overlay" data-close-modal="true" onClick={handleDivClick} ></div>
+            <FocusLock>
+              <div className="modal__content" >
                 <h2 className="modal__header modal__header--review title title--medium">Оставить отзыв</h2>
                 <h3 className="modal__product-name title title--medium-20 title--uppercase">{guitar.name}</h3>
                 <form className="form-review" onSubmit={handleFormSubmit}>
@@ -142,12 +149,12 @@ function ReviewModal() {
                   <span className="modal__close-btn-interactive-area"></span>
                 </button>
               </div>
-            </FocusTrap>
+            </FocusLock>
           </div>
         </div>
-      </div>
+      </div> : ''
   );
 
 }
 
-export default ReviewModal;
+export default ModalReviewForm;

@@ -9,7 +9,6 @@ import Rating from '../rating/rating';
 import { getFormatDateValue } from '../../utils';
 import { TypeModal } from '../../const';
 
-/* eslint-disable no-console */
 function Reviews() {
   const dispatch = useDispatch();
 
@@ -32,9 +31,8 @@ function Reviews() {
 
   const handleSckrollUp = (evt) => {
     evt.preventDefault();
-    if (window.pageYOffset > 0) {
-      window.scrollBy(0, -20180);
-    }
+    window.scrollTo(0, 0);
+    setMoreComment(moreComment - (moreComment - 3));
   };
 
   const handleOpenForm = (evt) => {

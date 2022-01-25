@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import FilterPrice from './filter-price';
 import { createApi } from '../../services/api';
 
-import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
+import { mockGuitars } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
@@ -18,14 +18,11 @@ describe('Component: FilterPrice', () => {
   const mockStore = configureMockStore(middlewares);
 
   const store= mockStore({
-    GUITARS: {
-      guitars : mockGuitars,
-      guitarsFilter: [],
-      guitar: mockGuitar,
-    },
     FILTER: {
       minPrice: 2700,
       maxPrice: 35000,
+      guitarsPrice: mockGuitars,
+
     },
   });
 

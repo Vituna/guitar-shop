@@ -19,7 +19,6 @@ function FilterPrice() {
     const value = evt.target.value;
     dispatch(changeMinPrice(value));
     dispatch(currentNumberPage(1));
-
   };
 
   const handleInputMaxPriceChange = (evt) => {

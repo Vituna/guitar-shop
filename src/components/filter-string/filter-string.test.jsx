@@ -8,8 +8,6 @@ import thunk from 'redux-thunk';
 import FilterString from './filter-string';
 import { createApi } from '../../services/api';
 
-import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
-
 const history = createMemoryHistory();
 
 describe('Component: FilterString', () => {
@@ -18,11 +16,6 @@ describe('Component: FilterString', () => {
   const mockStore = configureMockStore(middlewares);
 
   const store= mockStore({
-    GUITARS: {
-      guitars : mockGuitars,
-      guitarsFilter: [],
-      guitar: mockGuitar,
-    },
     FILTER: {
       typeFilter: [],
       stringFilter: [],

@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { createApi } from '../../services/api';
 import App from './app';
 
-import { AppRoute, SORT_TYPES } from '../../const';
+import { AppRoute, SORT_TYPES, CommentPostStatus } from '../../const';
 import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
@@ -39,6 +39,12 @@ describe('Application Routing', () => {
       currentPage: 1,
       guitars: mockGuitars,
     },
+    REVIEWS: {
+      comments: [],
+      commentNew: [],
+      modalType: '',
+      commentPostStatus: CommentPostStatus.Pristine,
+    },
   });
 
   const fakeApp = (
@@ -67,6 +73,6 @@ describe('Application Routing', () => {
     render(fakeApp);
 
     expect(screen.getByText(/404. Requested page is not available/i)).toBeInTheDocument();
-    expect(screen.getByText(/Click here to return to the main page/i)).toBeInTheDocument();
+    expect(screen.getByText(/Click here to return to the Catalog page/i)).toBeInTheDocument();
   });
 });

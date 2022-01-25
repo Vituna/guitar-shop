@@ -452,6 +452,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -920,7 +921,7 @@ button,
   bottom: 0;
   left: 0;
   position: fixed;
-  z-index: 1000;
+  z-index: 2;
 
   display: flex;
   visibility: hidden;
@@ -946,6 +947,8 @@ button,
 .modal::-webkit-scrollbar {
   display: none;
 }
+
+.close-popup{display: flex;}
 
 .modal.is-active {
   visibility: visible;
@@ -1016,7 +1019,7 @@ button,
   top: 0;
   left: 0;
   position: absolute;
-
+  z-index: 1;
   width: 100%;
   height: 100%;
 

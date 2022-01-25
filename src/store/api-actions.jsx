@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice, setModalType, setCommentNew, setCommentPostStatus} from './action';
 
 import { ApiRoute, EMBED, TypeModal, CommentPostStatus } from '../const';

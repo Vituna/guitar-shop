@@ -78,7 +78,7 @@ function GuitarsList() {
     }
   }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage, urlStatus]);
 
-  if (guitars === null || isLoadingFilter) {
+  if (isLoadingFilter) {
     return <Preloader />;
   }
 
@@ -87,7 +87,7 @@ function GuitarsList() {
       <Sort />
       <div className="cards catalog__cards">
 
-        {guitars.map((guitar) => (
+        {guitars && guitars.map((guitar) => (
           <GuitarOffer key={guitar.id} guitar={guitar} />
         ))}
 
