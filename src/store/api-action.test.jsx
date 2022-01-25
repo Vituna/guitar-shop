@@ -1,13 +1,13 @@
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { createApi } from '../services/api';
-import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchGuitarsPagination, fetchComments } from './api-actions';
+import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchComments, postComment } from './api-actions';
 import thunk from 'redux-thunk';
 
-import { mockGuitars, mockGuitar, mockComments } from '../utils/test-mocks';
-import { loadGuitars, loadGuitarRequest, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments } from './action';
+import { mockGuitars, mockGuitar, mockComments, mockComment } from '../utils/test-mocks';
+import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setCommentNew, setCommentPostStatus, setModalType } from './action';
 
-import { ApiRoute } from '../const';
+import { ApiRoute, EMBED, CommentPostStatus, TypeModal } from '../const';
 
 
 const ID_TEST = 1;
@@ -53,18 +53,18 @@ describe('Async actions', () => {
 
     expect(store.getActions())
       .toEqual([
-        loadGuitarRequest(),
+        loadingCurrentGuitar(),
         loadCurrentGuitar(mockGuitar),
       ]);
   });
 
   it('should dispatch fetchGuitarsParams when GET /guitars/?_start=10&_end=20&_embed=comments', async () => {
     const store = mockStore();
-    const fakeParams = '_start=10&_end=20&_embed=comments';
+    const fakeParams = '_start=10&_end=20';
 
     mockAPI
       .onGet(`${ApiRoute.Guitars}${fakeParams}`)
-      .reply(HttpCode.Ok, mockGuitars);
+      .reply(HttpCode.Ok, mockGuitars, {params: {[EMBED.Embed]: EMBED.Comment}});
 
     expect(store.getActions()).toEqual([]);
 
@@ -72,6 +72,8 @@ describe('Async actions', () => {
 
     expect(store.getActions())
       .toEqual([
+        loadFilterGuitars(),
+        loadGuitarsCountPagination(10),
         loadGuitarsFilter(mockGuitars),
       ]);
   });
@@ -82,7 +84,7 @@ describe('Async actions', () => {
 
     mockAPI
       .onGet(`${ApiRoute.Guitars}${fakeParams}`)
-      .reply(HttpCode.Ok, mockGuitars);
+      .reply(HttpCode.Ok, mockGuitars, {params: {[EMBED.Embed]: EMBED.Comment}});
 
     expect(store.getActions()).toEqual([]);
 
@@ -90,29 +92,13 @@ describe('Async actions', () => {
 
     expect(store.getActions())
       .toEqual([
+        loadFilterGuitars(),
+        loadGuitarsCountPagination(10),
         loadGuitarsFilter(mockGuitars),
       ]);
   });
 
-  it('should dispatch fetchGuitarsPagination when GET /guitars/?_start=100&_end=19', async () => {
-    const store = mockStore();
-    const fakeParams = '_start=100&_end=19';
-
-    mockAPI
-      .onGet(`${ApiRoute.Guitars}/${fakeParams}`)
-      .reply(HttpCode.Ok, mockGuitars);
-
-    expect(store.getActions()).toEqual([]);
-
-    await store.dispatch(fetchGuitarsPagination(fakeParams));
-
-    expect(store.getActions())
-      .toEqual([
-        loadGuitarsCountPagination(mockGuitars),
-      ]);
-  });
-
-  it('should dispatch fetchGuitarsPagination when GET comments', async () => {
+  it('should dispatch postComment when GET comments /guitars/comments/1', async () => {
     const store = mockStore();
     mockAPI
       .onGet(`${ApiRoute.Guitars}/${ID_TEST}/comments`)
@@ -125,6 +111,24 @@ describe('Async actions', () => {
     expect(store.getActions())
       .toEqual([
         setComments(mockComments),
+      ]);
+  });
+
+  it('should dispatch postComment when POST comment', async () => {
+    const store = mockStore();
+    mockAPI
+      .onPost(`${ApiRoute.Comments}`)
+      .reply(201, mockComment);
+
+    expect(store.getActions()).toEqual([]);
+    await store.dispatch(postComment({body: mockComment}));
+
+    expect(store.getActions())
+      .toEqual([
+        setCommentPostStatus(CommentPostStatus.Posting),
+        setModalType(TypeModal.OpenSuccessReviews),
+        setCommentPostStatus(CommentPostStatus.Posted),
+        setCommentNew([mockComment]),
       ]);
   });
 });

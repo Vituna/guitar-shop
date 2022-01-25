@@ -2,11 +2,10 @@ import { currentNumberPage, loadGuitarsCountPagination } from '../action';
 
 import { pagination } from './pagination';
 
-import { mockGuitars } from '../../utils/test-mocks';
-
 const state = {
   currentPage: 1,
-  guitars: [],
+  guitarsCount: 27,
+  limit: 9,
 };
 
 describe('Reducer: Pagination', () => {
@@ -15,14 +14,16 @@ describe('Reducer: Pagination', () => {
     expect(pagination(state, currentNumberPage(2)))
       .toEqual({
         currentPage: 2,
-        guitars: [],
+        guitarsCount: 27,
+        limit: 9,
       });
   });
   it('should update loadGuitarsCountPagination', () => {
-    expect(pagination(state, loadGuitarsCountPagination(mockGuitars)))
+    expect(pagination(state, loadGuitarsCountPagination(9)))
       .toEqual({
         currentPage: 1,
-        guitars: mockGuitars,
+        guitarsCount: 9,
+        limit: 9,
       });
   });
 });

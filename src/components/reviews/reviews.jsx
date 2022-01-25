@@ -42,11 +42,11 @@ function Reviews() {
   };
 
   return (
-    <section className="reviews">
+    <section className="reviews" data-testid="count-value">
       <h3 className="reviews__title title title--bigger">Отзывы</h3>
       <a className="button button--red-border button--big reviews__sumbit-button" href="!#" onClick={handleOpenForm}>Оставить отзыв</a>
-      {reviewsToDisplay.map((comment) => (
-        <div className="review" key={comment.id}>
+      {reviewsToDisplay.map((comment, i) => (
+        <div className="review" key={`${i + 1}`}>
           <div className="review__wrapper">
             <h4 className="review__title review__title--author title title--lesser">{comment.userName}</h4>
             <span className="review__date">{getFormatDateValue(comment.createAt)}</span>

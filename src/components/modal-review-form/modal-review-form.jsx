@@ -107,7 +107,7 @@ function ModalReviewForm() {
                       <input className="form-review__input form-review__input--name" id="user-name" type="text" autoComplete="off" tabIndex={1} onChange={handleUserNameChange} />
                       <span className="form-review__warning">Заполните поле</span>
                     </div>
-                    <div><span className="form-review__label form-review__label--required">Ваша Оценка</span>
+                    <div><span className="form-review__label form-review__label--required" data-testid="count-value">Ваша Оценка</span>
                       <div className="rate rate--reverse">
 
                         {STARS.map((star) => (

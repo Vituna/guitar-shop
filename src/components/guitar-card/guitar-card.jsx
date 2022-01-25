@@ -36,7 +36,6 @@ function GuitarCard() {
 
   const [tabs, setTabs] = useState(Tabs.Characteristic);
 
-  const commentsAll = comments.concat(commentNew);
 
   useEffect(() => {
     dispatch(fetchCurrentGuitarAction(id));
@@ -70,6 +69,7 @@ function GuitarCard() {
   if (guitarLoading) {
     return <Preloader />;
   }
+  const commentsAll = comments.concat(commentNew);
 
   return (
     <div className="wrapper">

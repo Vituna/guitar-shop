@@ -21,12 +21,12 @@ function ModalCardAdd() {
   return (
     typeModal.modalType === TypeModal.OpenCartAdd &&
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
-      <div className="modal is-active modal-for-ui-kit">
+      <div className="modal is-active modal-for-ui-kit" >
         <div className="modal__wrapper">
           <div className="modal__overlay" data-close-modal onClick={handleDivClick}></div>
           <FocusLock>
             <div className="modal__content">
-              <h2 className="modal__header title title--medium">Добавить товар в корзину</h2>
+              <h2 className="modal__header title title--medium" >Добавить товар в корзину</h2>
               <div className="modal__info">
                 <img className="modal__img" src={`../${guitar.previewImg}`} srcSet={`../${guitar.previewImg}`} width="67" height="137" alt="Честер bass"/>
                 <div className="modal__info-wrapper">
@@ -34,7 +34,7 @@ function ModalCardAdd() {
                   <p className="modal__product-params modal__product-params--margin-11">Артикул: {guitar.vendorCode}</p>
                   <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.type))}, {guitar.stringCount} струнная</p>
                   <p className="modal__price-wrapper">
-                    <span className="modal__price">Цена:</span>
+                    <span data-testid="count-value" className="modal__price">Цена:</span>
                     <span className="modal__price">{guitar.price} ₽</span>
                   </p>
                 </div>

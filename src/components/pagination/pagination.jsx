@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 

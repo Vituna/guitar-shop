@@ -1,29 +1,30 @@
+/* eslint-disable testing-library/prefer-presence-queries */
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import { configureMockStore } from '@jedmao/redux-mock-store';
+import {render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import {configureMockStore} from '@jedmao/redux-mock-store';
 
-import GuitarCard from './guitar-card';
 import { createApi } from '../../services/api';
+import ModalCardAdd from './modal-cart-add';
 
-import { mockGuitar, mockComments } from '../../utils/test-mocks';
+import { mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
-describe('Component: GuitarCard', () => {
+describe('Component: ModalCardAdd', () => {
+
   const api = createApi();
   const middlewares = [thunk.withExtraArgument(api)];
   const mockStore = configureMockStore(middlewares);
 
-  const store= mockStore({
+  const store = mockStore({
     GUITARS: {
       guitar: mockGuitar,
     },
     REVIEWS: {
-      comments: mockComments,
-      commentNew: mockComments,
+      modalType: '',
     },
   });
 
@@ -31,11 +32,12 @@ describe('Component: GuitarCard', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <GuitarCard />
-        </Router>
+          <ModalCardAdd />
+        </Router>,
       </Provider>,
     );
 
-    expect(screen.getByText(/Артикул/i)).toBeInTheDocument();
+    expect(screen.queryByTestId('count-value')).toHaveTextContent('Цена:');
+
   });
 });

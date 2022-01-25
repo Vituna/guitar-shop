@@ -7,10 +7,12 @@ import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 const state = {
   guitars: [],
   guitarsFilter: [],
-  comments: [],
   guitar: null,
   guitarLoading: false,
-  isLoading: true,
+  isLoadingFilter: true,
+  isError: false,
+  loadingUrl: true,
+  errorNoFound: false,
 };
 
 describe('Reducer: Guitars', () => {
@@ -20,10 +22,12 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: mockGuitars,
         guitarsFilter: [],
-        comments: [],
         guitar: null,
         guitarLoading: false,
-        isLoading: true,
+        isLoadingFilter: true,
+        isError: false,
+        loadingUrl: true,
+        errorNoFound: false,
       });
   });
   it('should update loadGuitarsFilter', () => {
@@ -31,10 +35,12 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: [],
         guitarsFilter: mockGuitars,
-        comments: [],
         guitar: null,
         guitarLoading: false,
-        isLoading: false,
+        isLoadingFilter: false,
+        isError: false,
+        loadingUrl: true,
+        errorNoFound: false,
       });
   });
   it('should update loadCurrentGuitar', () => {
@@ -42,11 +48,12 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: [],
         guitarsFilter: [],
-        comments: [],
         guitar: mockGuitar,
         guitarLoading: false,
-        isLoading: true,
-        questLoading: false,
+        isLoadingFilter: true,
+        isError: false,
+        loadingUrl: true,
+        errorNoFound: false,
       });
   });
 });

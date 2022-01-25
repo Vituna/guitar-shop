@@ -6,8 +6,6 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 
 import Pagination from './pagination';
 
-import { mockGuitars } from '../../utils/test-mocks';
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: () => ({
@@ -20,8 +18,8 @@ describe('Component: Pagination', () => {
   it('should render correctly with cards total count > 20', () => {
     const store = mockStore({
       PAGINATUON: {
-        currentPage: 28,
-        guitars: mockGuitars,
+        currentPage: 1,
+        guitarsCount: 22,
       },
     });
 
@@ -33,7 +31,7 @@ describe('Component: Pagination', () => {
         </Router>,
       </Provider>,
     );
-    expect(screen.getByRole('list').childNodes).toHaveLength(4);
+    expect(screen.getByRole('list').childNodes).toHaveLength(5);
     expect(screen.getByText('Далее')).toBeInTheDocument();
   });
 
@@ -41,7 +39,7 @@ describe('Component: Pagination', () => {
     const store= mockStore({
       PAGINATUON: {
         currentPage: 3,
-        guitars: mockGuitars,
+        guitarsCount: 27,
       },
     });
 
@@ -55,17 +53,19 @@ describe('Component: Pagination', () => {
     );
 
     const linkItems = screen.getAllByRole('listitem');
-    expect(linkItems.length).toEqual(4);
+    expect(linkItems.length).toEqual(5);
+    // expect(screen.queryByText('Назад')).toBeInTheDocument();
 
-    expect(screen.queryByText('Назад')).not.toBeInTheDocument();
+    expect(screen.getByText('Назад')).toBeInTheDocument();
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
-    expect(screen.getByText('Далее')).toBeInTheDocument();  });
+    expect(screen.getByText('3')).toBeInTheDocument();
+    expect(screen.queryByText('Далее')).not.toBeInTheDocument();  });
   it('should render correctly with cards total count = 8', () => {
     const store= mockStore({
       PAGINATUON: {
-        currentPage: 8,
-        guitars: mockGuitars,
+        currentPage: 1,
+        guitarsCount: 8,
       },
     });
 
@@ -78,6 +78,6 @@ describe('Component: Pagination', () => {
       </Provider>,
     );
 
-    expect(screen.getByRole('list').childNodes).toHaveLength(4);
+    expect(screen.getByRole('list').childNodes).toHaveLength(3);
   });
 });

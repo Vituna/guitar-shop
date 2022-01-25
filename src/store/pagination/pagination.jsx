@@ -3,7 +3,7 @@ import { currentNumberPage, loadGuitarsCountPagination, setLimit } from '../acti
 
 const initialState = {
   currentPage: 1,
-  guitarsCount: 9,
+  guitarsCount: 27,
   limit: 9,
 };
 
