@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import Main from './main';
 import { createApi } from '../../services/api';
 
-import { AppRoute, SORT_TYPES } from '../../const';
+import { SORT_TYPES } from '../../const';
 import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
@@ -30,6 +30,7 @@ describe('Application Routing', () => {
       maxPrice: 35000,
       typeFilter: [],
       stringFilter: [],
+      guitarsPrice: mockGuitars,
     },
     SORT: {
       sortType: SORT_TYPES.Price,
@@ -37,20 +38,18 @@ describe('Application Routing', () => {
     },
     PAGINATUON: {
       currentPage: 2,
-      guitars: mockGuitars,
+      guitarsCount: 9,
     },
   });
 
-  const fakeApp = (
-    <Provider store={store}>
-      <Router history={history}>
-        <Main />
-      </Router>
-    </Provider>
-  );
-  it('should render "Main" when user navigate to "/"', () => {
-    history.push(AppRoute.Main);
-    render(fakeApp);
+  it('should render "Catalog" when user navigate to "catalog/page_1/"', () => {
+    render(
+      <Provider store={store}>
+        <Router history={history}>
+          <Main />
+        </Router>
+      </Provider>,
+    );
 
     expect(screen.getByText(/Каталог гитар/i)).toBeInTheDocument();
   });

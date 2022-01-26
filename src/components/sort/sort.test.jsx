@@ -10,7 +10,12 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 
 describe('Component: Sort', () => {
-  const store= mockStore();
+  const store= mockStore({
+    SORT: {
+      sortType: '',
+      sortDirection: '',
+    },
+  });
   it('should render correctly', () => {
     render(
       <Provider store={store}>

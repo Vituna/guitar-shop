@@ -22,7 +22,7 @@ describe('Component: FilterPrice', () => {
       minPrice: 2700,
       maxPrice: 35000,
       guitarsPrice: mockGuitars,
-
+      isloadFilterPricce: false,
     },
   });
 

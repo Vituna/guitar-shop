@@ -9,7 +9,6 @@ import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter
 
 import { ApiRoute, EMBED, CommentPostStatus, TypeModal } from '../const';
 
-
 const ID_TEST = 1;
 
 const HttpCode = {
@@ -36,6 +35,7 @@ describe('Async actions', () => {
     await store.dispatch(fetchGuitarsAction());
 
     expect(store.getActions()).toEqual([
+      loadFilterGuitars(),
       loadGuitars(mockGuitars),
     ]);
   });

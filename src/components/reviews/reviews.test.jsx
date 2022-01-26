@@ -19,7 +19,7 @@ const store= mockStore({
 });
 
 describe('Component: Search', () => {
-  it('should render correctly with guitar cards', () => {
+  it('should render correctly with Reviews', () => {
 
     render(
       <Provider store={store}>
@@ -30,6 +30,5 @@ describe('Component: Search', () => {
     );
     expect(screen.getByText(/Отзывы/i)).toBeInTheDocument();
     expect(screen.queryByTestId('count-value1')).not.toBeInTheDocument();
-    // expect(screen.getByText(/Комментарий:/i)).toBeInTheDocument();
   });
 });

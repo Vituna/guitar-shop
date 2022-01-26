@@ -7,7 +7,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
 import { createApi } from '../../services/api';
-import ModalReviewForm from './modal-review-form';
+import ModalReviewSuccess from './modal-review-success';
 
 import { mockGuitar } from '../../utils/test-mocks';
 import { CommentPostStatus, TypeModal } from '../../const';
@@ -24,7 +24,7 @@ describe('Component: ModalReviewForm', () => {
       guitar: mockGuitar,
     },
     REVIEWS: {
-      modalType: TypeModal.OpenFormReviews,
+      modalType: TypeModal.OpenSuccessReviews,
       commentPostStatus: CommentPostStatus.Pristine,
     },
   });
@@ -33,48 +33,19 @@ describe('Component: ModalReviewForm', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <ModalReviewForm />
+          <ModalReviewSuccess />
         </Router>
       </Provider>,
     );
 
-    expect(screen.getByText(/Оставить отзыв/i)).toBeInTheDocument();
-    expect(screen.getAllByRole('radio').length).toBe(5);
-  });
-
-  it ('should radio by click', () => {
-    render(
-      <Provider store={store}>
-        <Router history={history}>
-          <ModalReviewForm />
-        </Router>
-      </Provider>,
-    );
-
-    expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
-    userEvent.click(screen.getAllByRole('radio')[2]);
-    expect(screen.getAllByRole('radio')[2]).toBeChecked();
-  });
-
-  it ('should input', () => {
-    render(
-      <Provider store={store}>
-        <Router history={history}>
-          <ModalReviewForm />
-        </Router>
-      </Provider>,
-    );
-
-    expect(screen.queryByDisplayValue('NO')).not.toBeInTheDocument();
-    userEvent.type(screen.getByTestId('disadvantage'), 'NO');
-    expect(screen.getByDisplayValue('NO')).toBeInTheDocument();
+    expect(screen.getByText(/Спасибо за ваш отзыв!/i)).toBeInTheDocument();
   });
 
   it ('should click btnClose and keyDown Esc', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <ModalReviewForm />
+          <ModalReviewSuccess />
         </Router>
       </Provider>,
     );

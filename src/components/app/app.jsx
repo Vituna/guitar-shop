@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 
+import Header from '../header/header';
 import Main from '../main/main';
 import GuitarCard from '../guitar-card/guitar-card';
 import NoFound from '../no-found/no-found';
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <Switch>
         <Route exact path={`${AppRoute.CatalogPage}`}>
           <Main />

@@ -8,6 +8,8 @@ export const ActionType = {
   LoadFilterGuitars: 'data/loadFilterGuitars',
   LoadingCurrentGuitar: 'data/loadingCurrentGuitar',
   SetGuitarsError: 'data/SetGuitarsError',
+  SetErrorNoFound: 'data/setErrorNoFound',
+  LoadFilterPricce: 'data/loadFilterPricce',
   ChangeSearch: 'user/changeSearch',
   ChangeSortType: 'user/changeSortType',
   ChangeDirectionType: 'user/changeDirectionType',
@@ -21,7 +23,4 @@ export const ActionType = {
   SetCommentNew: 'data/setCommentNew',
   SetCommentPostStatus: 'data/setCommentPostStatus',
   SetModalType: 'user/setModalType',
-  SetErrorNoFound: 'data/setErrorNoFound',
-
-
 };

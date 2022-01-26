@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { setErrorNoFound } from '../../store/action';
 import { getGuitarsErrorStatus, getErrorNoFound } from '../../store/guitar/selectors';
 
-import Header from '../header/header';
 import FilterPrice from '../filter-price/filter-price';
 import FilterType from '../filter-type/filter-type';
 import FilterString from '../filter-string/filter-string';
@@ -30,7 +29,6 @@ function Main() {
 
   return(
     <div className="wrapper">
-      <Header />
       <main className="page-content">
         <div className="container">
           <h1 className="page-content__title title title--bigger">Каталог гитар</h1>

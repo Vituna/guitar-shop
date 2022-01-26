@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCurrentSearch, changeMinPrice, changeMaxPrice, changeTypeFilter, changeStringFilter, loadGuitarsPrice } from '../action';
+import { changeCurrentSearch, changeMinPrice, changeMaxPrice, changeTypeFilter, changeStringFilter, loadGuitarsPrice, loadFilterPricce } from '../action';
 
 const initialState = {
   currentSearch: '',
@@ -8,7 +8,8 @@ const initialState = {
   typeFilter: [],
   stringFilter: [],
   guitarsPrice: [],
-  isLoadingFilter: true,
+  isLoadingFilter: '',
+  isloadFilterPricce: true,
 };
 
 const filter = createReducer(initialState, (builder) => {
@@ -19,7 +20,7 @@ const filter = createReducer(initialState, (builder) => {
   builder
     .addCase(changeMinPrice, (state, action) => {
       state.minPrice = action.payload;
-      state.isLoadingFilter = false;
+      state.isloadFilterPricce = false;
     });
   builder
     .addCase(changeMaxPrice, (state, action) => {
@@ -36,6 +37,12 @@ const filter = createReducer(initialState, (builder) => {
   builder
     .addCase(loadGuitarsPrice, (state, action) => {
       state.guitarsPrice = action.payload.guitarsPrice;
+      state.isloadFilterPricce = false;
+
+    });
+  builder
+    .addCase(loadFilterPricce, (state) => {
+      state.isloadFilterPricce = true;
     });
 });
 

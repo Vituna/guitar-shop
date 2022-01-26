@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getGuitarsPrice } from '../../store/filters/selectors';
 import { changeMinPrice, changeMaxPrice, currentNumberPage } from '../../store/action';
-import { getMinPrice, getMaxPrice } from '../../store/filters/selectors';
+import { getMinPrice, getMaxPrice, getIsLoadingFilter } from '../../store/filters/selectors';
 
 import { getMinMaxPricesGuitars } from '../../utils';
 
@@ -12,6 +12,11 @@ function FilterPrice() {
   const guitars = useSelector(getGuitarsPrice);
   const minPriceState = useSelector(getMinPrice);
   const maxPriceState = useSelector(getMaxPrice);
+  const loadingFilter = useSelector(getIsLoadingFilter);
+
+  if (loadingFilter) {
+    return '';
+  }
 
   const {minPrices, maxPrices} = getMinMaxPricesGuitars(guitars);
 

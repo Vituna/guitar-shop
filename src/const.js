@@ -86,7 +86,6 @@ export const STARS = [
   {value: 1, name: 'Ужасно'},
 ];
 
-
 export const TypeModal = {
   OpenFormReviews: 'OpenFormReviews',
   CloseFormReviews: 'CloseFormReviews',
@@ -103,3 +102,7 @@ export const CommentPostStatus = {
   NotPosted: 'NOT_POSTED',
 };
 
+export const Tabs = {
+  Characteristic: 'Characteristic',
+  Description: 'Description',
+};

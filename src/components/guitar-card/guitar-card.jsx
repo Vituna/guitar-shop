@@ -7,7 +7,6 @@ import { getGuitar, getGuitarLoading, getGuitarsErrorStatus, getErrorNoFound } f
 import { getComments, getCommentNew } from '../../store/reviews/selectors';
 import { setModalType } from '../../store/action';
 
-import Header from '../header/header';
 import Rating from '../rating/rating';
 import Reviews from '../reviews/reviews';
 import Preloader from '../preloader/preloader';
@@ -15,12 +14,7 @@ import ServerError from '../serverError/serverError';
 import NoFound from '../no-found/no-found';
 
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus } from '../../utils';
-import { TypeModal } from '../../const';
-
-const Tabs = {
-  Characteristic: 'Characteristic',
-  Description: 'Description',
-};
+import { TypeModal, Tabs } from '../../const';
 
 function GuitarCard() {
   const dispatch = useDispatch();
@@ -35,7 +29,6 @@ function GuitarCard() {
   const errorNoFound = useSelector(getErrorNoFound);
 
   const [tabs, setTabs] = useState(Tabs.Characteristic);
-
 
   useEffect(() => {
     dispatch(fetchCurrentGuitarAction(id));
@@ -73,8 +66,6 @@ function GuitarCard() {
 
   return (
     <div className="wrapper">
-
-      <Header />
 
       { guitar && (
         <>

@@ -9,6 +9,7 @@ const state = {
   typeFilter: [],
   stringFilter: [],
   isLoadingFilter: true,
+  isloadFilterPricce: true,
 };
 
 describe('Reducer: Filters', () => {
@@ -21,7 +22,8 @@ describe('Reducer: Filters', () => {
         maxPrice: null,
         typeFilter: [],
         stringFilter: [],
-        isLoadingFilter: false,
+        isLoadingFilter: true,
+        isloadFilterPricce: false,
       });
   });
   it('should update MaxPrice', () => {
@@ -33,6 +35,7 @@ describe('Reducer: Filters', () => {
         typeFilter: [],
         stringFilter: [],
         isLoadingFilter: true,
+        isloadFilterPricce: true,
       });
   });
   it('should update changeTypeFilter', () => {
@@ -44,6 +47,7 @@ describe('Reducer: Filters', () => {
         typeFilter: 'acoustic',
         stringFilter: [],
         isLoadingFilter: true,
+        isloadFilterPricce: true,
       });
   });
   it('should update changeStringFilter', () => {
@@ -55,6 +59,7 @@ describe('Reducer: Filters', () => {
         typeFilter: [],
         stringFilter: 6,
         isLoadingFilter: true,
+        isloadFilterPricce: true,
       });
   });
 });

@@ -14,13 +14,13 @@ function ModalReviewSuccess() {
   const typeModal = useSelector(getModalType);
 
   const handleCloseModalClick = () => {
-    dispatch(setModalType(TypeModal.CloseSuccessReviews));
+    dispatch(setModalType(''));
     document.body.style.position = '';
   };
 
   const handleEscapeKeyDown = (evt) => {
     if (evt.code === 'Escape') {
-      dispatch(setModalType(TypeModal.CloseSuccessReviews));
+      dispatch(setModalType(''));
       document.body.style.position = '';
     }
   };
@@ -39,7 +39,7 @@ function ModalReviewSuccess() {
   });
 
   return (
-    typeModal.modalType === TypeModal.OpenSuccessReviews &&
+    typeModal === TypeModal.OpenSuccessReviews &&
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
       <div className="modal is-active modal--success modal-for-ui-kit">
         <div className="modal__wrapper">
@@ -62,7 +62,6 @@ function ModalReviewSuccess() {
       </div>
     </div>
   );
-
 }
 
 export default ModalReviewSuccess;

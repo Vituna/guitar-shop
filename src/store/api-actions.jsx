@@ -1,4 +1,4 @@
-import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice, setModalType, setCommentNew, setCommentPostStatus} from './action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice, setModalType, setCommentNew, setCommentPostStatus, loadFilterPricce} from './action';
 
 import { ApiRoute, EMBED, TypeModal, CommentPostStatus } from '../const';
 
@@ -7,6 +7,7 @@ const TOTAL_COUNT = 'x-total-count';
 export const fetchGuitarsAction = () => (
   async (dispatch, _getState, api) => {
     try {
+      dispatch(loadFilterGuitars());
       const {data} = await api.get(ApiRoute.Guitars);
       dispatch(loadGuitars(data));
     } catch {
@@ -36,6 +37,7 @@ export const fetchGuitarsParams = ( path ) => (
 export const fetchPriceParams = ( path ) => (
   async(dispatch, _getState, api) => {
     const {data} = await api.get( `${ApiRoute.Guitars}/${path}`);
+    dispatch(loadFilterPricce(false));
     dispatch(loadGuitarsPrice(data));
   }
 );

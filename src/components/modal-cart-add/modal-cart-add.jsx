@@ -18,8 +18,13 @@ function ModalCardAdd() {
     dispatch(setModalType(''));
   };
 
+  const handleCloseModalClick = () => {
+    dispatch(setModalType(''));
+    document.body.style.position = '';
+  };
+
   return (
-    typeModal.modalType === TypeModal.OpenCartAdd &&
+    typeModal === TypeModal.OpenCartAdd &&
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
       <div className="modal is-active modal-for-ui-kit" >
         <div className="modal__wrapper">
@@ -42,7 +47,9 @@ function ModalCardAdd() {
               <div className="modal__button-container">
                 <button className="button button--red button--big modal__button modal__button--add">Добавить в корзину</button>
               </div>
-              <button className="modal__close-btn button-cross" type="button" aria-label="Закрыть"><span className="button-cross__icon"></span><span className="modal__close-btn-interactive-area"></span>
+              <button className="modal__close-btn button-cross" type="button" aria-label="Закрыть" onClick={handleCloseModalClick}>
+                <span className="button-cross__icon"></span>
+                <span className="modal__close-btn-interactive-area"></span>
               </button>
             </div>
           </FocusLock>

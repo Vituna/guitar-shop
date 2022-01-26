@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, Fragment } from 'react';
 import FocusLock from 'react-focus-lock';
@@ -75,8 +74,6 @@ function ModalReviewForm() {
   };
 
   useEffect(() => {
-
-
     document.addEventListener('keydown', handleEscapeKeyDown);
 
     return () => {
@@ -91,7 +88,7 @@ function ModalReviewForm() {
   }, [rating, userNametValue, advantageValue, disadvantageValue, commentValue]);
 
   return (
-    typeModal.modalType === TypeModal.OpenFormReviews && guitar !== null ?
+    typeModal === TypeModal.OpenFormReviews && guitar !== null ?
       <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
         <div className="modal is-active modal--review modal-for-ui-kit">
           <div className="modal__wrapper">
@@ -107,7 +104,7 @@ function ModalReviewForm() {
                       <input className="form-review__input form-review__input--name" id="user-name" type="text" autoComplete="off" tabIndex={1} onChange={handleUserNameChange} />
                       <span className="form-review__warning">Заполните поле</span>
                     </div>
-                    <div><span className="form-review__label form-review__label--required" data-testid="count-value">Ваша Оценка</span>
+                    <div><span className="form-review__label form-review__label--required" >Ваша Оценка</span>
                       <div className="rate rate--reverse">
 
                         {STARS.map((star) => (
@@ -127,7 +124,7 @@ function ModalReviewForm() {
                   <span className="form-review__warning">Заполните поле</span>
 
                   <label className="form-review__label" htmlFor="user-name"><span className="form-review__label--required">Недостатки</span></label>
-                  <input className="form-review__input" id="disadvantage" type="text" autoComplete="off" tabIndex={4} onChange={handleDisadvantageChange} />
+                  <input className="form-review__input" id="disadvantage" data-testid='disadvantage' type="text" autoComplete="off" tabIndex={4} onChange={handleDisadvantageChange} />
                   <span className="form-review__warning">Заполните поле</span>
 
                   <label className="form-review__label" htmlFor="user-name"><span className="form-review__label--required">Комментарий</span></label>
@@ -154,7 +151,6 @@ function ModalReviewForm() {
         </div>
       </div> : ''
   );
-
 }
 
 export default ModalReviewForm;

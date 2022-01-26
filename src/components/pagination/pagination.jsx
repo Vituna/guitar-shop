@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 
 import { getCurrentNumberPage, getGuitarsPagination } from '../../store/pagination/selectors';
+
 import { currentNumberPage } from '../../store/action';
 
 import { MAX_NUMBER_PAGES, LIMIT_CARDS } from '../../const';
@@ -12,7 +13,6 @@ function Pagination() {
 
   const guitarsCount = useSelector(getGuitarsPagination);
   const currentPage = useSelector(getCurrentNumberPage);
-
   const numberPages = Math.ceil(guitarsCount/LIMIT_CARDS);
 
   const getPaginationPages = useMemo(() => {

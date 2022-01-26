@@ -3,7 +3,6 @@ import { setComments, setCommentNew, setModalType, setCommentPostStatus } from '
 import { reviews } from './reviews';
 import { mockComments } from '../../utils/test-mocks';
 
-
 import { CommentPostStatus, TypeModal } from '../../const';
 
 const state = {
@@ -38,7 +37,7 @@ describe('Reducer: Reviews', () => {
       .toEqual({
         comments: [],
         commentNew: [],
-        modalType: {modalType: 'OpenCartAdd'},
+        modalType: 'OpenCartAdd',
         commentPostStatus: CommentPostStatus.Pristine,
       });
   });

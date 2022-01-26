@@ -131,6 +131,14 @@ export const loadOffersStart = () => ({
 });
 
 export const loadFilterGuitars = createAction(ActionType.LoadFilterGuitars);
+
+export const loadFilterPricce = createAction(
+  ActionType.LoadFilterPricce,
+  (isloadFilterPricce) => (
+    {payload: isloadFilterPricce}
+  ),
+);
+
 export const loadingCurrentGuitar = createAction(ActionType.LoadingCurrentGuitar);
 
 export const setGuitarsError = createAction(ActionType.SetGuitarsError, (isError) => ({payload: isError}));
@@ -138,7 +146,7 @@ export const setGuitarsError = createAction(ActionType.SetGuitarsError, (isError
 export const setModalType = createAction(
   ActionType.SetModalType,
   (modalType) => (
-    {payload: {modalType}}
+    {payload: modalType}
   ),
 );
 
