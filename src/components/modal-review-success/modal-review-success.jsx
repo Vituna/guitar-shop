@@ -27,6 +27,7 @@ function ModalReviewSuccess() {
 
   const handleDivClick = () => {
     dispatch(setModalType(''));
+    document.body.style.position = '';
   };
 
   useEffect(() => {

@@ -16,6 +16,7 @@ function ModalCardAdd() {
 
   const handleDivClick = () => {
     dispatch(setModalType(''));
+    document.body.style.position = '';
   };
 
   const handleCloseModalClick = () => {

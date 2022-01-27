@@ -71,6 +71,7 @@ function ModalReviewForm() {
 
   const handleDivClick = () => {
     dispatch(setModalType(''));
+    document.body.style.position = '';
   };
 
   useEffect(() => {
