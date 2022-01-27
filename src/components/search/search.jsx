@@ -8,8 +8,9 @@ import { getFilterGuitarsName } from '../../utils';
 import { Link } from 'react-router-dom';
 
 function Search() {
-  const guitars = useSelector(getGuitars);
   const dispatch = useDispatch();
+
+  const guitars = useSelector(getGuitars);
 
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -27,6 +28,10 @@ function Search() {
     setInputValue(name);
     dispatch(changeCurrentSearch(name));
     inputValue === name ? setOpenSearch(false) : setOpenSearch(true);
+    if (inputValue.length > 0) {
+      setOpenSearch(false);
+      setInputValue('');
+    }
   };
 
   return (
@@ -44,7 +49,7 @@ function Search() {
       <ul  className={`form-search__select-list ${openSearch ? '' : 'hidden'}`} style={{ zIndex: 2 }}>
         {guitars && getFilterGuitarsName(guitars, inputValue).map((option, i) => (
           <Link to={`/guitars/${option.id}`} className="form-search__select-item" key={`${option.id}`}>
-            <li className="form-search__select-item" tabIndex={option.name + i} key={`${option.name + i}`} onClick={() => handleGuitarNameClick(option.name)}>{option.name}</li>
+            <li className="form-search__select-item" tabIndex={option.name + i} key={`${option.name + i}`} onClick={() => handleGuitarNameClick(option.name)} >{option.name}</li>
           </Link>
         ))}
       </ul>

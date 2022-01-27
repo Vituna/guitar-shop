@@ -30,8 +30,8 @@ export const loadGuitarsPrice = createAction(
 
 export const changeCurrentSearch = createAction(
   ActionType.ChangeSearch,
-  (filter) => (
-    {payload: {filter}}
+  (currentSearch) => (
+    {payload: currentSearch}
   ),
 );
 

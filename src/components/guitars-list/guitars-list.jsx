@@ -78,7 +78,6 @@ function GuitarsList() {
     }
   }, [dispatch, sortType, directionType, minPrice, maxPrice, filterType, filterString, paginationStart, history,currentPage, urlStatus]);
 
-
   if (isLoadingFilter) {
     return <Preloader />;
   }
