@@ -150,6 +150,19 @@ export const setModalType = createAction(
   ),
 );
 
+export const setGuitarAddModal = createAction(
+  ActionType.SetGuitarAddModal,
+  (guitarAdd) => (
+    {payload: {guitarAdd}}
+  ),
+);
+export const setGuitarAddBasket = createAction(
+  ActionType.SetGuitarAddBasket,
+  (guitarAddBasket) => (
+    {payload: {guitarAddBasket}}
+  ),
+);
+
 export const setCommentPostStatus = createAction(
   ActionType.SetCommentPostStatus,
   (commentPostStatus) => (

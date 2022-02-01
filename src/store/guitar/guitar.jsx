@@ -1,9 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, setErrorNoFound } from '../action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, noLoadingUrl, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, setErrorNoFound, setGuitarAddModal, setGuitarAddBasket } from '../action';
 
 const initialState = {
   guitars: [],
   guitarsFilter: [],
+  guitarAdd: null,
+  guitarAddBasket: [],
   guitar: null,
   guitarLoading: false,
   isLoadingFilter: true,
@@ -42,6 +44,12 @@ const guitars = createReducer(initialState, (builder) => {
     })
     .addCase(setErrorNoFound, (state, action) => {
       state.errorNoFound = action.payload;
+    })
+    .addCase(setGuitarAddModal, (state, action) => {
+      state.guitarAdd = action.payload.guitarAdd;
+    })
+    .addCase(setGuitarAddBasket, (state, action) => {
+      state.guitarAddBasket = action.payload.guitarAddBasket;
     });
 });
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchCurrentGuitarAction, fetchComments } from '../../store/api-actions';
 import { getGuitar, getGuitarLoading, getGuitarsErrorStatus, getErrorNoFound } from '../../store/guitar/selectors';
 import { getComments, getCommentNew } from '../../store/reviews/selectors';
-import { setModalType } from '../../store/action';
+import { setModalType, setGuitarAddModal } from '../../store/action';
 
 import Rating from '../rating/rating';
 import Reviews from '../reviews/reviews';
@@ -48,6 +48,7 @@ function GuitarCard() {
   const handleCardAddClick = (evt) => {
     evt.preventDefault();
     dispatch(setModalType(TypeModal.OpenCartAdd));
+    dispatch(setGuitarAddModal(guitar));
     document.body.style.position = 'fixed';
   };
 

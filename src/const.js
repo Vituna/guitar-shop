@@ -1,7 +1,9 @@
 export const AppRoute = {
   Main: '/',
   CatalogPage: '/catalog/page_:number/',
+  CatalogPagaOne: '/catalog/page_1',
   Guitars: '/guitars',
+  Basket: '/basket',
 };
 
 export const ApiRoute = {
@@ -73,6 +75,8 @@ export const GuitarTypeString = {
 
 export const AMOUNT_STRINGS_GUITAR = [4, 6, 7, 12];
 
+export const cartKey = 'guitar-cart';
+
 export const STAR_COUNT = 5;
 export const LIMIT_CARDS = 9;
 export const MAX_NUMBER_PAGES = 3;
@@ -93,6 +97,8 @@ export const TypeModal = {
   OpenSuccessReviews: 'OpenSuccessReviews',
   OpenCartAdd: 'OpenCartAdd',
   CloseCartAdd: 'CloseCartAdd',
+  OpenAddGood: 'OpenAddGood',
+  OpenDeleteGuitar: 'OpenDeleteGuitar',
 };
 
 export const CommentPostStatus = {

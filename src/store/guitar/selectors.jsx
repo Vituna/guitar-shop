@@ -8,4 +8,5 @@ export const getLoadingGuitarsFilter = (state) => state[NameSpace.Guitars].isLoa
 export const getLoadingUrlStatus = (state) => state[NameSpace.Guitars].loadingUrl;
 export const getGuitarsErrorStatus = (state) => state[NameSpace.Guitars].isError;
 export const getErrorNoFound = (state) => state[NameSpace.Guitars].errorNoFound;
-
+export const getGuitarAdd = (state) => state[NameSpace.Guitars].guitarAdd;
+export const getGuitarAddBasket = (state) => state[NameSpace.Guitars].guitarAddBasket;

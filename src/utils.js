@@ -1,4 +1,4 @@
-import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES, GuitarTypeRusModal } from './const';
+import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES, GuitarTypeRusModal, cartKey } from './const';
 
 import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage } from './store/action';
 
@@ -105,3 +105,12 @@ export const changePageUrl = (params, dispatch) => {
 export const getTypeNameUpperCase = (nameTypeGuitar) => nameTypeGuitar.charAt(0).toUpperCase() + nameTypeGuitar.slice(1);
 
 export const getFormatDateValue = (date) => new Date(date).toLocaleDateString('ru-RU', {day: 'numeric', month: 'long'});
+
+export const setGuitarsStorage = (cartGuitars) => localStorage.setItem(cartKey, JSON.stringify(cartGuitars));
+
+export const getGuitarsStorage = () => {
+  const guitarsString = localStorage.getItem(cartKey);
+  const guitars = guitarsString ? JSON.parse(guitarsString) : [];
+  return guitars;
+};
+

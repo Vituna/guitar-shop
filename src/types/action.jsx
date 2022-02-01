@@ -23,4 +23,6 @@ export const ActionType = {
   SetCommentNew: 'data/setCommentNew',
   SetCommentPostStatus: 'data/setCommentPostStatus',
   SetModalType: 'user/setModalType',
+  SetGuitarAddModal: 'user/setGuitarAddModal',
+  SetGuitarAddBasket: 'user/setGuitarAddBasket',
 };
