@@ -1,19 +1,29 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { setModalType, setGuitarAddModal } from '../../store/action';
+import { getGuitarAddBasket } from '../../store/guitar/selectors';
 
 import Rating from '../rating/rating';
 
 import { getTypeNameUpperCase } from '../../utils';
-import { TypeModal } from '../../const';
+import { TypeModal, AppRoute } from '../../const';
 
 function GuitarOffer(guitar) {
   const dispatch = useDispatch();
 
+  const guitarsAdd = useSelector(getGuitarAddBasket);
+
   const comments = guitar.guitar.comments;
   const guitarAdd = guitar.guitar;
-  // console.log([guitar.guitar])
+
+  const productCart = guitarsAdd.find((searchGuitar) => searchGuitar.guitar.vendorCode === guitarAdd.vendorCode);
+
+  const notUndefined = () => {
+    if (productCart !== undefined) {
+      return true;
+    } else {return false;}
+  };
 
   const handleCardAddClick = (evt) => {
     evt.preventDefault();
@@ -45,7 +55,9 @@ function GuitarOffer(guitar) {
         <Link to={`/guitars/${guitar.guitar.id}`} className="button button--mini" href="!#">
           Подробнее
         </Link>
-        <a className="button button--red button--mini button--add-to-cart" href="!#" onClick={handleCardAddClick}>Купить</a>
+        {notUndefined() ?
+          <Link to={AppRoute.Basket} className="button button--red-border button--mini button--in-cart" >В Корзине</Link> :
+          <a className="button button--red button--mini button--add-to-cart" href="!#" onClick={handleCardAddClick}>Купить</a>}
       </div>
     </div>
   );

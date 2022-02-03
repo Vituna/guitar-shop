@@ -15,16 +15,19 @@ function ModalCardAdd() {
   const guitar = useSelector(getGuitarAdd);
   const guitarsAdd = useSelector(getGuitarAddBasket);
 
-  const addGuitar = () => {
-    const cartGuitars = [...guitarsAdd];
-    const newGuitars = cartGuitars.concat(guitar);
-    setGuitarsStorage(newGuitars);
-    dispatch(setGuitarAddBasket(newGuitars));
+  const addGuitars = () => {
+    let guitars = [...guitarsAdd];
+    const index = guitars.findIndex((newGuitar) => newGuitar.guitar.vendorCode === guitar.vendorCode);
+    if (index === -1) {
+      guitars = [...guitars, { guitar, count: 1} ];
+      return guitars;
+    }
   };
 
   const handleAddClick = (evt) => {
     evt.preventDefault();
-    addGuitar();
+    setGuitarsStorage(addGuitars(guitar));
+    dispatch(setGuitarAddBasket(addGuitars(guitar)));
     dispatch(setModalType(TypeModal.OpenAddGood));
   };
 

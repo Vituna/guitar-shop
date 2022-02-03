@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { getGuitarAddBasket } from '../../store/guitar/selectors';
 
 import Search from '../search/search';
 
 import { AppRoute } from '../../const';
 
 function Header() {
+
+  const guitarsAdd = useSelector(getGuitarAddBasket);
+
+  const guitarCount = guitarsAdd.reduce((acc, item) => acc + item.count , 0);
 
   return (
     <header className="header" id="header">
@@ -29,7 +36,9 @@ function Header() {
         <Link to={AppRoute.Basket} className="header__cart-link" href="!#" aria-label="Корзина">
           <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
             <use xlinkHref="#icon-basket"></use>
-          </svg><span className="visually-hidden">Перейти в корзину</span><span className="header__cart-count">2</span>
+          </svg>
+          <span className="visually-hidden">Перейти в корзину</span>
+          {guitarsAdd.length !== 0 ? <span className="header__cart-count">{guitarCount}</span> : ''}
         </Link>
       </div>
     </header>

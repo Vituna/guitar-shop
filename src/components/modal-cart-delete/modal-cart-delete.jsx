@@ -28,7 +28,7 @@ function ModalCartDelete() {
   };
 
   const handleDeleteCardClick = () => {
-    const newGuitars = guitarsAdd.filter((searchGuitar) => searchGuitar.vendorCode !== guitar.vendorCode);
+    const newGuitars = guitarsAdd.filter((searchGuitar) => searchGuitar.guitar.vendorCode !== guitar.guitar.vendorCode);
     dispatch(setGuitarAddBasket(newGuitars));
     setGuitarsStorage(newGuitars);
     dispatch(setModalType(''));
@@ -45,14 +45,14 @@ function ModalCartDelete() {
             <div className="modal__content">
               <h2 className="modal__header title title--medium title--red">Удалить этот товар?</h2>
               <div className="modal__info">
-                <img className="modal__img" src={`../${guitar.previewImg}`} srcSet={`../${guitar.previewImg}`}width="67" height="137" alt="Честер bass" />
+                <img className="modal__img" src={`../${guitar.guitar.previewImg}`} srcSet={`../${guitar.guitar.previewImg}`}width="67" height="137" alt="Честер bass" />
                 <div className="modal__info-wrapper">
-                  <h3 className="modal__product-name title title--little title--uppercase">Гитара {guitar.name}</h3>
-                  <p className="modal__product-params modal__product-params--margin-11">Артикул: {guitar.vendorCode}</p>
-                  <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.type))}, {guitar.stringCount} струнная</p>
+                  <h3 className="modal__product-name title title--little title--uppercase">Гитара {guitar.guitar.name}</h3>
+                  <p className="modal__product-params modal__product-params--margin-11">Артикул: {guitar.guitar.vendorCode}</p>
+                  <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.guitar.type))}, {guitar.guitar.stringCount} струнная</p>
                   <p className="modal__price-wrapper">
                     <span className="modal__price">Цена:</span>
-                    <span className="modal__price">{guitar.price} ₽</span>
+                    <span className="modal__price">{guitar.guitar.price} ₽</span>
                   </p>
                 </div>
               </div>
