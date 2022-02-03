@@ -6,7 +6,7 @@ import { getGuitarAdd, getGuitarAddBasket } from '../../store/guitar/selectors';
 import { setModalType, setGuitarAddBasket } from '../../store/action';
 
 import { TypeModal } from '../../const';
-import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage } from '../../utils';
+import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator } from '../../utils';
 
 function ModalCardAdd() {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function ModalCardAdd() {
                   <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.type))}, {guitar.stringCount} струнная</p>
                   <p className="modal__price-wrapper">
                     <span data-testid="count-value" className="modal__price">Цена:</span>
-                    <span className="modal__price">{guitar.price} ₽</span>
+                    <span className="modal__price">{getPriceSeparator(guitar.price)} ₽</span>
                   </p>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import { filter } from './filters/filtres';
 import { sort } from './sort/sort';
 import { pagination } from './pagination/pagination';
 import { reviews } from './reviews/reviews';
+import { basket } from './basket/basket';
 
 export const NameSpace = {
   Guitars: 'GUITARS',
@@ -12,6 +13,7 @@ export const NameSpace = {
   Sort: 'SORT',
   Pagination: 'PAGINATUON',
   Reviews: 'REVIEWS',
+  Basket: 'BASKET',
 };
 
 export const rootReducer = combineReducers({
@@ -20,4 +22,5 @@ export const rootReducer = combineReducers({
   [NameSpace.Sort]: sort,
   [NameSpace.Pagination]: pagination,
   [NameSpace.Reviews]: reviews,
+  [NameSpace.Basket]: basket,
 });

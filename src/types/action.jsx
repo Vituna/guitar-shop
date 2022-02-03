@@ -25,4 +25,7 @@ export const ActionType = {
   SetModalType: 'user/setModalType',
   SetGuitarAddModal: 'user/setGuitarAddModal',
   SetGuitarAddBasket: 'user/setGuitarAddBasket',
+  SetDiscountGuitar: 'data/setDiscountGuitar',
+  SetCouponStatus: 'data/setCouponStatus',
+
 };

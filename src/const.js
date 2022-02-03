@@ -9,6 +9,7 @@ export const AppRoute = {
 export const ApiRoute = {
   Guitars: '/guitars',
   Comments: '/comments',
+  Coupons: '/coupons',
 };
 
 export const SORT_TYPES = {

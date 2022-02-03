@@ -118,9 +118,61 @@ export const getSimilarIndexGuitar = (guitars, guitar) => guitars.findIndex((new
 
 export const getPriceSeparator = (price) => price.toString().split('').reverse().map((el, index) => index % 3 !== 2 ? el : ` ${el}`).reverse().join('');
 
+export const getFullPrice = (guitars) => guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
+
 export const getFullPriceSeparator = (guitars) => {
-  const fullPrice = guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
-  // const fullPriceSeparator = fullPrice.toString().split('').reverse().map((el, index) => index % 3 !== 2 ? el : ` ${el}`).reverse().join('');
+  const fullPrice = getFullPrice(guitars);
   return getPriceSeparator(fullPrice);
 };
 
+export const getAmountDiscount = (guitars, discount) => {
+  const fullPrice = guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
+  if (discount > 0) {
+    const amountDiscount = fullPrice * discount / 100;
+    return amountDiscount;
+  } return 0;
+};
+
+export const getGuitarPlus = (guitar, guitarsAdd ) => {
+  const guitars = [...guitarsAdd];
+  const index = getSimilarIndexGuitar(guitars, guitar);
+  if (index !== -1) {
+    if (guitars[index].count === 99) {
+      return guitars;
+    }
+    guitars[index] = {...guitars[index], count: guitars[index].count + 1 };
+  }
+  return guitars;
+};
+
+export const grtGuitarMinus = (guitar, guitarsAdd) => {
+  const guitars = [...guitarsAdd];
+  const index = getSimilarIndexGuitar(guitars, guitar);
+
+  if (index !== -1) {
+    guitars[index] = {...guitars[index], count: guitars[index].count - 1 };
+  }
+  return guitars;
+};
+
+export const getGuitarChangeValue = (guitar, count, guitarsAdd) => {
+  const index = getSimilarIndexGuitar(guitarsAdd, guitar);
+
+  if (index === -1 || count < 0 || count > 99) {
+    return guitarsAdd;
+  }
+  const guitarIndex = guitarsAdd[index];
+  const guitarIndexCount = {...guitarIndex, count};
+  return [...guitarsAdd.slice(0, index), guitarIndexCount, ...guitarsAdd.slice(index + 1)];
+};
+
+export const getMessageValidityPromo = (couponStatus) => {
+  switch (couponStatus) {
+    case true:
+      return <p className='form-input__message form-input__message--success'>Промокод принят</p>;
+    case false:
+      return <p className='form-input__message form-input__message--error'>неверный промокод</p>;
+    default:
+      return '';
+  }
+};

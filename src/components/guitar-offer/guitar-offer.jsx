@@ -6,7 +6,7 @@ import { getGuitarAddBasket } from '../../store/guitar/selectors';
 
 import Rating from '../rating/rating';
 
-import { getTypeNameUpperCase } from '../../utils';
+import { getTypeNameUpperCase, getPriceSeparator } from '../../utils';
 import { TypeModal, AppRoute } from '../../const';
 
 function GuitarOffer(guitar) {
@@ -48,7 +48,7 @@ function GuitarOffer(guitar) {
           <span className="visually-hidden">
             Цена:
           </span>
-          {guitar.guitar.price} ₽
+          {getPriceSeparator(guitar.guitar.price)} ₽
         </p>
       </div>
       <div className="product-card__buttons">

@@ -177,4 +177,17 @@ export const setErrorNoFound = createAction(
   ),
 );
 
+export const setDiscountGuitar = createAction(
+  ActionType.SetDiscountGuitar,
+  (discountGuitar) => (
+    {payload: {discountGuitar}}
+  ),
+);
+
+export const setCouponStatus = createAction(
+  ActionType.SetCouponStatus,
+  (couponStatus) => (
+    {payload: {couponStatus}}
+  ),
+);
 

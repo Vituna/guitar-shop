@@ -1,48 +1,25 @@
 import { useSelector, useDispatch} from 'react-redux';
 
 import { getGuitarAddBasket } from '../../store/guitar/selectors';
+import { getDiscountGuitar, getCouponStatus } from '../../store/basket/selectors';
 import { setModalType, setGuitarAddModal, setGuitarAddBasket } from '../../store/action';
+import { postCoupons } from '../../store/api-actions';
 
-import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getSimilarIndexGuitar, getFullPriceSeparator, getPriceSeparator } from '../../utils';
+
+import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getFullPriceSeparator, getPriceSeparator, getGuitarPlus, grtGuitarMinus, getGuitarChangeValue, getAmountDiscount, getFullPrice, getMessageValidityPromo } from '../../utils';
 import { TypeModal } from '../../const';
+import { useState } from 'react';
 
 function Basket() {
   const dispatch = useDispatch();
 
   const guitarsAdd = useSelector(getGuitarAddBasket);
+  const discountGuitar = useSelector(getDiscountGuitar);
+  const couponStatus = useSelector(getCouponStatus);
 
-  const guitarPlus = (guitar) => {
-    const guitars = [...guitarsAdd];
-    const index = getSimilarIndexGuitar(guitars, guitar);
-    if (index !== -1) {
-      if (guitars[index].count === 99) {
-        return guitars;
-      }
-      guitars[index] = {...guitars[index], count: guitars[index].count + 1 };
-    }
-    return guitars;
-  };
+  const [coupon, setCoupon] = useState();
 
-  const guitarMinus = (guitar) => {
-    const guitars = [...guitarsAdd];
-    const index = getSimilarIndexGuitar(guitars, guitar);
-
-    if (index !== -1) {
-      guitars[index] = {...guitars[index], count: guitars[index].count - 1 };
-    }
-    return guitars;
-  };
-
-  const guitarChangeValue = (guitar, count) => {
-    const index = getSimilarIndexGuitar(guitarsAdd, guitar);
-
-    if (index === -1 || count < 0 || count > 99) {
-      return guitarsAdd;
-    }
-    const guitarIndex = guitarsAdd[index];
-    const guitarIndexCount = {...guitarIndex, count};
-    return [...guitarsAdd.slice(0, index), guitarIndexCount, ...guitarsAdd.slice(index + 1)];
-  };
+  const discountPrice = getAmountDiscount(guitarsAdd, discountGuitar);
 
   const handleDeleteGuitarClick = (guitar) => {
     dispatch(setModalType(TypeModal.OpenDeleteGuitar));
@@ -50,13 +27,13 @@ function Basket() {
   };
 
   const handlePluseClick = (guitar) => {
-    const coutGuitars = guitarPlus({...guitar});
+    const coutGuitars = getGuitarPlus({...guitar}, guitarsAdd);
     setGuitarsStorage(coutGuitars);
     dispatch(setGuitarAddBasket(coutGuitars));
   };
 
   const handleMinusClick = (guitar) => {
-    const coutGuitars = guitarMinus({...guitar});
+    const coutGuitars = grtGuitarMinus({...guitar}, guitarsAdd);
     if (guitar.count <= 1) {
       dispatch(setModalType(TypeModal.OpenDeleteGuitar));
       dispatch(setGuitarAddModal(guitar));
@@ -67,9 +44,22 @@ function Basket() {
 
   const handleGuitarCountChange = (evt, guitar) => {
     const value = evt.currentTarget.value;
-    const coutGuitars = guitarChangeValue(guitar, +value);
+    const coutGuitars = getGuitarChangeValue(guitar, +value, guitarsAdd);
     setGuitarsStorage(coutGuitars);
     dispatch(setGuitarAddBasket(coutGuitars));
+  };
+
+  const handleCouponChange = (evt) => {
+    const value = evt.currentTarget.value;
+    const delSapces = value.split(' ').join('');
+    setCoupon(delSapces);
+  };
+
+  const handleCouponBtnClick = (evt) => {
+    evt.preventDefault();
+    if (coupon) {
+      dispatch(postCoupons({coupon: coupon}));
+    }
   };
 
   return(
@@ -128,10 +118,10 @@ function Basket() {
                   <form className="coupon__form" id="coupon-form" method="post" action="/">
                     <div className="form-input coupon__input">
                       <label className="visually-hidden">Промокод</label>
-                      <input type="text" placeholder="Введите промокод" id="coupon" name="coupon" />
-                      <p className="form-input__message form-input__message--success">Промокод принят</p>
+                      <input type="text" placeholder="Введите промокод" id="coupon" name="coupon" value={coupon} onChange={handleCouponChange}/>
+                      {getMessageValidityPromo(couponStatus)}
                     </div>
-                    <button className="button button--big coupon__button">Применить</button>
+                    <button className="button button--big coupon__button" onClick={handleCouponBtnClick}>Применить</button>
                   </form>
                 </div>
                 <div className="cart__total-info">
@@ -139,8 +129,11 @@ function Basket() {
                     <span className="cart__total-value-name">Всего:</span>
                     <span className="cart__total-value">{getFullPriceSeparator(guitarsAdd)} ₽</span>
                   </p>
-                  <p className="cart__total-item"><span className="cart__total-value-name">Скидка:</span><span className="cart__total-value cart__total-value--bonus">- 3000 ₽</span></p>
-                  <p className="cart__total-item"><span className="cart__total-value-name">К оплате:</span><span className="cart__total-value cart__total-value--payment">49 000 ₽</span></p>
+                  <p className="cart__total-item">
+                    <span className="cart__total-value-name">Скидка:</span>
+                    <span className={`cart__total-value ${discountGuitar >0 ? 'cart__total-value--bonus' : ''} `}>{discountGuitar >0 ? '-' : ''} {discountPrice} ₽</span>
+                  </p>
+                  <p className="cart__total-item"><span className="cart__total-value-name">К оплате:</span><span className="cart__total-value cart__total-value--payment">{getPriceSeparator(getFullPrice(guitarsAdd) - discountPrice)} ₽</span></p>
                   <button className="button button--red button--big cart__order-button">Оформить заказ</button>
                 </div>
               </div>
