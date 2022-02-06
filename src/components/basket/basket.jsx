@@ -22,6 +22,7 @@ function Basket() {
   const handleDeleteGuitarClick = (guitar) => {
     dispatch(setModalType(TypeModal.OpenDeleteGuitar));
     dispatch(setGuitarAddModal(guitar));
+    document.body.style.position = 'fixed';
   };
 
   const handlePluseClick = (guitar) => {
