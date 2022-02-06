@@ -11,7 +11,11 @@ function Header() {
 
   const guitarsAdd = useSelector(getGuitarAddBasket);
 
-  const guitarCount = guitarsAdd.reduce((acc, item) => acc + item.count , 0);
+  const guitarCount = () => {
+    if (guitarsAdd !== undefined) {
+      return guitarsAdd.reduce((acc, item) => acc + item.count , 0);
+    }
+  };
 
   return (
     <header className="header" id="header">
@@ -38,7 +42,7 @@ function Header() {
             <use xlinkHref="#icon-basket"></use>
           </svg>
           <span className="visually-hidden">Перейти в корзину</span>
-          {guitarsAdd.length !== 0 ? <span className="header__cart-count">{guitarCount}</span> : ''}
+          {guitarsAdd.length !== 0 ? <span className="header__cart-count">{guitarCount()}</span> : ''}
         </Link>
       </div>
     </header>

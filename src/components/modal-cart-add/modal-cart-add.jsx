@@ -22,13 +22,16 @@ function ModalCardAdd() {
     if (index === -1) {
       guitars = [...guitars, { guitar, count: 1} ];
       return guitars;
+    }else if (index !== -1) {
+      guitars[index] = {...guitars[index], count: guitars[index].count + 1};
+      return guitars;
     }
   };
 
   const handleAddClick = (evt) => {
     evt.preventDefault();
     setGuitarsStorage(addGuitars(guitar));
-    dispatch(setGuitarAddBasket(addGuitars(guitar)));
+    dispatch(setGuitarAddBasket(addGuitars()));
     dispatch(setModalType(TypeModal.OpenAddGood));
   };
 

@@ -1,4 +1,4 @@
-import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice, setModalType, setCommentNew, setCommentPostStatus, loadFilterPricce, setDiscountGuitar, setCouponStatus} from './action';
+import { loadGuitars, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setGuitarsError, loadingCurrentGuitar, loadGuitarsPrice, setModalType, setCommentNew, setCommentPostStatus, loadFilterPricce, setDiscountGuitar, setCouponPostStatus} from './action';
 
 import { ApiRoute, EMBED, TypeModal, CommentPostStatus } from '../const';
 
@@ -81,10 +81,10 @@ export const postCoupons = (body) =>
     try {
       const {data} = await api.post(ApiRoute.Coupons, body);
       dispatch(setDiscountGuitar(data));
-      dispatch(setCouponStatus(true));
+      dispatch(setCouponPostStatus(true));
     } catch {
       dispatch(setDiscountGuitar(0));
-      dispatch(setCouponStatus(false));
+      dispatch(setCouponPostStatus(false));
     }
   };
 

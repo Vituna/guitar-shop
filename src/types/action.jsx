@@ -11,7 +11,7 @@ export const ActionType = {
   SetErrorNoFound: 'data/setErrorNoFound',
   LoadFilterPricce: 'data/loadFilterPricce',
   SetDiscountGuitar: 'data/setDiscountGuitar',
-  SetCouponStatus: 'data/setCouponStatus',
+  SetCouponPostStatus: 'data/setCouponPostStatus',
   SetComments: 'data/setComments',
   SetCommentNew: 'data/setCommentNew',
   SetCommentPostStatus: 'data/setCommentPostStatus',

@@ -184,8 +184,8 @@ export const setDiscountGuitar = createAction(
   ),
 );
 
-export const setCouponStatus = createAction(
-  ActionType.SetCouponStatus,
+export const setCouponPostStatus = createAction(
+  ActionType.SetCouponPostStatus,
   (couponStatus) => (
     {payload: {couponStatus}}
   ),

@@ -1,4 +1,4 @@
-import { setDiscountGuitar, setCouponStatus, setGuitarAddBasket } from '../action';
+import { setDiscountGuitar, setCouponPostStatus, setGuitarAddBasket } from '../action';
 
 import { basket } from './basket';
 
@@ -20,8 +20,8 @@ describe('Reducer: Basket', () => {
         couponStatus: null,
       });
   });
-  it('should update setCouponStatus', () => {
-    expect(basket(state, setCouponStatus(true)))
+  it('should update setCouponPostStatus', () => {
+    expect(basket(state, setCouponPostStatus(true)))
       .toEqual({
         guitarAddBasket: [],
         discountGuitar: 0,

@@ -4,7 +4,6 @@ import { getDiscountGuitar, getCouponStatus, getGuitarAddBasket } from '../../st
 import { setModalType, setGuitarAddModal, setGuitarAddBasket } from '../../store/action';
 import { postCoupons } from '../../store/api-actions';
 
-
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getFullPriceSeparator, getPriceSeparator, getGuitarPlus, grtGuitarMinus, getGuitarChangeValue, getAmountDiscount, getFullPrice, getMessageValidityPromo } from '../../utils';
 import { TypeModal } from '../../const';
 import { useState } from 'react';
