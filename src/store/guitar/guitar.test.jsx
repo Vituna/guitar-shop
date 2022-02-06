@@ -7,6 +7,7 @@ import { mockGuitars, mockGuitar } from '../../utils/test-mocks';
 const state = {
   guitars: [],
   guitarsFilter: [],
+  guitarAdd: [],
   guitar: null,
   guitarLoading: false,
   isLoadingFilter: true,
@@ -22,6 +23,7 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: mockGuitars,
         guitarsFilter: [],
+        guitarAdd: [],
         guitar: null,
         guitarLoading: false,
         isLoadingFilter: true,
@@ -35,6 +37,7 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: [],
         guitarsFilter: mockGuitars,
+        guitarAdd: [],
         guitar: null,
         guitarLoading: false,
         isLoadingFilter: false,
@@ -48,6 +51,7 @@ describe('Reducer: Guitars', () => {
       .toEqual({
         guitars: [],
         guitarsFilter: [],
+        guitarAdd: [],
         guitar: mockGuitar,
         guitarLoading: false,
         isLoadingFilter: true,

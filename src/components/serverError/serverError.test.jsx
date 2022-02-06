@@ -8,9 +8,7 @@ import ServerError from './serverError';
 
 describe('Component: serverError', () => {
   const mockStore = configureMockStore();
-  const store= mockStore({
-    DATA: {similarGuitarCards : []},
-  });
+  const store= mockStore();
   it('should render correctly', () => {
     const history = createMemoryHistory();
     render(

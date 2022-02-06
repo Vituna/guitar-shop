@@ -116,7 +116,11 @@ export const getGuitarsStorage = () => {
 
 export const getSimilarIndexGuitar = (guitars, guitar) => guitars.findIndex((newGuitar) => newGuitar.guitar.vendorCode === guitar.guitar.vendorCode);
 
-export const getPriceSeparator = (price) => price.toString().split('').reverse().map((el, index) => index % 3 !== 2 ? el : ` ${el}`).reverse().join('');
+export const getPriceSeparator = (price) => {
+  if (price !== undefined) {
+    return price.toString().split('').reverse().map((el, index) => index % 3 !== 2 ? el : ` ${el}`).reverse().join('');
+  }
+};
 
 export const getFullPrice = (guitars) => guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
 
@@ -126,8 +130,9 @@ export const getFullPriceSeparator = (guitars) => {
 };
 
 export const getAmountDiscount = (guitars, discount) => {
-  const fullPrice = guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
   if (discount > 0) {
+    const fullPrice = guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
+
     const amountDiscount = fullPrice * discount / 100;
     return amountDiscount;
   } return 0;

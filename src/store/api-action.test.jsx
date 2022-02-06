@@ -1,11 +1,11 @@
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { createApi } from '../services/api';
-import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchComments, postComment } from './api-actions';
+import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetchComments, postComment, postCoupons } from './api-actions';
 import thunk from 'redux-thunk';
 
 import { mockGuitars, mockGuitar, mockComments, mockComment } from '../utils/test-mocks';
-import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setCommentNew, setCommentPostStatus, setModalType } from './action';
+import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setCommentNew, setCommentPostStatus, setModalType, setDiscountGuitar, setCouponStatus } from './action';
 
 import { ApiRoute, EMBED, CommentPostStatus, TypeModal } from '../const';
 
@@ -131,4 +131,22 @@ describe('Async actions', () => {
         setCommentNew([mockComment]),
       ]);
   });
+
+  it('should dispatch postComment when POST cupon', async () => {
+    const store = mockStore();
+    mockAPI
+      .onPost(`${ApiRoute.Coupons}`)
+      .reply(201, 5);
+
+    expect(store.getActions()).toEqual([]);
+    const body = {coupon: 'light-333'};
+    await store.dispatch(postCoupons(body));
+
+    expect(store.getActions())
+      .toEqual([
+        setDiscountGuitar(5),
+        setCouponStatus(true),
+      ]);
+  });
+
 });

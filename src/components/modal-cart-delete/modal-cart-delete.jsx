@@ -3,7 +3,8 @@ import FocusLock from 'react-focus-lock';
 
 import { getModalType } from '../../store/reviews/selectors';
 import { setModalType, setGuitarAddBasket } from '../../store/action';
-import { getGuitarAdd, getGuitarAddBasket } from '../../store/guitar/selectors';
+import { getGuitarAdd } from '../../store/guitar/selectors';
+import { getGuitarAddBasket } from '../../store/basket/selectors';
 
 import { TypeModal } from '../../const';
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator } from '../../utils';

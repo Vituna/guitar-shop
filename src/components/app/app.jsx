@@ -10,6 +10,7 @@ import ModalReviewSuccess from '../modal-review-success/modal-review-success';
 import ModalCardAdd from '../modal-cart-add/modal-cart-add';
 import ModalAddSuccess from '../modal-add-success/modal-add-success';
 import ModalCartDelete from '../modal-cart-delete/modal-cart-delete';
+import Footer from '../footer/footer';
 
 import { AppRoute } from '../../const';
 
@@ -32,6 +33,7 @@ function App() {
           <NoFound />
         </Route>
       </Switch>
+      <Footer />
       <ModalReviewForm />
       <ModalReviewSuccess />
       <ModalCardAdd />

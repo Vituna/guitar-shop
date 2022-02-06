@@ -9,4 +9,3 @@ export const getLoadingUrlStatus = (state) => state[NameSpace.Guitars].loadingUr
 export const getGuitarsErrorStatus = (state) => state[NameSpace.Guitars].isError;
 export const getErrorNoFound = (state) => state[NameSpace.Guitars].errorNoFound;
 export const getGuitarAdd = (state) => state[NameSpace.Guitars].guitarAdd;
-export const getGuitarAddBasket = (state) => state[NameSpace.Guitars].guitarAddBasket;

@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import FocusLock from 'react-focus-lock';
 
 import { getModalType } from '../../store/reviews/selectors';
-import { getGuitarAdd, getGuitarAddBasket } from '../../store/guitar/selectors';
+import { getGuitarAdd } from '../../store/guitar/selectors';
+import { getGuitarAddBasket } from '../../store/basket/selectors';
 import { setModalType, setGuitarAddBasket } from '../../store/action';
 
 import { TypeModal } from '../../const';

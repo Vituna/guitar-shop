@@ -1,7 +1,6 @@
 import { useSelector, useDispatch} from 'react-redux';
 
-import { getGuitarAddBasket } from '../../store/guitar/selectors';
-import { getDiscountGuitar, getCouponStatus } from '../../store/basket/selectors';
+import { getDiscountGuitar, getCouponStatus, getGuitarAddBasket } from '../../store/basket/selectors';
 import { setModalType, setGuitarAddModal, setGuitarAddBasket } from '../../store/action';
 import { postCoupons } from '../../store/api-actions';
 
@@ -17,7 +16,7 @@ function Basket() {
   const discountGuitar = useSelector(getDiscountGuitar);
   const couponStatus = useSelector(getCouponStatus);
 
-  const [coupon, setCoupon] = useState();
+  const [coupon, setCoupon] = useState('');
 
   const discountPrice = getAmountDiscount(guitarsAdd, discountGuitar);
 
@@ -79,7 +78,7 @@ function Basket() {
             </li>
           </ul>
           {guitarsAdd.length ?
-            <div className="cart">
+            <div className="cart" data-testid={'test'}>
               {guitarsAdd.map((guitar) => (
                 <div key={guitar.guitar.id} className="cart-item">
                   <button className="cart-item__close-button button-cross" type="button" aria-label="Удалить" onClick={() => handleDeleteGuitarClick(guitar)}>
@@ -92,7 +91,7 @@ function Basket() {
                   <div className="product-info cart-item__info">
                     <p className="product-info__title">{getTranslationGuitarTypeRus(guitar.guitar.type)} {guitar.guitar.name}</p>
                     <p className="product-info__info">Артикул: {guitar.guitar.vendorCode}</p>
-                    <p className="product-info__info">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.guitar.type))}, 6 струнная</p>
+                    <p className="product-info__info">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.guitar.type))}, {guitar.guitar.stringCount} струнная</p>
                   </div>
                   <div className="cart-item__price">{getPriceSeparator(guitar.guitar.price)} ₽</div>
                   <div className="quantity cart-item__quantity">
@@ -143,77 +142,7 @@ function Basket() {
             </div>}
         </div>
       </main>
-      <footer className="footer">
-        <div className="footer__container container">
-          <a className="footer__logo logo" href="main.html">
-            <img className="logo__img" width="70" height="70" src="/./img/svg/logo.svg" alt="Логотип" />
-          </a>
-          <div className="socials footer__socials">
-            <ul className="socials__list">
-              <li className="socials-item">
-                <a className="socials__link" href="https://www.facebook.com/" aria-label="facebook">
-                  <svg className="socials__icon" width="24" height="24" aria-hidden="true">
-                    <use xlinkHref="#icon-facebook"></use>
-                  </svg>
-                </a>
-              </li>
-              <li className="socials-item">
-                <a className="socials__link" href="https://www.instagram.com/" aria-label="instagram">
-                  <svg className="socials__icon" width="24" height="24" aria-hidden="true">
-                    <use xlinkHref="#icon-instagram"></use>
-                  </svg>
-                </a>
-              </li>
-              <li className="socials-item">
-                <a className="socials__link" href="https://www.twitter.com/" aria-label="twitter">
-                  <svg className="socials__icon" width="24" height="24" aria-hidden="true">
-                    <use xlinkHref="#icon-twitter"></use>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <section className="footer__nav-section footer__nav-section--info">
-            <h2 className="footer__nav-title">О нас</h2>
-            <p className="footer__nav-content footer__nav-content--font-secondary">Магазин гитар, музыкальных инструментов и гитарная мастерская <br/> в Санкт-Петербурге.<br/><br/>Все инструменты проверены, отстроены <br/> и доведены до идеала!</p>
-          </section>
-          <section className="footer__nav-section footer__nav-section--links">
-            <h2 className="footer__nav-title">Информация</h2>
-            <ul className="footer__nav-list">
-              <li className="footer__nav-list-item"><a className="link" href="#top">Где купить?</a>
-              </li>
-              <li className="footer__nav-list-item"><a className="link" href="#top">Блог</a>
-              </li>
-              <li className="footer__nav-list-item"><a className="link" href="#top">Вопрос - ответ</a>
-              </li>
-              <li className="footer__nav-list-item"><a className="link" href="#top">Возврат</a>
-              </li>
-              <li className="footer__nav-list-item"><a className="link" href="#top">Сервис-центры</a>
-              </li>
-            </ul>
-          </section>
-          <section className="footer__nav-section footer__nav-section--contacts">
-            <h2 className="footer__nav-title">Контакты</h2>
-            <p className="footer__nav-content">г. Санкт-Петербург,<br/> м. Невский проспект, <br/>ул. Казанская 6.</p>
-            <div className="footer__nav-content">
-              <svg className="footer__icon" width="8" height="8" aria-hidden="true">
-                <use xlinkHref="#icon-phone"></use>
-              </svg><a className="link" href="tel:88125005050"> 8-812-500-50-50</a>
-            </div>
-            <p className="footer__nav-content">Режим работы:<br/>
-              <span className="footer__span">
-                <svg className="footer__icon" width="13" height="13" aria-hidden="true">
-                  <use xlinkHref="#icon-clock"></use>
-                </svg>
-                <span> с 11:00 до 20:00</span>
-                <span>без выходных</span>
-              </span>
-            </p>
-          </section>
-        </div>
-      </footer>
     </div>
-
   );
 }
 

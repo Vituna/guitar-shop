@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setModalType, setGuitarAddModal } from '../../store/action';
-import { getGuitarAddBasket } from '../../store/guitar/selectors';
+import { getGuitarAddBasket } from '../../store/basket/selectors';
 
 import Rating from '../rating/rating';
 
@@ -17,10 +17,14 @@ function GuitarOffer(guitar) {
   const comments = guitar.guitar.comments;
   const guitarAdd = guitar.guitar;
 
-  const productCart = guitarsAdd.find((searchGuitar) => searchGuitar.guitar.vendorCode === guitarAdd.vendorCode);
+  const productCart = () => {
+    if (guitarsAdd !== undefined) {
+      return guitarsAdd.find((searchGuitar) => searchGuitar.guitar.vendorCode === guitarAdd.vendorCode);
+    }
+  };
 
   const notUndefined = () => {
-    if (productCart !== undefined) {
+    if (productCart() !== undefined) {
       return true;
     } else {return false;}
   };

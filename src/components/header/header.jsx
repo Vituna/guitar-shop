@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getGuitarAddBasket } from '../../store/guitar/selectors';
+import { getGuitarAddBasket } from '../../store/basket/selectors';
 
 import Search from '../search/search';
 

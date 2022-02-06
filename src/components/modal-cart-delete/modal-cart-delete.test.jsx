@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
-import { createApi } from '../../services/api';
-import ModalCardAdd from './modal-cart-add';
+import ModalCartDelete from './modal-cart-delete';
 
 import { mockGuitarsModalsArr, mockGuitarsModals } from '../../utils/test-mocks';
 import { TypeModal } from '../../const';
@@ -16,40 +15,37 @@ const history = createMemoryHistory();
 
 describe('Component: ModalCardAdd', () => {
 
-  const api = createApi();
-  const middlewares = [thunk.withExtraArgument(api)];
-  const mockStore = configureMockStore(middlewares);
+  const mockStore = configureMockStore([thunk]);
 
   const store = mockStore({
     GUITARS: {
       guitarAdd: mockGuitarsModals,
     },
     REVIEWS: {
-      modalType: TypeModal.OpenCartAdd,
+      modalType: TypeModal.OpenDeleteGuitar,
     },
     BASKET: {
       guitarAddBasket: mockGuitarsModalsArr,
     },
-
   });
 
   it('should render correctly', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <ModalCardAdd />
+          <ModalCartDelete />
         </Router>,
       </Provider>,
     );
 
-    expect(screen.getByText(/Добавить в корзину/i)).toBeInTheDocument();
+    expect(screen.getByText(/Продолжить покупки/i)).toBeInTheDocument();
     expect(screen.getByText(/струнная/i)).toBeInTheDocument();
   });
   it ('should click buttom Close and keyDown Esc', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <ModalCardAdd />
+          <ModalCartDelete />
         </Router>,
       </Provider>,
     );
@@ -65,12 +61,12 @@ describe('Component: ModalCardAdd', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <ModalCardAdd />
+          <ModalCartDelete />
         </Router>,
       </Provider>,
     );
 
-    expect(screen.getByText(/Добавить в корзину/i)).toBeInTheDocument();
-    userEvent.click(screen.getByText(/Добавить в корзину/i));
+    // expect(screen.getByText(/Добавить в корзину/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Продолжить покупки/i));
   });
 });

@@ -4,8 +4,8 @@ import { loadGuitars, loadCurrentGuitar, loadGuitarRequest, loadGuitarsFilter, n
 const initialState = {
   guitars: [],
   guitarsFilter: [],
-  guitarAdd: {},
-  guitarAddBasket: [],
+  guitarAdd: [],
+  // guitarAddBasket: [],
   guitar: null,
   guitarLoading: false,
   isLoadingFilter: true,
