@@ -143,8 +143,8 @@ export const getGuitarPlus = (guitar, guitarsIdAdd) => {
   if (guitarsIdAdd[guitar.id] === 99) {
     return guitarsIdAdd;
   }
-  const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
-  myObj[keyt] = guitarsIdAdd[guitar.id] + 1;
+  const key = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+  myObj[key] = guitarsIdAdd[guitar.id] + 1;
   const returnedTarget = {...guitarsIdAdd, ...myObj};
   return returnedTarget;
 };
@@ -152,8 +152,8 @@ export const getGuitarPlus = (guitar, guitarsIdAdd) => {
 export const getGuitarMinus = (guitar, guitarsIdAdd) => {
   const myObj = Object();
   if (guitarsIdAdd !== undefined) {
-    const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
-    myObj[keyt] = guitarsIdAdd[guitar.id] - 1;
+    const key = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+    myObj[key] = guitarsIdAdd[guitar.id] - 1;
     const returnedTarget = {...guitarsIdAdd, ...myObj};
     return returnedTarget;
   }

@@ -64,7 +64,7 @@ function Reviews() {
       ),
       )}
       {comments.length > moreComment ? <button className="button button--medium reviews__more-button" onClick={handleShowMoreClick}>Показать еще отзывы</button> : ''}
-      <a className="button button--up button--red-border button--big reviews__up-button" href={'/'} onClick={handleSckrollUp}>Наверх</a>
+      {comments.length !== 0 ? <a className="button button--up button--red-border button--big reviews__up-button" href={'/'} onClick={handleSckrollUp}>Наверх</a> : ''}
     </section>
   );
 }

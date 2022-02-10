@@ -22,7 +22,6 @@ function Basket() {
   const isError = useSelector(getGuitarsErrorStatus);
   const couponLoading = useSelector(getCouponLoading);
   const loadingGuitar = useSelector(getLoadingGuitarsBasket);
-  console.log(guitarsIdAdd)
 
   const result = () => {
     if (guitarsIdAdd !== undefined) {
