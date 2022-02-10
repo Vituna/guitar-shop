@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import GuitarOffer from './guitar-offer';
 
-import { mockGuitar, mockGuitarsModalsArr } from '../../utils/test-mocks';
+import { mockGuitar } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
@@ -18,7 +18,7 @@ describe('Component: GuitarOffer', () => {
 
   const store= mockStore({
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {1:2},
     },
   });
 

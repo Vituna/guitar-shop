@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import FocusLock from 'react-focus-lock';
+import { Link } from 'react-router-dom';
 
 import { getModalType } from '../../store/reviews/selectors';
-import { setModalType } from '../../store/action';
 
 import { TypeModal, AppRoute } from '../../const';
-import { Link } from 'react-router-dom';
+import { closeModal } from '../../utils';
 
 function ModalAddSuccess() {
   const dispatch = useDispatch();
@@ -13,8 +13,7 @@ function ModalAddSuccess() {
   const typeModal = useSelector(getModalType);
 
   const handleCloseModalClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
+    closeModal(dispatch);
   };
 
   return (

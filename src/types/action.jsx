@@ -6,7 +6,11 @@ export const ActionType = {
   LoadGuitarRequest: 'data/loadGuitarRequest',
   NoLoadingUrl: 'data/noLoadingUrl',
   LoadFilterGuitars: 'data/loadFilterGuitars',
+  LoadingGuitarBasket: 'data/loadingGuitarBasket',
+
   LoadingCurrentGuitar: 'data/loadingCurrentGuitar',
+  PostCouponLoading: 'data/postCouponLoading',
+
   SetGuitarsError: 'data/SetGuitarsError',
   SetErrorNoFound: 'data/setErrorNoFound',
   LoadFilterPricce: 'data/loadFilterPricce',
@@ -27,4 +31,5 @@ export const ActionType = {
   SetModalType: 'user/setModalType',
   SetGuitarAddModal: 'user/setGuitarAddModal',
   SetGuitarAddBasket: 'user/setGuitarAddBasket',
+  SetGuitarIdAndCount: 'user/setGuitarIdAndCount',
 };

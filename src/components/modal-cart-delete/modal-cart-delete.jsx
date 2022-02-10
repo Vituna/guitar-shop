@@ -1,37 +1,34 @@
 import { useSelector, useDispatch } from 'react-redux';
 import FocusLock from 'react-focus-lock';
-
 import { getModalType } from '../../store/reviews/selectors';
-import { setModalType, setGuitarAddBasket } from '../../store/action';
+import { setModalType, setGuitarIdAndCount } from '../../store/action';
 import { getGuitarAdd } from '../../store/guitar/selectors';
-import { getGuitarAddBasket } from '../../store/basket/selectors';
+import { getGuitarIdAndCount } from '../../store/basket/selectors';
 
 import { TypeModal } from '../../const';
-import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator } from '../../utils';
-
+import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator, closeModal } from '../../utils';
 
 function ModalCartDelete() {
   const dispatch = useDispatch();
 
   const typeModal = useSelector(getModalType);
   const guitar = useSelector(getGuitarAdd);
-  const guitarsAdd = useSelector(getGuitarAddBasket);
-
+  const guitarsIdAdd = useSelector(getGuitarIdAndCount);
 
   const handleCloseModalClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
-  };
-
-  const handleDivClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
+    closeModal(dispatch);
   };
 
   const handleDeleteCardClick = () => {
-    const newGuitars = guitarsAdd.filter((searchGuitar) => searchGuitar.guitar.vendorCode !== guitar.guitar.vendorCode);
-    dispatch(setGuitarAddBasket(newGuitars));
-    setGuitarsStorage(newGuitars);
+    const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+    const exceptSecond = Object.keys(guitarsIdAdd).reduce((acc, key) => {
+      if (key !== keyt) {
+        acc[key] = guitarsIdAdd[key];
+      }
+      return acc;
+    }, {});
+    dispatch(setGuitarIdAndCount(exceptSecond));
+    setGuitarsStorage(exceptSecond);
     dispatch(setModalType(''));
     document.body.style.position = '';
   };
@@ -41,19 +38,19 @@ function ModalCartDelete() {
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
       <div className="modal is-active modal--success modal-for-ui-kit">
         <div className="modal__wrapper">
-          <div className="modal__overlay" data-close-modal onClick={handleDivClick}></div>
+          <div className="modal__overlay" data-close-modal onClick={handleCloseModalClick}></div>
           <FocusLock>
             <div className="modal__content">
               <h2 className="modal__header title title--medium title--red">Удалить этот товар?</h2>
               <div className="modal__info">
-                <img className="modal__img" src={`../${guitar.guitar.previewImg}`} srcSet={`../${guitar.guitar.previewImg}`}width="67" height="137" alt="Честер bass" />
+                <img className="modal__img" src={`../${guitar.previewImg}`} srcSet={`../${guitar.previewImg}`}width="67" height="137" alt="Честер bass" />
                 <div className="modal__info-wrapper">
-                  <h3 className="modal__product-name title title--little title--uppercase">Гитара {guitar.guitar.name}</h3>
-                  <p className="modal__product-params modal__product-params--margin-11">Артикул: {guitar.guitar.vendorCode}</p>
-                  <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.guitar.type))}, {guitar.guitar.stringCount} струнная</p>
+                  <h3 className="modal__product-name title title--little title--uppercase">Гитара {guitar.name}</h3>
+                  <p className="modal__product-params modal__product-params--margin-11">Артикул: {guitar.vendorCode}</p>
+                  <p className="modal__product-params">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.type))}, {guitar.stringCount} струнная</p>
                   <p className="modal__price-wrapper">
                     <span className="modal__price">Цена:</span>
-                    <span className="modal__price">{getPriceSeparator(guitar.guitar.price)} ₽</span>
+                    <span className="modal__price">{getPriceSeparator(guitar.price)} ₽</span>
                   </p>
                 </div>
               </div>

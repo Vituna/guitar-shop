@@ -5,7 +5,7 @@ import { fetchGuitarsAction, fetchCurrentGuitarAction, fetchGuitarsParams, fetch
 import thunk from 'redux-thunk';
 
 import { mockGuitars, mockGuitar, mockComments, mockComment } from '../utils/test-mocks';
-import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setCommentNew, setCommentPostStatus, setModalType, setDiscountGuitar, setCouponPostStatus } from './action';
+import { loadGuitars, loadingCurrentGuitar, loadCurrentGuitar, loadGuitarsFilter, loadGuitarsCountPagination, setComments, loadFilterGuitars, setCommentNew, setCommentPostStatus, setModalType, setDiscountGuitar, setCouponPostStatus, postCouponLoading, loadingGuitarBasket } from './action';
 
 import { ApiRoute, EMBED, CommentPostStatus, TypeModal } from '../const';
 
@@ -36,6 +36,7 @@ describe('Async actions', () => {
 
     expect(store.getActions()).toEqual([
       loadFilterGuitars(),
+      loadingGuitarBasket(),
       loadGuitars(mockGuitars),
     ]);
   });
@@ -111,6 +112,7 @@ describe('Async actions', () => {
     expect(store.getActions())
       .toEqual([
         setComments(mockComments),
+        setCommentPostStatus(CommentPostStatus.Posted),
       ]);
   });
 
@@ -127,8 +129,8 @@ describe('Async actions', () => {
       .toEqual([
         setCommentPostStatus(CommentPostStatus.Posting),
         setModalType(TypeModal.OpenSuccessReviews),
-        setCommentPostStatus(CommentPostStatus.Posted),
         setCommentNew([mockComment]),
+        setCommentPostStatus(CommentPostStatus.Posted),
       ]);
   });
 
@@ -144,6 +146,7 @@ describe('Async actions', () => {
 
     expect(store.getActions())
       .toEqual([
+        postCouponLoading(),
         setDiscountGuitar(5),
         setCouponPostStatus(true),
       ]);

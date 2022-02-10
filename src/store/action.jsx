@@ -131,6 +131,7 @@ export const loadOffersStart = () => ({
 });
 
 export const loadFilterGuitars = createAction(ActionType.LoadFilterGuitars);
+export const loadingGuitarBasket = createAction(ActionType.LoadingGuitarBasket);
 
 export const loadFilterPricce = createAction(
   ActionType.LoadFilterPricce,
@@ -138,8 +139,8 @@ export const loadFilterPricce = createAction(
     {payload: isloadFilterPricce}
   ),
 );
-
 export const loadingCurrentGuitar = createAction(ActionType.LoadingCurrentGuitar);
+export const postCouponLoading = createAction(ActionType.PostCouponLoading);
 
 export const setGuitarsError = createAction(ActionType.SetGuitarsError, (isError) => ({payload: isError}));
 
@@ -160,6 +161,12 @@ export const setGuitarAddBasket = createAction(
   ActionType.SetGuitarAddBasket,
   (guitarAddBasket) => (
     {payload: {guitarAddBasket}}
+  ),
+);
+export const setGuitarIdAndCount = createAction(
+  ActionType.SetGuitarIdAndCount,
+  (guitarIdAndCount) => (
+    {payload: {guitarIdAndCount}}
   ),
 );
 

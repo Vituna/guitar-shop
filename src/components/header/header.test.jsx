@@ -28,7 +28,7 @@ describe('Component: Header', () => {
       guitars : mockGuitars,
     },
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {2:1},
     },
   });
 

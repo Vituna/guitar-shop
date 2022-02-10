@@ -4,10 +4,10 @@ import FocusLock from 'react-focus-lock';
 
 import { getModalType, getCommentPostStatus } from '../../store/reviews/selectors';
 import { getGuitar } from '../../store/guitar/selectors';
-import { setModalType } from '../../store/action';
 import { postComment } from '../../store/api-actions';
 
 import { TypeModal, STARS, CommentPostStatus } from '../../const';
+import { closeModal } from '../../utils';
 
 function ModalReviewForm() {
   const dispatch = useDispatch();
@@ -58,14 +58,12 @@ function ModalReviewForm() {
   };
 
   const handleCloseFormClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
+    closeModal(dispatch);
   };
 
   const handleEscapeKeyDown = (evt) => {
     if (evt.code === 'Escape') {
-      dispatch(setModalType(''));
-      document.body.style.position = '';
+      closeModal(dispatch);
     }
   };
 

@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import Basket from './basket';
 import { createApi } from '../../services/api';
 
-import { mockGuitarsModalsArr } from '../../utils/test-mocks';
+import { mockGuitars } from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
@@ -19,8 +19,11 @@ describe('Component: Basket', () => {
   const mockStore = configureMockStore(middlewares);
 
   const store= mockStore({
+    GUITARS: {
+      guitars : mockGuitars,
+    },
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {1: 2},
       discountGuitar: 0,
       couponStatus: null,
     },
@@ -58,49 +61,4 @@ describe('Component: Basket', () => {
     userEvent.click(plusBtn);
     userEvent.click(minusBtn);
   });
-
-  it('should correct false coupon', () => {
-
-    const storeCoupon = mockStore({
-      BASKET: {
-        guitarAddBasket: mockGuitarsModalsArr,
-        discountGuitar: 0,
-        couponStatus: false,
-      },
-    });
-
-    render(
-      <Provider store={storeCoupon}>
-        <Router history={history}>
-          <Basket />
-        </Router>
-      </Provider>,
-    );
-
-    expect(screen.queryByText(/Промокод принят/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/неверный промокод/i)).toBeInTheDocument();
-  });
-
-  it('should correct true coupon', () => {
-
-    const storeCoupon = mockStore({
-      BASKET: {
-        guitarAddBasket: mockGuitarsModalsArr,
-        discountGuitar: 0,
-        couponStatus: true,
-      },
-    });
-
-    render(
-      <Provider store={storeCoupon}>
-        <Router history={history}>
-          <Basket />
-        </Router>
-      </Provider>,
-    );
-
-    expect(screen.getByText(/Промокод принят/i)).toBeInTheDocument();
-    expect(screen.queryByText(/неверный промокод/i)).not.toBeInTheDocument();
-  });
-
 });

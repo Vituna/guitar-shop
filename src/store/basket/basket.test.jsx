@@ -1,13 +1,12 @@
-import { setDiscountGuitar, setCouponPostStatus, setGuitarAddBasket } from '../action';
+import { setDiscountGuitar, setCouponPostStatus, setGuitarIdAndCount } from '../action';
 
 import { basket } from './basket';
 
-import { mockGuitarsModalsArr } from '../../utils/test-mocks';
-
 const state = {
-  guitarAddBasket: [],
+  guitarIdAndCount: {},
   discountGuitar: 0,
   couponStatus: null,
+  couponLoading: false,
 };
 
 describe('Reducer: Basket', () => {
@@ -15,25 +14,28 @@ describe('Reducer: Basket', () => {
   it('should update setDiscountGuitar', () => {
     expect(basket(state, setDiscountGuitar(2)))
       .toEqual({
-        guitarAddBasket: [],
+        guitarIdAndCount: {},
         discountGuitar: 2,
         couponStatus: null,
+        couponLoading: false,
       });
   });
   it('should update setCouponPostStatus', () => {
     expect(basket(state, setCouponPostStatus(true)))
       .toEqual({
-        guitarAddBasket: [],
+        guitarIdAndCount: {},
         discountGuitar: 0,
         couponStatus: true,
+        couponLoading: false,
       });
   });
-  it('should update setGuitarAddBasket', () => {
-    expect(basket(state, setGuitarAddBasket(mockGuitarsModalsArr)))
+  it('should update setGuitarIdAndCount', () => {
+    expect(basket(state, setGuitarIdAndCount({2:1})))
       .toEqual({
-        guitarAddBasket: mockGuitarsModalsArr,
+        guitarIdAndCount: {2:1},
         discountGuitar: 0,
         couponStatus: null,
+        couponLoading: false,
       });
   });
 

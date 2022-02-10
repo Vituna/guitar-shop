@@ -14,6 +14,7 @@ const state = {
   isError: false,
   loadingUrl: true,
   errorNoFound: false,
+  isLoadingGuitarBasket: true,
 };
 
 describe('Reducer: Guitars', () => {
@@ -30,6 +31,7 @@ describe('Reducer: Guitars', () => {
         isError: false,
         loadingUrl: true,
         errorNoFound: false,
+        isLoadingGuitarBasket: false,
       });
   });
   it('should update loadGuitarsFilter', () => {
@@ -44,6 +46,7 @@ describe('Reducer: Guitars', () => {
         isError: false,
         loadingUrl: true,
         errorNoFound: false,
+        isLoadingGuitarBasket: true,
       });
   });
   it('should update loadCurrentGuitar', () => {
@@ -58,6 +61,7 @@ describe('Reducer: Guitars', () => {
         isError: false,
         loadingUrl: true,
         errorNoFound: false,
+        isLoadingGuitarBasket: true,
       });
   });
 });

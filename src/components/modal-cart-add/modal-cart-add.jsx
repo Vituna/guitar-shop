@@ -3,41 +3,46 @@ import FocusLock from 'react-focus-lock';
 
 import { getModalType } from '../../store/reviews/selectors';
 import { getGuitarAdd } from '../../store/guitar/selectors';
-import { getGuitarAddBasket } from '../../store/basket/selectors';
-import { setModalType, setGuitarAddBasket } from '../../store/action';
+import { getGuitarIdAndCount } from '../../store/basket/selectors';
+import { setModalType, setGuitarIdAndCount } from '../../store/action';
 
 import { TypeModal } from '../../const';
-import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator } from '../../utils';
+import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getPriceSeparator, closeModal } from '../../utils';
 
 function ModalCardAdd() {
   const dispatch = useDispatch();
 
   const typeModal = useSelector(getModalType);
   const guitar = useSelector(getGuitarAdd);
-  const guitarsAdd = useSelector(getGuitarAddBasket);
+  const guitarsIdAdd = useSelector(getGuitarIdAndCount);
 
-  const addGuitars = () => {
-    let guitars = [...guitarsAdd];
-    const index = guitars.findIndex((newGuitar) => newGuitar.guitar.vendorCode === guitar.vendorCode);
-    if (index === -1) {
-      guitars = [...guitars, { guitar, count: 1} ];
-      return guitars;
-    }else if (index !== -1) {
-      guitars[index] = {...guitars[index], count: guitars[index].count + 1};
-      return guitars;
+  const guitarId = guitar.id;
+
+  const addIdAndCount = () => {
+    const myObj = Object();
+    if (guitarsIdAdd !== undefined) {
+      if (Object.keys(guitarsIdAdd).map(parseFloat).every((elem) => elem !== guitarId)) {
+        myObj[guitarId] = 1;
+        const returnedTarget = {...myObj, ...guitarsIdAdd};
+        return returnedTarget;
+      } else {
+        const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+        myObj[keyt] = guitarsIdAdd[guitar.id] + 1;
+        const returnedTarget = {...guitarsIdAdd, ...myObj};
+        return returnedTarget;
+      }
     }
   };
 
   const handleAddClick = (evt) => {
     evt.preventDefault();
-    setGuitarsStorage(addGuitars(guitar));
-    dispatch(setGuitarAddBasket(addGuitars()));
+    dispatch(setGuitarIdAndCount(addIdAndCount()));
+    setGuitarsStorage(addIdAndCount());
     dispatch(setModalType(TypeModal.OpenAddGood));
   };
 
   const handleCloseModalClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
+    closeModal(dispatch);
   };
 
   return (

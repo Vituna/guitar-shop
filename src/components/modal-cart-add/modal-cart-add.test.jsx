@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import { createApi } from '../../services/api';
 import ModalCardAdd from './modal-cart-add';
 
-import { mockGuitarsModalsArr, mockGuitarsModals } from '../../utils/test-mocks';
+import { mockGuitarsModals } from '../../utils/test-mocks';
 import { TypeModal } from '../../const';
 
 const history = createMemoryHistory();
@@ -28,7 +28,7 @@ describe('Component: ModalCardAdd', () => {
       modalType: TypeModal.OpenCartAdd,
     },
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {2:1},
     },
 
   });

@@ -3,10 +3,9 @@ import { useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import { getModalType } from '../../store/reviews/selectors';
-import { setModalType } from '../../store/action';
-
 
 import { TypeModal } from '../../const';
+import { closeModal } from '../../utils';
 
 function ModalReviewSuccess() {
   const dispatch = useDispatch();
@@ -14,20 +13,13 @@ function ModalReviewSuccess() {
   const typeModal = useSelector(getModalType);
 
   const handleCloseModalClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
+    closeModal(dispatch);
   };
 
   const handleEscapeKeyDown = (evt) => {
     if (evt.code === 'Escape') {
-      dispatch(setModalType(''));
-      document.body.style.position = '';
+      closeModal(dispatch);
     }
-  };
-
-  const handleDivClick = () => {
-    dispatch(setModalType(''));
-    document.body.style.position = '';
   };
 
   useEffect(() => {
@@ -44,7 +36,7 @@ function ModalReviewSuccess() {
     <div style={{position: 'relative', width: '550px', height: '410px', marginBottom: '50px'}}>
       <div className="modal is-active modal--success modal-for-ui-kit">
         <div className="modal__wrapper">
-          <div className="modal__overlay" data-close-modal onClick={handleDivClick}></div>
+          <div className="modal__overlay" data-close-modal onClick={handleCloseModalClick}></div>
           <FocusLock>
             <div className="modal__content">
               <svg className="modal__icon" width="26" height="20" aria-hidden="true">

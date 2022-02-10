@@ -2,9 +2,9 @@ import { STAR_COUNT } from '../../const';
 
 function Rating(rating) {
   const countRating = Math.round(rating.rating);
-  const countRatingArray = new Array(countRating).fill(countRating);
-  const countRatingNull = STAR_COUNT - countRating;
-  const countRatingNullArray = new Array(countRatingNull).fill(countRatingNull);
+  const stars = new Array(STAR_COUNT).fill(null);
+  const countRatingArray = stars.slice(0, countRating);
+  const countRatingNullArray = stars.slice(countRating, stars.length);
 
   return (
     <>

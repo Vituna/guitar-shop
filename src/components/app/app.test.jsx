@@ -9,7 +9,7 @@ import { createApi } from '../../services/api';
 import App from './app';
 
 import { AppRoute, SORT_TYPES, CommentPostStatus } from '../../const';
-import { mockGuitars, mockGuitar, mockGuitarsModalsArr} from '../../utils/test-mocks';
+import { mockGuitars, mockGuitar} from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 
@@ -23,8 +23,7 @@ describe('Application Routing', () => {
       guitars : mockGuitars,
       guitarsFilter: [],
       guitar: mockGuitar,
-      guitarAddBasket: [],
-
+      guitarAdd: mockGuitar,
     },
     FILTER: {
       currentSearch: '',
@@ -48,7 +47,7 @@ describe('Application Routing', () => {
       commentPostStatus: CommentPostStatus.Pristine,
     },
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {},
       discountGuitar: 0,
       couponStatus: null,
     },

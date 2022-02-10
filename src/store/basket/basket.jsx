@@ -1,24 +1,29 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setDiscountGuitar, setCouponPostStatus, setGuitarAddBasket } from '../action';
+import { setDiscountGuitar, setCouponPostStatus, setGuitarIdAndCount, postCouponLoading } from '../action';
 
 const initialState = {
-  guitarAddBasket: [],
+  guitarIdAndCount: null,
   discountGuitar: 0,
-  couponStatus: null,
+  couponStatus: false,
+  couponLoading: false,
 };
 
 const basket = createReducer(initialState, (builder) => {
   builder
-    .addCase(setGuitarAddBasket, (state, action) => {
-      state.guitarAddBasket = action.payload.guitarAddBasket;
+    .addCase(setGuitarIdAndCount, (state, action) => {
+      state.guitarIdAndCount = action.payload.guitarIdAndCount;
     })
-
     .addCase(setDiscountGuitar, (state, action) => {
+      state.couponLoading = false;
       state.discountGuitar = action.payload.discountGuitar;
     })
     .addCase(setCouponPostStatus, (state, action) => {
       state.couponStatus = action.payload.couponStatus;
+    })
+    .addCase(postCouponLoading, (state) => {
+      state.couponLoading = true;
     });
+
 });
 
 export {basket};

@@ -15,10 +15,9 @@ export const createApi = (setErrorNoFound) => {
     (error) => {
       const {response} = error;
 
-      if (response?.status === 404) {
+      if (response?.status === 404 || response?.status === 400) {
         return setErrorNoFound();
       }
-
       return Promise.reject(error);
     },
   );

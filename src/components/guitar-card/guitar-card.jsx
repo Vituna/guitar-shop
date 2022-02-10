@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { fetchCurrentGuitarAction, fetchComments } from '../../store/api-actions';
 import { getGuitar, getGuitarLoading, getGuitarsErrorStatus, getErrorNoFound } from '../../store/guitar/selectors';
-import { getComments, getCommentNew } from '../../store/reviews/selectors';
+import { getComments, getCommentNew, getCommentPostStatus } from '../../store/reviews/selectors';
 import { setModalType, setGuitarAddModal } from '../../store/action';
 
 import Rating from '../rating/rating';
@@ -14,7 +14,7 @@ import ServerError from '../serverError/serverError';
 import NoFound from '../no-found/no-found';
 
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus } from '../../utils';
-import { TypeModal, Tabs } from '../../const';
+import { TypeModal, Tabs, CommentPostStatus } from '../../const';
 
 function GuitarCard() {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ function GuitarCard() {
   const commentNew = useSelector(getCommentNew);
   const isError = useSelector(getGuitarsErrorStatus);
   const errorNoFound = useSelector(getErrorNoFound);
+  const errorComments = useSelector(getCommentPostStatus);
 
   const [tabs, setTabs] = useState(Tabs.Characteristic);
 
@@ -63,6 +64,7 @@ function GuitarCard() {
   if (guitarLoading) {
     return <Preloader />;
   }
+
   const commentsAll = comments.concat(commentNew);
 
   return (
@@ -86,7 +88,7 @@ function GuitarCard() {
                 <h2 className="product-container__title title title--big title--uppercase">{guitar.name}</h2>
                 <div className="rate product-container__rating" aria-hidden="true"><span className="visually-hidden">Рейтинг:</span>
 
-                  <Rating rating={guitar.rating} />
+                  <Rating rating={guitar.rating}/>
 
                   <span className="rate__count">{commentsAll.length}</span><span className="rate__message"></span>
                 </div>
@@ -121,7 +123,7 @@ function GuitarCard() {
               </div>
             </div>
 
-            <Reviews />
+            {errorComments === CommentPostStatus.NotPosted ? <h3 className="reviews__title title title--bigger">Ошибка загрузки комментариев</h3> : <Reviews />}
 
           </div>
         </main>

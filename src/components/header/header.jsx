@@ -1,21 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getGuitarAddBasket } from '../../store/basket/selectors';
+import { getGuitarIdAndCount } from '../../store/basket/selectors';
 
 import Search from '../search/search';
 
-import { AppRoute } from '../../const';
+import { getSumValues } from '../../utils';
 
 function Header() {
 
-  const guitarsAdd = useSelector(getGuitarAddBasket);
+  const guitarsIdAdd = useSelector(getGuitarIdAndCount);
 
-  const guitarCount = () => {
-    if (guitarsAdd !== undefined) {
-      return guitarsAdd.reduce((acc, item) => acc + item.count , 0);
-    }
-  };
+  const guitarCount = () => getSumValues(guitarsIdAdd);
 
   return (
     <header className="header" id="header">
@@ -26,7 +22,7 @@ function Header() {
         <nav className="main-nav">
           <ul className="main-nav__list">
             <li>
-              <Link className="link main-nav__link" to='/catalog/page_1'>Каталог</Link>
+              <a className="link main-nav__link" href="/catalog/page_1">Каталог</a>
             </li>
             <li><a className="link main-nav__link" href="!#">Где купить?</a>
             </li>
@@ -37,13 +33,13 @@ function Header() {
 
         <Search />
 
-        <Link to={AppRoute.Basket} className="header__cart-link" href="!#" aria-label="Корзина">
+        <a className="header__cart-link" href="/basket" aria-label="Корзина">
           <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
             <use xlinkHref="#icon-basket"></use>
           </svg>
           <span className="visually-hidden">Перейти в корзину</span>
-          {guitarsAdd.length !== 0 ? <span className="header__cart-count">{guitarCount()}</span> : ''}
-        </Link>
+          {guitarCount() ? <span className="header__cart-count">{guitarCount()}</span> : ''}
+        </a>
       </div>
     </header>
   );

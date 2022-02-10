@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 
 import ModalCartDelete from './modal-cart-delete';
 
-import { mockGuitarsModalsArr, mockGuitarsModals } from '../../utils/test-mocks';
+import { mockGuitarsModals } from '../../utils/test-mocks';
 import { TypeModal } from '../../const';
 
 const history = createMemoryHistory();
@@ -25,7 +25,7 @@ describe('Component: ModalCardAdd', () => {
       modalType: TypeModal.OpenDeleteGuitar,
     },
     BASKET: {
-      guitarAddBasket: mockGuitarsModalsArr,
+      guitarIdAndCount: {2:1},
     },
   });
 

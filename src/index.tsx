@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './store/root-reducer';
 import { createApi } from './services/api';
 import { fetchGuitarsAction } from './store/api-actions';
-import { setErrorNoFound, setGuitarAddBasket } from './store/action';
+import { setErrorNoFound, setGuitarIdAndCount } from './store/action';
 
 import App from './components/app/app';
 
@@ -24,7 +24,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 store.dispatch(fetchGuitarsAction());
 const guitars = getGuitarsStorage();
-store.dispatch(setGuitarAddBasket(guitars));
+store.dispatch(setGuitarIdAndCount(guitars));
 
 ReactDOM.render(
   <React.StrictMode>

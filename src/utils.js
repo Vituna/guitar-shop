@@ -1,6 +1,6 @@
 import { SORT_TYPES, FILTER_PARAMS_NAME, GuitarTypeRus, PAGINATION_PARAMS_NAME, DIRECTION_TYPES, GuitarTypeRusModal, cartKey } from './const';
 
-import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage } from './store/action';
+import { changeTypeFilter, changeStringFilter, changeMaxPrice, changeMinPrice, changeSortType, changeDirectionType, currentNumberPage, setModalType } from './store/action';
 
 export const getFilterGuitarsName = (guitars, inputValue) => guitars && guitars.filter((guitar) => guitar.name.toLowerCase().startsWith(inputValue.toLowerCase()));
 
@@ -122,62 +122,77 @@ export const getPriceSeparator = (price) => {
   }
 };
 
-export const getFullPrice = (guitars) => guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
+export const getFullPrice = (guitars, guitarsIdAdd) => guitars.reduce((acc, item) => acc + guitarsIdAdd[item.id] * item.price , 0);
 
-export const getFullPriceSeparator = (guitars) => {
-  const fullPrice = getFullPrice(guitars);
+export const getFullPriceSeparator = (guitars, guitarsIdAdd) => {
+  const fullPrice = getFullPrice(guitars, guitarsIdAdd);
   return getPriceSeparator(fullPrice);
 };
 
-export const getAmountDiscount = (guitars, discount) => {
+export const getAmountDiscount = (guitars, discount, guitarsIdAdd) => {
   if (discount > 0) {
-    const fullPrice = guitars.reduce((acc, item) => acc + item.count * item.guitar.price , 0);
+    const fullPrice = guitars.reduce((acc, item) => acc + guitarsIdAdd[item.id] * item.price , 0);
 
     const amountDiscount = fullPrice * discount / 100;
     return amountDiscount;
   } return 0;
 };
 
-export const getGuitarPlus = (guitar, guitarsAdd ) => {
-  const guitars = [...guitarsAdd];
-  const index = getSimilarIndexGuitar(guitars, guitar);
-  if (index !== -1) {
-    if (guitars[index].count === 99) {
-      return guitars;
-    }
-    guitars[index] = {...guitars[index], count: guitars[index].count + 1 };
+export const getGuitarPlus = (guitar, guitarsIdAdd) => {
+  const myObj = Object();
+  if (guitarsIdAdd[guitar.id] === 99) {
+    return guitarsIdAdd;
   }
-  return guitars;
+  const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+  myObj[keyt] = guitarsIdAdd[guitar.id] + 1;
+  const returnedTarget = {...guitarsIdAdd, ...myObj};
+  return returnedTarget;
 };
 
-export const grtGuitarMinus = (guitar, guitarsAdd) => {
-  const guitars = [...guitarsAdd];
-  const index = getSimilarIndexGuitar(guitars, guitar);
-
-  if (index !== -1) {
-    guitars[index] = {...guitars[index], count: guitars[index].count - 1 };
+export const getGuitarMinus = (guitar, guitarsIdAdd) => {
+  const myObj = Object();
+  if (guitarsIdAdd !== undefined) {
+    const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+    myObj[keyt] = guitarsIdAdd[guitar.id] - 1;
+    const returnedTarget = {...guitarsIdAdd, ...myObj};
+    return returnedTarget;
   }
-  return guitars;
 };
 
-export const getGuitarChangeValue = (guitar, count, guitarsAdd) => {
-  const index = getSimilarIndexGuitar(guitarsAdd, guitar);
-
-  if (index === -1 || count < 0 || count > 99) {
-    return guitarsAdd;
+export const getGuitarChangeValue = (guitar, count, guitarsIdAdd) => {
+  const myObj = Object();
+  if (count > 99) {
+    return guitarsIdAdd;
   }
-  const guitarIndex = guitarsAdd[index];
-  const guitarIndexCount = {...guitarIndex, count};
-  return [...guitarsAdd.slice(0, index), guitarIndexCount, ...guitarsAdd.slice(index + 1)];
+  const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+  myObj[keyt] = count;
+  const returnedTarget = {...guitarsIdAdd, ...myObj};
+  return returnedTarget;
 };
 
-export const getMessageValidityPromo = (couponStatus) => {
-  switch (couponStatus) {
-    case true:
-      return <p className='form-input__message form-input__message--success'>Промокод принят</p>;
-    case false:
-      return <p className='form-input__message form-input__message--error'>неверный промокод</p>;
-    default:
-      return '';
+export const getMessageValidityPromo = (coupon, couponLoading, discountGuitar, couponStatus) => {
+  if (coupon === '') {
+    return '';
+  }else if (couponLoading) {
+    return <p className='form-input__message form-input__message--error'>КУПОН ОТПРАВЛЯЕТСЯ</p>;
+  }else if (discountGuitar === undefined) {
+    return <p className='form-input__message form-input__message--error'>неверный промокод</p>;
+  }else if (couponStatus) {
+    return <p className='form-input__message form-input__message--success'>Промокод принят</p>;
+  }else if (!couponStatus) {
+    return <p className='form-input__message form-input__message--error'>Cервер не доступен</p>;
+  }else if (coupon !== 'light-333' || coupon !== 'medium-444' || coupon !== 'height-555') {
+    return '';
   }
+};
+
+export const getSumValues = (obj) => {
+  if (Object.keys(obj).length !== 0) {
+    return Object.values(obj).reduce((a, b) => a + b);
+  }
+};
+
+export const closeModal  = (dispatch) => {
+  dispatch(setModalType(''));
+  document.body.style.position = '';
 };
