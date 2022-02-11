@@ -10,6 +10,7 @@ import { createApi } from '../../services/api';
 import ModalAddSuccess from './modal-add-success';
 
 import { TypeModal } from '../../const';
+import { mockGuitar} from '../../utils/test-mocks';
 
 const history = createMemoryHistory();
 const api = createApi();
@@ -19,6 +20,10 @@ const mockStore = configureMockStore(middlewares);
 describe('Component: ModalReviewForm', () => {
 
   const store = mockStore({
+    GUITARS: {
+      guitarAdd: mockGuitar,
+    },
+
     REVIEWS: {
       modalType: TypeModal.OpenAddGood,
     },

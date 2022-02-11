@@ -54,7 +54,6 @@ describe('Component: Pagination', () => {
 
     const linkItems = screen.getAllByRole('listitem');
     expect(linkItems.length).toEqual(5);
-    // expect(screen.queryByText('Назад')).toBeInTheDocument();
 
     expect(screen.getByText('Назад')).toBeInTheDocument();
     expect(screen.getByText('1')).toBeInTheDocument();

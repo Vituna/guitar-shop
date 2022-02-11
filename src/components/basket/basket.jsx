@@ -34,6 +34,7 @@ function Basket() {
   const resultArray = guitarAll.filter((item) => resultStatus.some((item2) => item2 === item.id));
 
   const [coupon, setCoupon] = useState('');
+  const [click, setClick] = useState(false);
 
   const discountPrice = getAmountDiscount(resultArray, discountGuitar, guitarsIdAdd);
 
@@ -70,11 +71,13 @@ function Basket() {
     const value = evt.currentTarget.value;
     const delSapces = value.split(' ').join('');
     setCoupon(delSapces);
+    setClick(false);
   };
 
   const handleCouponBtnClick = (evt) => {
     evt.preventDefault();
     if (coupon) {
+      setClick(true);
       dispatch(postCoupons({coupon: coupon}));
     }
   };
@@ -86,6 +89,7 @@ function Basket() {
   if (loadingGuitar) {
     return <Preloader />;
   }
+
 
   return(
 
@@ -145,7 +149,7 @@ function Basket() {
                     <div className="form-input coupon__input">
                       <label className="visually-hidden">Промокод</label>
                       <input type="text" placeholder="Введите промокод" id="coupon" name="coupon" value={coupon} onChange={handleCouponChange} />
-                      {getMessageValidityPromo(coupon, couponLoading, discountGuitar, couponStatus)}
+                      {click ? getMessageValidityPromo(coupon, couponLoading, discountGuitar, couponStatus): ''}
                     </div>
                     <button className="button button--big coupon__button" onClick={handleCouponBtnClick}>Применить</button>
                   </form>
