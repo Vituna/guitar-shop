@@ -159,11 +159,11 @@ export const getGuitarMinus = (guitar, guitarsIdAdd) => {
 
 export const getGuitarChangeValue = (guitar, count, guitarsIdAdd) => {
   const myObj = Object();
-  if (count > 99) {
+  if (count > 99 || count<1) {
     return guitarsIdAdd;
   }
-  const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
-  myObj[keyt] = count;
+  // const keyt = Object.keys(guitarsIdAdd).find((keyg) => guitarsIdAdd[keyg] === guitarsIdAdd[guitar.id]);
+  myObj[guitar.id] = count;
   const returnedTarget = {...guitarsIdAdd, ...myObj};
   return returnedTarget;
 };
