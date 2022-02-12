@@ -10,7 +10,8 @@ import Preloader from '../preloader/preloader';
 import ServerError from '../serverError/serverError';
 
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus, setGuitarsStorage, getFullPriceSeparator, getPriceSeparator, getAmountDiscount, getFullPrice, getMessageValidityPromo, getGuitarPlus, getGuitarMinus, getGuitarChangeValue } from '../../utils';
-import { TypeModal } from '../../const';
+import { TypeModal, AppRoute } from '../../const';
+import { Link } from 'react-router-dom';
 
 function Basket() {
   const dispatch = useDispatch();
@@ -35,7 +36,6 @@ function Basket() {
 
   const [coupon, setCoupon] = useState('');
   const [click, setClick] = useState(false);
-
   const discountPrice = getAmountDiscount(resultArray, discountGuitar, guitarsIdAdd);
 
   const handleDeleteGuitarClick = (guitar) => {
@@ -61,10 +61,14 @@ function Basket() {
   };
 
   const handleGuitarCountChange = (evt, guitar) => {
-    const value = evt.currentTarget.value;
-    const coutGuitars = getGuitarChangeValue(guitar, +value, guitarsIdAdd);
+    const value = evt.target.value;
+    // const emailInput = loginRef.current;
+    const coutGuitars = getGuitarChangeValue(guitar, +value , guitarsIdAdd);
     setGuitarsStorage(coutGuitars);
     dispatch(setGuitarIdAndCount(coutGuitars));
+    // if (value === '') {
+    // }
+
   };
 
   const handleCouponChange = (evt) => {
@@ -90,7 +94,6 @@ function Basket() {
     return <Preloader />;
   }
 
-
   return(
 
     <div className="wrapper">
@@ -102,7 +105,7 @@ function Basket() {
               <a className="link" href="./main.html">Главная</a>
             </li>
             <li className="breadcrumbs__item">
-              <a className="link" href="/catalog/page_1">Каталог</a>
+              <Link className="link" to={AppRoute.CatalogPagaOne}>Каталог</Link>
             </li>
             <li className="breadcrumbs__item">
               <a className="link" href="!#">Корзина</a>
@@ -131,7 +134,7 @@ function Basket() {
                         <use xlinkHref="#icon-minus"></use>
                       </svg>
                     </button>
-                    <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={`${guitarsIdAdd[guitar.id]}`} />
+                    <input className="quantity__input" pattern="[0-9]{1,5}" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={`${guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''}`} />
                     <button className="quantity__button" aria-label="Увеличить количество" onClick={() => handlePluseClick(guitar)}>
                       <svg width="8" height="8" aria-hidden="true">
                         <use xlinkHref="#icon-plus"></use>

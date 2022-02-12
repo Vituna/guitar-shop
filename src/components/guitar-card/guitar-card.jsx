@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -14,7 +14,7 @@ import ServerError from '../serverError/serverError';
 import NoFound from '../no-found/no-found';
 
 import { getTypeNameUpperCase, getTranslationGuitarTypeRus } from '../../utils';
-import { TypeModal, Tabs, CommentPostStatus } from '../../const';
+import { TypeModal, Tabs, CommentPostStatus, AppRoute } from '../../const';
 
 function GuitarCard() {
   const dispatch = useDispatch();
@@ -77,7 +77,8 @@ function GuitarCard() {
             <ul className="breadcrumbs page-content__breadcrumbs">
               <li className="breadcrumbs__item"><a className="link" href="./main.html">Главная</a>
               </li>
-              <li className="breadcrumbs__item"><a className="link" href="/catalog/page_1">Каталог</a>
+              <li className="breadcrumbs__item">
+                <Link className="link" to={AppRoute.CatalogPagaOne}>Каталог</Link>
               </li>
               <li className="breadcrumbs__item"><a className="link" href="!#">{guitar.name}</a>
               </li>

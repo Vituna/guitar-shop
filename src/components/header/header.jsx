@@ -6,6 +6,7 @@ import { getGuitarIdAndCount } from '../../store/basket/selectors';
 import Search from '../search/search';
 
 import { getSumValues } from '../../utils';
+import { AppRoute } from '../../const';
 
 function Header() {
 
@@ -16,13 +17,13 @@ function Header() {
   return (
     <header className="header" id="header">
       <div className="container header__wrapper">
-        <Link className="header__logo logo" to='/'>
+        <Link className="header__logo logo" to={AppRoute.Main}>
           <img className="logo__img" width="70" height="70" src="../img/svg/logo.svg" alt="Логотип" />
         </Link>
         <nav className="main-nav">
           <ul className="main-nav__list">
             <li>
-              <a className="link main-nav__link" href="/catalog/page_1">Каталог</a>
+              <Link className="link main-nav__link" to={AppRoute.CatalogPagaOne}>Каталог</Link>
             </li>
             <li><a className="link main-nav__link" href="!#">Где купить?</a>
             </li>
@@ -33,13 +34,13 @@ function Header() {
 
         <Search />
 
-        <a className="header__cart-link" href="/basket" aria-label="Корзина">
+        <Link className="header__cart-link" to={AppRoute.Basket} aria-label="Корзина">
           <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
             <use xlinkHref="#icon-basket"></use>
           </svg>
           <span className="visually-hidden">Перейти в корзину</span>
           {guitarCount() ? <span className="header__cart-count">{guitarCount()}</span> : ''}
-        </a>
+        </Link>
       </div>
     </header>
   );
