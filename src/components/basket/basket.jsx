@@ -61,14 +61,10 @@ function Basket() {
   };
 
   const handleGuitarCountChange = (evt, guitar) => {
-    const value = evt.target.value;
-    // const emailInput = loginRef.current;
+    const value = evt.currentTarget.value;
     const coutGuitars = getGuitarChangeValue(guitar, +value , guitarsIdAdd);
     setGuitarsStorage(coutGuitars);
     dispatch(setGuitarIdAndCount(coutGuitars));
-    // if (value === '') {
-    // }
-
   };
 
   const handleCouponChange = (evt) => {
@@ -127,21 +123,21 @@ function Basket() {
                     <p className="product-info__info">Артикул: {guitar.vendorCode}</p>
                     <p className="product-info__info">{getTypeNameUpperCase(getTranslationGuitarTypeRus(guitar.type))}, {guitar.stringCount} струнная</p>
                   </div>
-                  <div className="cart-item__price">{getPriceSeparator(guitar.price)} ₽</div>
+                  <div className="cart-item__price">{getPriceSeparator(guitar.price) } ₽</div>
                   <div className="quantity cart-item__quantity">
                     <button className="quantity__button" aria-label="Уменьшить количество" onClick={() => handleMinusClick(guitar)}>
                       <svg width="8" height="8" aria-hidden="true">
                         <use xlinkHref="#icon-minus"></use>
                       </svg>
                     </button>
-                    <input className="quantity__input" pattern="[0-9]{1,5}" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={`${guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''}`} />
+                    <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={`${guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''}`} />
                     <button className="quantity__button" aria-label="Увеличить количество" onClick={() => handlePluseClick(guitar)}>
                       <svg width="8" height="8" aria-hidden="true">
                         <use xlinkHref="#icon-plus"></use>
                       </svg>
                     </button>
                   </div>
-                  <div className="cart-item__price-total">{getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price)} ₽</div>
+                  <div className="cart-item__price-total">{getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price) !== '0' ? getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price) : ''} ₽</div>
                 </div>
               ))}
               <div className="cart__footer">
