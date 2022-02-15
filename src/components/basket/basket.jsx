@@ -73,7 +73,6 @@ function Basket() {
   const handleCountOnBlur = (guitar  ) => {
     if (valueCount === '') {
       const coutGuitars = getGuitarChangeValue(guitar, 1 , guitarsIdAdd);
-      console.log('valueCount')
       setGuitarsStorage(coutGuitars);
       dispatch(setGuitarIdAndCount(coutGuitars));
     }
@@ -143,7 +142,6 @@ function Basket() {
                       </svg>
                     </button>
                     <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''} onBlur={() => handleCountOnBlur(guitar)}/>
-                    {/* <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={guitarsIdAdd[guitar.id] !== 0} /> */}
                     <button className="quantity__button" aria-label="Увеличить количество" onClick={() => handlePluseClick(guitar)}>
                       <svg width="8" height="8" aria-hidden="true">
                         <use xlinkHref="#icon-plus"></use>
