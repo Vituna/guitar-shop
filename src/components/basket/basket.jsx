@@ -36,6 +36,8 @@ function Basket() {
 
   const [coupon, setCoupon] = useState('');
   const [click, setClick] = useState(false);
+  const [valueCount, setValueCount] = useState();
+
   const discountPrice = getAmountDiscount(resultArray, discountGuitar, guitarsIdAdd);
 
   const handleDeleteGuitarClick = (guitar) => {
@@ -62,9 +64,19 @@ function Basket() {
 
   const handleGuitarCountChange = (evt, guitar) => {
     const value = evt.currentTarget.value;
+    setValueCount(value);
     const coutGuitars = getGuitarChangeValue(guitar, +value , guitarsIdAdd);
     setGuitarsStorage(coutGuitars);
     dispatch(setGuitarIdAndCount(coutGuitars));
+  };
+
+  const handleCountOnBlur = (guitar  ) => {
+    if (valueCount === '') {
+      const coutGuitars = getGuitarChangeValue(guitar, 1 , guitarsIdAdd);
+      console.log('valueCount')
+      setGuitarsStorage(coutGuitars);
+      dispatch(setGuitarIdAndCount(coutGuitars));
+    }
   };
 
   const handleCouponChange = (evt) => {
@@ -130,14 +142,15 @@ function Basket() {
                         <use xlinkHref="#icon-minus"></use>
                       </svg>
                     </button>
-                    <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={`${guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''}`} />
+                    <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={guitarsIdAdd[guitar.id] !== 0 ? guitarsIdAdd[guitar.id] : ''} onBlur={() => handleCountOnBlur(guitar)}/>
+                    {/* <input className="quantity__input" type="number" placeholder="1" id="2-count" name="2-count" min="1" max="99" onChange={(evt) => handleGuitarCountChange(evt, guitar)} value={guitarsIdAdd[guitar.id] !== 0} /> */}
                     <button className="quantity__button" aria-label="Увеличить количество" onClick={() => handlePluseClick(guitar)}>
                       <svg width="8" height="8" aria-hidden="true">
                         <use xlinkHref="#icon-plus"></use>
                       </svg>
                     </button>
                   </div>
-                  <div className="cart-item__price-total">{getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price) !== '0' ? getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price) : ''} ₽</div>
+                  <div className="cart-item__price-total">{getPriceSeparator(guitarsIdAdd[guitar.id] * guitar.price)} ₽</div>
                 </div>
               ))}
               <div className="cart__footer">
